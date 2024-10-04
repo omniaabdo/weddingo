@@ -1,0 +1,42 @@
+/* Rounded container with drop shadow */
+.rounded-container {
+    border-radius: 15px;
+    background-color: #fdfdfd;
+    box-shadow: 5 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for custom carousel arrows */
+.custom-carousel-arrow-left,
+.custom-carousel-arrow-right {
+    font-size: 35px;
+    color: #000000;
+    /* Customize the color as you need */
+    background: #fafafa;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-carousel-arrow-left:hover,
+.custom-carousel-arrow-right:hover {
+    color: #19b5bc;
+    /* Darker shade for hover effect */
+    background: #f1f2f3;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+}
+
+/* Adjust arrow positioning for clarity */
+.carousel-control-prev {
+    left: -40px;
+}
+
+.carousel-control-next {
+    right: -40px;
+}

@@ -1,0 +1,66 @@
+/* Vendor link styling */
+.vendor-link {
+    text-decoration: none;
+    color: inherit;
+    /* Keep the text and icon color unchanged */
+}
+
+.vendor-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Leave space for the navbar */
+.my-vendors {
+    margin-top: 100px;
+    /* Adjust as needed */
+}
+
+/* Vendor card styling */
+.vendor-card {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vendor-icon {
+    font-size: 60px;
+    /* Increased icon size */
+    color: #949ca3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Align icon and content in the center */
+.vendor-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Search button */
+.search-btn {
+    border-radius: 20px;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #19b5bc;
+    color: #fff;
+}
+
+/* Responsiveness */
+@media (max-width: 576px) {
+    .vendor-card {
+        margin-bottom: 20px;
+    }
+}

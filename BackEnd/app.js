@@ -25,12 +25,13 @@ app.use(morgan('combined', { stream: { write: message => logger.info(message.tri
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/venues', venueRoutes);
+app.use('/api/budget', require('./routes/budget'));
 
 // Error Handling Middleware
 app.use(errorHandler);
 
 // Start Server
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 5003;
 app.listen(PORT, () => {
     logger.info(`Server running on port ${PORT}`);
 });

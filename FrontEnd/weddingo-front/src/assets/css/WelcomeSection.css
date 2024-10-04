@@ -1,0 +1,62 @@
+/* Outer Container for space and background color */
+.outer-container {
+    background-color: #eaf3fb;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px;
+    
+}
+
+/* Inner Card with rounded edges and background color */
+.inner-card {
+    background-color: #ffffff;
+    border-radius: 25px;
+    color: #585858;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   
+}
+
+/* Main Image and its container */
+.main-image-container {
+    width: 100%;
+    text-align: center;
+}
+
+.main-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Countdown timer styling */
+.countdown {
+    font-size: 12px;
+}
+
+/* Status Cards */
+.status-card {
+    border-radius: 15px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Circle indicator styling */
+.circle-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #17a2b8;
+}
+
+/* Responsive Spacing */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding-top: 2rem;
+    }
+}

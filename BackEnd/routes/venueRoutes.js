@@ -1,11 +1,12 @@
 const express = require('express');
-const { createVenue, getVenues, updateVenue, deleteVenue } = require('../controllers/venueController');
-const { auth } = require('../middleware/auth');
+const { addVenue, getVenues, updateVenue, deleteVenue } = require('../controllers/venueController');  // Ensure these are correctly imported
+
 const router = express.Router();
 
-router.post('/', auth, createVenue);
-router.get('/', getVenues);
-router.put('/:id', auth, updateVenue);
-router.delete('/:id', auth, deleteVenue);
+// Define routes for venues
+router.post('/', addVenue);        // Route for adding a new venue
+router.get('/', getVenues);        // Route for retrieving venues
+router.put('/:id', updateVenue);   // Route for updating a venue
+router.delete('/:id', deleteVenue); // Route for deleting a venue
 
 module.exports = router;

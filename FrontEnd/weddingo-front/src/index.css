@@ -1,0 +1,17 @@
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+body {
+font-family: ProximaNova, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #222;
+}
+html {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

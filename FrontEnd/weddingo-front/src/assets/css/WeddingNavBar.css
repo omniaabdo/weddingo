@@ -1,0 +1,73 @@
+/* Set the custom font family and color */
+.nav-item-custom {
+    font-family: 'Open Sans', sans-serif;
+    color: #4a4a4a;
+    /* Set text color to dark gray */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 40px;
+    /* Increased margin to create more space between items */
+}
+
+/* Underline color for active link */
+.nav-item-custom .active {
+    border-bottom: 4px solid #00c8c8;
+}
+
+.nav-item-custom div {
+    font-size: 14px;
+}
+
+/* Adjust icon and text alignment */
+.nav-item-custom svg {
+    display: block;
+    margin-bottom: 5px;
+    color: #4a4a4a;
+    /* Icon color to dark gray */
+}
+
+/* Adjust the navbar brand */
+.navbar-brand-custom {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #4a4a4a;
+    /* Brand color to dark gray */
+    margin-right: 20px;
+    /* Increased margin to separate brand from nav items */
+}
+
+/* Add shadow and z-index to the navbar */
+.navbar-custom {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Adds a subtle shadow */
+    z-index: 1000;
+    /* Keeps the navbar above other content */
+    background-color: #ffffff;
+    /* Set navbar background to white */
+    padding-left: 10px;
+    /* Reduce padding to bring items closer */
+}
+
+/* Align nav items to the start */
+.nav-custom {
+    display: flex;
+    justify-content: flex-start;
+    /* Align items to the start */
+    align-items: center;
+    width: 100%;
+}
+
+/* Responsiveness */
+@media (max-width: 576px) {
+    .navbar-collapse {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-item-custom {
+        margin: 10px 0;
+    }
+}

@@ -1,40 +1,59 @@
 const Venue = require('../models/Venue');
 
-exports.createVenue = async (req, res) => {
-    try {
-        const venue = new Venue(req.body);
-        await venue.save();
-        res.status(201).json(venue);
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to create venue' });
-    }
+// Add a new venue
+const addVenue = async (req, res) => {
+  try {
+    const { name, location, capacity, price } = req.body;
+    const venue = new Venue({ name, location, capacity, price });
+    await venue.save();
+    res.status(201).json({ message: 'Venue added successfully', venue });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-exports.getVenues = async (req, res) => {
-    try {
-        const venues = await Venue.find();
-        res.status(200).json(venues);
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to get venues' });
-    }
+// Get all venues
+const getVenues = async (req, res) => {
+  try {
+    const venues = await Venue.find();
+    res.json(venues);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-exports.updateVenue = async (req, res) => {
-    try {
-        const venue = await Venue.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!venue) return res.status(404).json({ error: 'Venue not found' });
-        res.status(200).json(venue);
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to update venue' });
+// Update a venue
+const updateVenue = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedData = req.body;
+    const venue = await Venue.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!venue) {
+      return res.status(404).json({ message: 'Venue not found' });
     }
+    res.json({ message: 'Venue updated successfully', venue });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-exports.deleteVenue = async (req, res) => {
-    try {
-        const venue = await Venue.findByIdAndDelete(req.params.id);
-        if (!venue) return res.status(404).json({ error: 'Venue not found' });
-        res.status(200).json({ message: 'Venue deleted' });
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to delete venue' });
+// Delete a venue
+const deleteVenue = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const venue = await Venue.findByIdAndDelete(id);
+    if (!venue) {
+      return res.status(404).json({ message: 'Venue not found' });
     }
+    res.json({ message: 'Venue deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  addVenue,
+  getVenues,
+  updateVenue,
+  deleteVenue,
 };
