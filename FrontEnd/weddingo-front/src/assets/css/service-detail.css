@@ -1,0 +1,15 @@
+.service {
+    display: flex;
+    margin-top: 6%;
+}
+
+.card-img {
+    height: 50vmin;
+    width: 35%;
+    margin: 0px 50px 0px 50px;
+}
+
+.card-data {
+    text-align: center;
+    padding: 20px;
+}
