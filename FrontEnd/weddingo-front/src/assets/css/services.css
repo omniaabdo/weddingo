@@ -1,0 +1,39 @@
+.services {
+    width: 85%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 6%;
+}
+
+h2 {
+    color: #0dcaf0;
+}
+
+.card-service {
+    height: 30vmin;
+    width: 30vmin !important;
+    margin-right: 30px;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+}
+
+.services-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.link-service {
+    text-decoration: none;
+    color: black;
+}
+
+.service-card-name {
+    margin: 0px;
+    margin-top: 8px;
+}
+
+.service-card-price {
+    margin: 0px 0px 20px 0px;
+}
