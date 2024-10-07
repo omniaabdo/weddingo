@@ -1,9 +1,16 @@
-import React from 'react';
+import React from "react";
+import NavBar from "./NavBar";
 
 function Budget() {
-    return (
-        <div><h1>eeeeeeeeeeee</h1></div>
-        
-    );
+  return (
+    <>
+      <NavBar />
+      <section>
+        <div className="container">
+          <h1>Checklist</h1>
+        </div>
+      </section>
+    </>
+  );
 }
 export default Budget;

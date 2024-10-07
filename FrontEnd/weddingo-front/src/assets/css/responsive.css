@@ -1,0 +1,126 @@
+/* Media query for screens with a max width of 768px (e.g., tablets and smaller devices) */
+@media only screen and (max-width: 1025px) {
+    .min-section {
+        min-height: 80vh !important;
+    }
+
+    .home_header .my-logo img {
+        width: 6rem;
+    }
+
+    /*#region HomeSections */
+
+
+    /*=======================
+            Hero Section
+    ========================*/
+    .section_home_hero {
+
+        display: flex;
+        position: relative;
+        flex-direction: column-reverse;
+    }
+
+    .section_home_hero::before {
+        left: 0;
+        bottom: 50%;
+        width: 100%;
+        background-position: top;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
+
+    }
+
+    .section_home_hero .text_container {
+        align-items: center;
+
+    }
+
+
+
+    .section_home_hero .text_container p {
+        max-width: 100%;
+
+    }
+
+    .section_home_hero .text_container .search_hero {
+        max-width: 80%;
+    }
+
+
+
+
+
+    /*#endregion HomeSections */
+
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    /*#region login/register */
+    .login-form .login-form__form .img-content,
+    .register-form .register-form__form .img-content {
+        display: none;
+    }
+
+    .login-form .login-form__form .text-content,
+    .register-form .register-form__form .text-content {
+        flex-basis: 100%;
+    }
+
+    /*#endregion login/register */
+
+
+    /*#region HomeSections */
+
+    /*=======================
+            Hero Section
+    ========================*/
+
+    .section_home_hero .text_container p {
+        max-width: 100%;
+        text-align: center;
+    }
+
+
+    /*===================================================
+                About Service Section
+    ==================================================*/
+    .home-single-service .home-single-service_bg div:first-child {
+        width: 0% !important;
+
+
+    }
+
+    .home-single-service .home-single-service_bg div:last-child {
+
+        width: 100% !important;
+        clip-path: polygon(0% 0%, 0% 0%, 100% 100%, 0% 100%) !important
+    }
+
+    .home-single-service[dir='rtl'] .home-single-service_bg div:last-child {
+
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%) !important
+    }
+
+
+
+    /*#endregion HomeSections */
+
+    /*#region breadcrumb */
+    .breadcrumb {
+        min-height: 40vh !important;
+    }
+    /*#endregion breadcrumb */
+
+
+
+
+}
+
+/* Media query for screens with a max width of 480px (e.g., mobile phones) */
+@media only screen and (max-width: 480px) {
+    body {
+        background-color: lightcoral;
+    }
+}

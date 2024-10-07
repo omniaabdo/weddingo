@@ -1,15 +1,134 @@
-.service {
+.single-service_content-images .carousel {
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.single-service_content-images .carousel .carousel-control-prev {
+    left: 10px;
+}
+
+.single-service_content-images .carousel .carousel-control-next {
+    right: 10px;
+}
+
+.single-service_content-images img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+
+}
+
+.single-service_content-images .content-type  {
+    border-bottom: 1px solid #888;
+}
+
+.single-service_content-images .content-type .content-type_title {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+    font-weight: 700;
+}
+
+
+.single-service_content-images .content-type p {
+    color: #222222;
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+
+}
+
+
+.single-service_content-images .content-type .pricing_list  {
+    list-style: none;
     display: flex;
-    margin-top: 6%;
+    gap: 2rem;
+    padding: 0;
 }
 
-.card-img {
-    height: 50vmin;
-    width: 35%;
-    margin: 0px 50px 0px 50px;
+
+
+
+
+
+
+
+
+
+
+.single-service_content-details .card {
+    border-color: transparent;
 }
 
-.card-data {
-    text-align: center;
-    padding: 20px;
+.single-service_content-details .card .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.single-service_content-details .card .rating {
+    display: flex;
+    align-items: center;
+}
+
+.single-service_content-details .card .location i {
+    margin-right: 5px;
+}
+
+.single-service_content-details .card .more {
+    padding-top: 1rem;
+    text-transform: capitalize;
+    font-size: .8rem;
+    text-decoration: underline;
+    color: #888;
+}
+
+.single-service_content-details .card .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 0 1rem 1rem;
+    padding: 0 0 1rem 0;
+    list-style: none;
+}
+
+.single-service_content-details .card .card-list li span {
+    padding-inline-start: 1rem;
+    text-decoration: underline;
+    color: #888;
+}
+
+.single-service_content-details .card .card-list li img {
+    width: 20px;
+}
+
+
+.single-service_content-details .card .price-range {
+    font-size: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 4px 0px #888;
+    border-radius: 10px;
+
+}
+
+.single-service_content-details .card .btn-primary {
+    display: block;
+    width: 100%;
+    background-color: #00a19a;
+    border-color: #00a19a;
+}
+
+.single-service_content-details .card .btn-primary:hover {
+    background-color: #008b84;
+}
+
+.single-service_content-details .card .badge-warning {
+    background-color: #ffc1075d;
+    color: #000;
+    padding: .8rem 1rem;
+}
+
+.single-service_content-details .card .badge-warning svg {
+    width: 15px;
+    margin-inline-end: .5rem;
 }

@@ -1,15 +1,24 @@
-.services {
+/* .services {
     width: 85%;
     margin: 0 auto;
     text-align: center;
     margin-top: 6%;
-}
+} */
 
-h2 {
+.services h2 {
     color: #0dcaf0;
 }
+.services .subtitle{
+    padding: 1rem;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    line-height: 1.8;
+    color: #444;
+    font-size: .9rem;
+}
 
-.card-service {
+/* .card-service {
     height: 30vmin;
     width: 30vmin !important;
     margin-right: 30px;
@@ -22,9 +31,9 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-}
+} */
 
-.link-service {
+/* .link-service {
     text-decoration: none;
     color: black;
 }
@@ -36,4 +45,4 @@ h2 {
 
 .service-card-price {
     margin: 0px 0px 20px 0px;
-}
+} */

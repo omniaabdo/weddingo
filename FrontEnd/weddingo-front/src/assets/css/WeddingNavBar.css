@@ -71,3 +71,31 @@
         margin: 10px 0;
     }
 }
+
+
+
+
+/* -------- custome styles -----*/
+.profile-nav {
+    padding: 1rem 0 0 0;
+    margin: 0;
+    background-color: #ffffff;
+    border-block: 1px solid #55555552;
+
+}
+
+.profile-nav_list {
+    display: flex;
+    padding: 1rem 0 0 0;
+    margin: 0;
+    gap: 1rem;
+    justify-content: space-around;
+    align-items: center;
+}
+.profile-nav_list li{
+    transition: all .5s ease;
+
+}
+.profile-nav_list li:hover {
+   transform: scale(.97);
+}
