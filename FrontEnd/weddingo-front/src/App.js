@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 // import Home from "./Components/Home";
 import VendorManager from "./Components/VendorManager";
@@ -24,6 +24,12 @@ import Profile from "./Components/Profile";
 
 function App() {
   const { pathname } = useLocation();
+  const [isLogin, setIsLogin] = useState();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setIsLogin(user);
+  }, []);
 
   return (
     <>
@@ -37,9 +43,16 @@ function App() {
 
       <Routes>
         <Route path="" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={isLogin ? <Navigate to="/" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={isLogin ? <Navigate to="/" /> : <Register />}
+        />
         <Route path="/services" element={<SingleServices />} />
+
         <Route
           path="/services/service-detail"
           element={<SingleServicesDetails />}

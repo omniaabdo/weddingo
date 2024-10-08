@@ -20,7 +20,7 @@ export default function HomeFooter() {
                   <Link to={'/about'}>About us</Link>
                 </li>
                 <li>
-                  <a href="#">Editorial team & policies</a>
+                <Link to={'/contact'}>Contact us</Link>
                 </li>
                 <li>
                   <a href="#">Nondiscrimination</a>

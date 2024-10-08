@@ -99,16 +99,14 @@ const singleServiceData = [
 ];
 
 export default function Home() {
-
-  useEffect(()=>{},[
-    window.scrollTo(0,0)
-  ])
+  useEffect(() => {}, [window.scrollTo(0, 0)]);
   return (
     <>
       <HeroSection />
       <Services />
-      {singleServiceData.map((item) => (
+      {singleServiceData.map((item, index) => (
         <HomeSingleService
+          key={index}
           dir={item.dir}
           sup_title={item.sup_title}
           title={item.title}

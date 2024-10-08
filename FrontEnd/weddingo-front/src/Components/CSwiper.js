@@ -34,8 +34,6 @@ export default function CSwiper({ dir, data }) {
         spaceBetween={30}
         slidesPerView={3}
         navigation
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
       >
         {data.map((item) => (
           <>

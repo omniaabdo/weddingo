@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import apple from "../assets/img/smail-logos/apple.svg";
 import facebook from "../assets/img/smail-logos/facebook.svg";
 import google from "../assets/img/smail-logos/google.svg";
 import { useEffect } from "react";
-
-
 
 const loginFunctionBTN = (img, text) => {
   return (
@@ -18,6 +16,17 @@ const loginFunctionBTN = (img, text) => {
 };
 
 export default function Login() {
+  const navigator = useNavigate();
+
+  const setLoginBtn = () => {
+    const isLogin = localStorage.setItem("user", true);
+    console.log(isLogin);
+    
+    if (isLogin) {
+      navigator("/");
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -31,7 +40,7 @@ export default function Login() {
               <h4> Log in to your account </h4>
               <p>
                 {" "}
-                Not a member yet? <Link to={'/register'}>Join now</Link>
+                Not a member yet? <Link to={"/register"}>Join now</Link>
               </p>
               <div className="login-functions">
                 {loginFunctionBTN(facebook, "facebook")}
@@ -64,7 +73,9 @@ export default function Login() {
                   </p>
                 </div>
                 <div className="form-button">
-                  <Link className="btn btn-primary" to={'/profile'}>Log in</Link>
+                  <Link className="btn btn-primary" onClick={setLoginBtn}>
+                    Log in
+                  </Link>
                 </div>
               </form>
             </div>

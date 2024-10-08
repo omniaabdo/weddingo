@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/logo.png";
+import NavProfile from "./NavProfile";
+import { useEffect, useState } from "react";
 
 export default function HomeHeader() {
+  const [isLogin, setIsLogin] = useState();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setIsLogin(user);
+  }, []);
   return (
     <>
       <header className="home_header">
@@ -61,10 +69,18 @@ export default function HomeHeader() {
                     </Link>
                   </li>
                 </ul>
-                <div className="reg-log-div">
-                  <Link to={"/login"}>Login </Link>
-                  <Link to={"/register"}>Join Now</Link>
-                </div>
+                {isLogin ? (
+                  <>
+                    <NavProfile />
+                  </>
+                ) : (
+                  <>
+                    <div className="reg-log-div">
+                      <Link to={"/login"}>Login </Link>
+                      <Link to={"/register"}>Join Now</Link>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </nav>
