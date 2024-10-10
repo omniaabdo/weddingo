@@ -1,0 +1,37 @@
+.checklist_single-card {
+    display: flex;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    transition: all .5s ease;
+    margin: 1rem 0;
+}
+.checklist_single-card:hover {
+    transform: scale(1.01)
+}
+
+.checklist_single-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+
+}
+
+.checklist_single-card a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    width: 100%;
+    aspect-ratio: 1;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    z-index: 2;
+}

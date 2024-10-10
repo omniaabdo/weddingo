@@ -3,7 +3,6 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 // import Home from "./Components/Home";
 import VendorManager from "./Components/VendorManager";
-import Checklist from "./Components/Checklist"; // Ensure this path is correct
 import Budget from "./Components/Budget";
 // import Services from "./Components/Services";
 import ServiceDetail from "./Components/ServiceDetail";
@@ -21,6 +20,11 @@ import ContactUs from "./pages/ContactUs";
 import SingleServices from "./pages/SingleServices";
 import SingleServicesDetails from "./pages/SingleServicesDetails";
 import Profile from "./Components/Profile";
+import AddVendor from "./Components/AddVendor";
+import PhotographerVendor from "./Components/photographer-components/PhotographerVendor";
+import PhotographerServiceDetails from "./Components/photographer-components/PhotographerServiceDetails";
+import CarRentVendor from "./Components/car-rent-components/CarRentVendor";
+import CarRentServiceDetails from "./Components/car-rent-components/CarRentServiceDetails";
 
 function App() {
   const { pathname } = useLocation();
@@ -61,7 +65,23 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/vendor-manager" element={<VendorManager />} />
-        <Route path="/profile/checklist" element={<Checklist />} />
+        <Route path="/profile/my-services" element={<AddVendor />} />
+        <Route
+          path="/profile/my-services/photographer"
+          element={<PhotographerVendor />}
+        />
+        <Route
+          path="/profile/my-services/photographer/details"
+          element={<PhotographerServiceDetails />}
+        />
+        <Route
+          path="/profile/my-services/car"
+          element={<CarRentVendor />}
+        />
+        <Route
+          path="/profile/my-services/car/details"
+          element={<CarRentServiceDetails />}
+        />
         <Route path="/profile/budget" element={<Budget />} />
       </Routes>
       {pathname == "/login" ? (

@@ -114,14 +114,14 @@ const NavBar = () => {
                 <li className="nav-item-custom">
                   <Link
                     className={`nav-link ${
-                      pathname === "/profile/checklist" && "active"
+                      pathname === "/profile/my-services" && "active"
                     }`}
-                    to="/profile/checklist"
+                    to="/profile/my-services"
                   >
                     <center>
                       <FaClipboardList />{" "}
                     </center>
-                    Checklist
+                    Services
                   </Link>
                 </li>
                 <li className="nav-item-custom">
