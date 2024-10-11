@@ -40,3 +40,69 @@
 .carousel-control-next {
     right: -40px;
 }
+
+
+
+
+/*-------profile-vendoer -----*/
+.profile-vendoer{
+    position: relative;
+}
+.profile-vendoer .profile-vendoer_container{
+    position: relative;
+    top: -2rem;
+}
+
+.profile-vendoer .profile-vendoer_container .div-card-subtitle p{
+    font-size: .9rem;
+    font-weight: 400;
+    color: #222;
+}
+.profile-vendoer .profile-vendoer_container .div-card-subtitle select {
+    outline: none;
+    box-shadow: none;
+}
+.profile-vendoer .profile-vendoer_container .div-card-subtitle select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #222;
+}
+
+
+.profile-vendoer_swiper .card {
+    height: 250px;
+}
+
+.profile-vendoer_swiper .card .card-img-div {
+    height: 60%;
+}
+
+.profile-vendoer_swiper .card .card-img-div img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.profile-vendoer_swiper .card .card-text-div {
+    height: 40%;
+    position: relative;
+}
+
+.profile-vendoer_swiper .card .card-text-div .card-title {
+    font-size: .91rem;
+    font-weight: bold;
+}
+
+.profile-vendoer_swiper .card .card-text-div .card-text-subtitle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-block-start: 1rem;
+    padding-inline-start: 1rem;
+    font-size: .8rem;
+
+}
+
+.profile-vendoer_swiper .card .card-text-div .card-text {
+    font-size: .8rem;
+
+}

@@ -1,0 +1,99 @@
+/* General card styling */
+.services_content .card {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    transition: all .5s ease ;
+}
+.services_content .card:hover {
+    box-shadow: 0px 0px 10px 0px #555;
+    transform: scale(.98);
+}
+
+/* Card image */
+.services_content .card .card-image {
+    position: relative;
+}
+
+.services_content .card .card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Award banner */
+.services_content .card .award-winner {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Card content */
+.services_content .card .card-content {
+    padding: 20px;
+}
+
+.services_content .card .card-content h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.services_content .card .rating {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.services_content .card .price-range {
+    font-size: 16px;
+    color: #666;
+    font-weight: bold;
+}
+
+.services_content .card .features {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.services_content .card .features li {
+    font-size: 14px;
+    color: #333;
+}
+
+
+.services_content .card .response-time {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.services_content .card .card-body h5 {
+    padding: .6rem 0;
+}
+
+.services_content .card .card-text {
+    font-size: 14px;
+    color: #666;
+}
+
+.services_content .card .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.services_content .card .card-body a {
+    margin-top: auto; /* Push the button to the bottom */
+  width: 100%; /* Ensure button spans the width */
+}
+

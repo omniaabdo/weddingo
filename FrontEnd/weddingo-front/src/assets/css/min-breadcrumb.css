@@ -1,0 +1,32 @@
+.min-breadcrumb {
+    padding: 1rem 0;
+}
+
+.min-breadcrumb ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    text-transform: capitalize;
+}
+
+.min-breadcrumb ul li a {
+    color: #777;
+    text-decoration: none;
+
+}
+
+.min-breadcrumb ul li::before {
+    content: "/";
+    padding: 0 .5rem;
+    color: #6c6c6c;
+}
+
+.min-breadcrumb ul li:first-child::before {
+    content: none;
+}
+
+.min-breadcrumb ul li:hover a {
+    color: #111;
+    text-decoration: underline;
+
+}
