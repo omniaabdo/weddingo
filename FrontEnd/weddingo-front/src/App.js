@@ -25,6 +25,11 @@ import PhotographerVendor from "./Components/photographer-components/Photographe
 import PhotographerServiceDetails from "./Components/photographer-components/PhotographerServiceDetails";
 import CarRentVendor from "./Components/car-rent-components/CarRentVendor";
 import CarRentServiceDetails from "./Components/car-rent-components/CarRentServiceDetails";
+import BeautyCenter from "./Components/beauty-center-components/BeautyCenter";
+import BeautyCenterDetails from "./Components/beauty-center-components/BeautyCenterDetails";
+import Store from "./Components/store-components/Store";
+import StoreDetails from "./Components/store-components/StoreDetails";
+import Category from "./Components/category-components/Category";
 
 function App() {
   const { pathname } = useLocation();
@@ -82,6 +87,26 @@ function App() {
           path="/profile/my-services/car/details"
           element={<CarRentServiceDetails />}
         />
+        <Route
+         path="/profile/my-services/beauty-center"
+         element={<BeautyCenter />}
+       />
+        <Route
+         path="/profile/my-services/beauty-center/details"
+         element={<BeautyCenterDetails />}
+       />
+       <Route
+        path="/profile/my-services/store"
+        element={<Store />}
+      />
+       <Route
+        path="/profile/my-services/store/details"
+        element={<StoreDetails />}
+      />
+      <Route
+        path="/profile/my-services/category"
+        element={<Category />}
+      />
         <Route path="/profile/budget" element={<Budget />} />
       </Routes>
       {pathname == "/login" ? (
