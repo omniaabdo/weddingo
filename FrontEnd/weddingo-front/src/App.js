@@ -25,8 +25,7 @@ import PhotographerVendor from "./Components/photographer-components/Photographe
 import PhotographerServiceDetails from "./Components/photographer-components/PhotographerServiceDetails";
 import CarRentVendor from "./Components/car-rent-components/CarRentVendor";
 import CarRentServiceDetails from "./Components/car-rent-components/CarRentServiceDetails";
-import VenueForm from "./Components/Venue-components/VenueServiceDetails";
-import LocationForm from './Components/Location-component/Addlocation'
+
 function App() {
   const { pathname } = useLocation();
   const [isLogin, setIsLogin] = useState();
@@ -83,14 +82,6 @@ function App() {
         <Route
           path="/profile/my-services/car/details"
           element={<CarRentServiceDetails />}
-        />
-        <Route
-          path="/profile/my-services/Venues"
-          element={<VenueForm />}
-        />
-        <Route
-          path="/profile/my-services/Location"
-          element={<LocationForm />}
         />
         <Route path="/profile/budget" element={<Budget />} />
       </Routes>
