@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import NavBar from "./Components/NavBar";
+//import NavBar from "./Components/NavBar";
 // import Home from "./Components/Home";
 import VendorManager from "./Components/VendorManager";
 import Budget from "./Components/Budget";
 // import Services from "./Components/Services";
-import ServiceDetail from "./Components/ServiceDetail";
+//import ServiceDetail from "./Components/ServiceDetail";
 
 import Header from "./Components/Header";
 import HomeHeader from "./Components/HomeHeader";
@@ -25,7 +25,8 @@ import PhotographerVendor from "./Components/photographer-components/Photographe
 import PhotographerServiceDetails from "./Components/photographer-components/PhotographerServiceDetails";
 import CarRentVendor from "./Components/car-rent-components/CarRentVendor";
 import CarRentServiceDetails from "./Components/car-rent-components/CarRentServiceDetails";
-
+import VenueForm from "./Components/Venue-components/VenueServiceDetails";
+import LocationForm from './Components/Location-component/Addlocation'
 function App() {
   const { pathname } = useLocation();
   const [isLogin, setIsLogin] = useState();
@@ -37,9 +38,9 @@ function App() {
 
   return (
     <>
-      {pathname == "/login" ? (
+      {pathname === "/login" ? (
         <Header />
-      ) : pathname == "/register" ? (
+      ) : pathname === "/register" ? (
         <Header />
       ) : (
         <HomeHeader />
@@ -74,6 +75,7 @@ function App() {
           path="/profile/my-services/photographer/details"
           element={<PhotographerServiceDetails />}
         />
+        
         <Route
           path="/profile/my-services/car"
           element={<CarRentVendor />}
@@ -82,11 +84,19 @@ function App() {
           path="/profile/my-services/car/details"
           element={<CarRentServiceDetails />}
         />
+        <Route
+          path="/profile/my-services/Venues"
+          element={<VenueForm />}
+        />
+        <Route
+          path="/profile/my-services/Location"
+          element={<LocationForm />}
+        />
         <Route path="/profile/budget" element={<Budget />} />
       </Routes>
-      {pathname == "/login" ? (
+      {pathname === "/login" ? (
         <Footer />
-      ) : pathname == "/register" ? (
+      ) : pathname === "/register" ? (
         <Footer />
       ) : (
         <HomeFooter />
