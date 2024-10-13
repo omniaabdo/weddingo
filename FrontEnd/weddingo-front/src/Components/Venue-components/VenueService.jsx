@@ -3,13 +3,15 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import '../../assets/css/Venueform.css'; // Import the CSS file for custom styles
-
+import { Button, Col, Form, Row } from "react-bootstrap";
+import MinBreadcrumb from "../MinBreadcrumb";
+import AvailabilityForm from "../photographer-components/AvailabilityForm";
+import FeatureForm from "../photographer-components/FeatureForm";
 const VenueForm = ({ onSubmit }) => {
   const [venueData, setVenueData] = useState({
     name: '',
     location: '',
     capacity: '',
-    price: '',
     description: '',
     availableDates: [],
     phone: '',
@@ -33,6 +35,12 @@ const VenueForm = ({ onSubmit }) => {
       ...venueData,
       availableDates: dates.map((date) => format(date, 'yyyy-MM-dd')),
     });
+  };
+const handleFraturesData = (data) => {
+    setFormData({ ...venueData, feature: data });
+  };
+ const handleSelectedDates = (data) => {
+    setFormData({ ...venueData, availableDate: data });
   };
 
   const handleSubmit = (e) => {
@@ -72,7 +80,7 @@ const VenueForm = ({ onSubmit }) => {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Capacity</label>
+              <label className="form-label">Capacity Up To</label>
               <input
                 type="number"
                 className="form-control"
@@ -82,17 +90,7 @@ const VenueForm = ({ onSubmit }) => {
                 required
               />
             </div>
-            <div className="mb-3">
-              <label className="form-label">Price</label>
-              <input
-                type="number"
-                className="form-control"
-                name="price"
-                value={venueData.price}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            
             <div className="mb-3">
               <label className="form-label">Description</label>
               <textarea
@@ -104,17 +102,9 @@ const VenueForm = ({ onSubmit }) => {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Available Dates</label>
-              <div className="date-picker-container">
-                <DatePicker
-                  selected={selectedDates[0]}
-                  onChange={handleDateChange}
-                  selectsRange
-                  startDate={selectedDates[0]}
-                  endDate={selectedDates[1]}
-                  inline
-                />
-              </div>
+                <Col md={6} className="mb-3">
+                    <FeatureForm handleFraturesData={handleFraturesData} />
+                  </Col>
             </div>
           </div>
 
@@ -154,6 +144,16 @@ const VenueForm = ({ onSubmit }) => {
                 required
               />
             </div>
+
+          </div>
+          <div>
+             <Col md={12}>
+                    <div className="card px-3 my-1">
+                      <AvailabilityForm
+                        handleSelectedDates={handleSelectedDates}
+                      />
+                    </div>
+                  </Col>
           </div>
         </div>
 
