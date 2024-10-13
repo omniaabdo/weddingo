@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../assets/css/location.css';
+import { Button, Col, Form, Row } from "react-bootstrap";
+import FeatureForm from "../photographer-components/FeatureForm";
+import AvailabilityForm from "../photographer-components/AvailabilityForm";
 
 const LocationForm = () => {
     const [formData, setFormData] = useState({
@@ -19,10 +21,14 @@ const LocationForm = () => {
         facebookLink: '',
         instagramLink: '',
         city: '',
-        images: [],
-        video: '',
+       
     });
-
+const handleFraturesData = (data) => {
+    setFormData({ ...formData, feature: data });
+  };
+ const handleSelectedDates = (data) => {
+    setFormData({ ...formData, availableDate: data });
+  };
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (type === 'checkbox') {
@@ -51,11 +57,11 @@ const LocationForm = () => {
 
     return (
         <div className="container mt-5">
-            <h2 className="text-center">Add Photo Section Location</h2>
-            <form onSubmit={handleSubmit} className="border p-4 rounded shadow">
+            <h2 >Add Photo Session Location</h2>
+            <form onSubmit={handleSubmit} >
                 <div className="row">
                     <div className="col-md-6 mb-3">
-                        <div className="border rounded shadow-sm p-3" style={{ opacity: 0.6 }}>
+                        <div className=" shadow-sm p-3" style={{ opacity: 0.6 }}>
                             <h4>Basic Information</h4>
                             <div className="form-group mb-3">
                                 <label>Location Name</label>
@@ -78,47 +84,17 @@ const LocationForm = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group mb-3">
-                                <label>Available From</label>
-                                <input
-                                    type="date"
-                                    className="form-control mt-2" // Added mt-2 for spacing
-                                    name="availableFrom"
-                                    value={formData.availableFrom}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="form-group mb-3">
-                                <label>Available To</label>
-                                <input
-                                    type="date"
-                                    className="form-control mt-2" // Added mt-2 for spacing
-                                    name="availableTo"
-                                    value={formData.availableTo}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                            
                             <h5>Features</h5>
-                            <div className="d-flex flex-wrap mb-3">
-                                {Object.keys(formData.features).map((feature, index) => (
-                                    <div className="form-check me-3" key={index}>
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name={feature}
-                                            checked={formData.features[feature]}
-                                            onChange={handleChange}
-                                        />
-                                        <label className="form-check-label">{`Feature ${index + 1}`}</label>
-                                    </div>
-                                ))}
-                            </div>
+                            <div className="mb-3">
+                <Col md={6} className="mb-3">
+                    <FeatureForm handleFraturesData={handleFraturesData} />
+                  </Col>
+            </div>
                         </div>
                     </div>
                     <div className="col-md-6 mb-3">
-                        <div className="border rounded shadow-sm p-3" style={{ opacity: 0.6 }}>
+                        <div className="shadow-sm p-3" style={{ opacity: 0.6 }}>
                             <h4>Contact Information</h4>
                             <div className="form-group mb-3">
                                 <label>Phone Number</label>
@@ -165,32 +141,16 @@ const LocationForm = () => {
                         </div>
                     </div>
                 </div>
-                <h4 className="mt-4">Media</h4>
-                <div className="form-group mb-3">
-                    <label>Upload Images</label>
-                    <div className="input-group mb-3">
-                        <input
-                            type="file"
-                            className="form-control"
-                            name="images"
-                            multiple
-                            onChange={handleFileChange}
-                            accept="image/*"
-                        />
-                        </div>
-                </div>
-                <div className="form-group mb-3">
-                    <label>Upload Video</label>
-                    <div className="input-group mb-3">
-                        <input
-                            type="file"
-                            className="form-control"
-                            name="video"
-                            onChange={handleFileChange}
-                            accept="video/*"
-                        />
-                           </div>
-                </div>
+                
+                 <div>
+             <Col md={12}>
+                    <div className="shodow-sm p-3 px-3 my-1">
+                      <AvailabilityForm
+                        handleSelectedDates={handleSelectedDates}
+                      />
+                    </div>
+                  </Col>
+          </div>
                 <button type="submit" className="btn btn-primary mt-3">
                     Submit
                 </button>
