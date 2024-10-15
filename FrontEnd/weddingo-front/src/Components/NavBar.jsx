@@ -95,7 +95,7 @@ const NavBar = () => {
                     <center>
                       <FaHeart />
                     </center>
-                    My Wedding
+                    الرئيسية
                   </Link>
                 </li>
                 <li className="nav-item-custom">
@@ -108,7 +108,7 @@ const NavBar = () => {
                     <center>
                       <FaUsers />
                     </center>
-                    Vendor Manager
+                    عربتي الخاصة
                   </Link>
                 </li>
                 <li className="nav-item-custom">
@@ -121,7 +121,7 @@ const NavBar = () => {
                     <center>
                       <FaClipboardList />{" "}
                     </center>
-                    Services
+                    خدماتي
                   </Link>
                 </li>
                 <li className="nav-item-custom">
@@ -134,7 +134,7 @@ const NavBar = () => {
                     <center>
                       <FaDollarSign />
                     </center>
-                    Budget
+                    الميزانية
                   </NavLink>
                 </li>
               </ul>

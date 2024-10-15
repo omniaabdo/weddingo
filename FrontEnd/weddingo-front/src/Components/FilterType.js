@@ -3,15 +3,15 @@ export default function FilterType() {
   return (
     <>
       <div className="filter-div">
-        <p className="filter-div_title">type</p>
+        <p className="filter-div_title">النوع</p>
         <ul className="filter-div_list">
           <li>
             <input type="checkbox" />
-            <label>Open</label>
+            <label>مفتوحة </label>
           </li>
           <li>
             <input type="checkbox" />
-            <label>close</label>
+            <label>مغلقة</label>
           </li>
         </ul>
       </div>
@@ -22,7 +22,7 @@ export  function FilterCapacity() {
   return (
     <>
       <div className="filter-div">
-        <p className="filter-div_title">Capacity</p>
+        <p className="filter-div_title">سعة الاشخاص</p>
         <ul className="filter-div_list">
           <li>
             <input type="checkbox" />
@@ -34,7 +34,7 @@ export  function FilterCapacity() {
           </li>
           <li>
             <input type="checkbox" />
-            <label>more 300</label>
+            <label>اكثر من  300</label>
           </li>
         </ul>
       </div>

@@ -7,7 +7,7 @@ export default function MinBreadcrumb({ links }) {
         <div className="container">
           <ul>
             <li>
-              <Link to={"/"}>Home</Link>
+              <Link to={"/"}>الرئيسية</Link>
             </li>
             {links.map((item, index) => (
               <>

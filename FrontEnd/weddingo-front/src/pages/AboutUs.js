@@ -8,7 +8,7 @@ export default function AboutUs() {
   }, []);
   return (
     <>
-      <Breadcrumb title={"ABOUT US"} active_link={"about"} />
+      <Breadcrumb title={"من نحن"} active_link={"/about"} active_title={"عنا "}/>
       <AboutSection />
       <NewsListSection />
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/css/services.css";
 import photo1 from "../assets/img/services/1.png";
 import photo2 from "../assets/img/services/2.jpeg";
@@ -11,103 +11,154 @@ import photo15 from "../assets/img/services/15.jpeg";
 import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
 import FilterType, { FilterCapacity } from "./FilterType";
+import ServiceCardLoading from "./loading-components/ServiceCardLoading";
+import { FilterLoading } from "./loading-components/FilterLoading";
+import TextLoading, {
+  PharagraphLoading,
+} from "./loading-components/TextLoading";
 
 export default function Services() {
+  const [loading, setLoading] = useState(true);
   const venues = [
     {
       images: [photo1, photo14],
-      title: "Quiet Cannon",
+      title: "كوايت كانون",
       rating: 3.8,
-      location: "Montebello, CA",
-      priceRange: "$7,000 - $8,450",
-      features: ["Ceremony/Reception", "Indoor", "Get Ready Rooms", "Clean Up"],
+      location: "مونتيبيلو، كاليفورنيا",
+      priceRange: "7,000 - 8,450 دولار",
+      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف"],
       peopleCapacity: null,
     },
     {
       images: [photo2, photo1],
-      title: "Metropol Banquet",
+      title: "قاعة متروبول",
       rating: 4.9,
-      location: "Glendale, CA",
+      location: "غلينديل، كاليفورنيا",
       priceRange: "",
       features: [
-        "Ceremony/Reception",
-        "Indoor",
-        "Get Ready Rooms",
-        "Clean Up",
-        "Accommodations",
+        "حفل زفاف/استقبال",
+        "داخلي",
+        "غرف جاهزية",
+        "تنظيف",
+        "إقامة",
       ],
       peopleCapacity: 300,
     },
     {
       images: [photo3, photo4],
-
-      title: "LA Banquets - The Landmark",
+      title: "قاعة لوس أنجلوس - ذا لاند مارك",
       rating: 5.0,
-      location: "Mission Hills, CA",
+      location: "ميشن هيلز، كاليفورنيا",
       priceRange: "",
       features: [
-        "Ceremony/Reception",
-        "Indoor",
-        "Outdoor",
-        "Get Ready Rooms",
-        "Clean Up",
+        "حفل زفاف/استقبال",
+        "داخلي",
+        "خارجي",
+        "غرف جاهزية",
+        "تنظيف",
       ],
       peopleCapacity: null,
     },
     {
       images: [photo15, photo14],
-
-      title: "Quiet Cannon",
+      title: "كوايت كانون",
       rating: 3.8,
-      location: "Montebello, CA",
-      priceRange: "$7,000 - $8,450",
-      features: ["Ceremony/Reception", "Indoor", "Get Ready Rooms", "Clean Up"],
+      location: "مونتيبيلو، كاليفورنيا",
+      priceRange: "7,000 - 8,450 دولار",
+      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف"],
       peopleCapacity: null,
     },
     {
       images: [photo6, photo14],
-
-      title: "Metropol Banquet",
+      title: "قاعة متروبول",
       rating: 4.9,
-      location: "Glendale, CA",
+      location: "غلينديل، كاليفورنيا",
       priceRange: "",
       features: [
-        "Ceremony/Reception",
-        "Indoor",
-        "Get Ready Rooms",
-        "Clean Up",
-        "Accommodations",
+        "حفل زفاف/استقبال",
+        "داخلي",
+        "غرف جاهزية",
+        "تنظيف",
+        "إقامة",
       ],
       peopleCapacity: 300,
     },
   ];
+  
+
+  const endLoading = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    endLoading();
+  }, []);
 
   return (
     <div className="services pt-5">
       <div className="container">
-        <h2 className="text-center">Wedding Dress Photos</h2>
-        <p className="subtitle ">
-          Whether you’re looking for lace or satin, floor-length or short,
-          off-the-shoulder or strapless, WeddingWire has over 8,000 wedding
-          dresses to choose from. You can search for styles in every silhouette,
-          including mermaid, ball gown, a-line and more. Search for beach or
-          vintage-inspired wedding dresses and beyond. WeddingWire lists wedding
-          dresses from more than 100 designers and wedding dress prices ranging
-          from less than $700 to over $5,000.
-        </p>
+        {loading ? (
+          <>
+            <h2 className="text-center">
+              <TextLoading />
+            </h2>
+            <p className="subtitle ">
+              <PharagraphLoading />
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 className="text-center">أماكن إقامة حفلات الزفاف</h2>
+            <p className="subtitle">
+              سواء كنت تبحث عن قاعة فخمة في فندق خمس نجوم، أو منتجع يطل على
+              البحر، أو مكان ريفي مريح بين أحضان الطبيعة، لدينا مجموعة واسعة من
+              أماكن الزفاف لتناسب كل الأذواق. يمكنك العثور على قاعات تناسب
+              الحفلات الصغيرة الحميمية أو حفلات الزفاف الكبيرة، مع خيارات تتضمن
+              قاعات حديثة، أماكن مفتوحة، وحدائق رومانسية. استعرض قاعات الأفراح
+              في مواقع متميزة من المدينة أو في أماكن هادئة منعزلة. أسعار الأماكن
+              تتفاوت من الميزانيات المتوسطة إلى الفاخرة، مع وجود خدمات إضافية
+              مثل الطعام، والديكور، والإضاءة، لتجعل يومك مميزًا بكل التفاصيل.
+            </p>
+          </>
+        )}
+
         <div className="row mt-5">
           <div className="col-12">
             <div className="row">
               <div className="services_filter col-lg-3 col-md-12 col-sm-12">
-                <p>FILTERS</p>
-                <FilterType />
-                <FilterCapacity />
+                {loading ? (
+                  <>
+                    <FilterLoading />
+                    <FilterLoading />
+                  </>
+                ) : (
+                  <>
+                    <p>الفلاتر</p>
+                    <FilterType />
+                    <FilterCapacity />
+                  </>
+                )}
               </div>
               <div className="services_content col-lg-9 col-md-12 col-sm-12">
                 <div className=" row d-flex flex-wrap">
-                  {venues.map((venue, index) => (
-                    <ServiceCard key={index} {...venue} />
-                  ))}
+                  {loading ? (
+                    <>
+                      <ServiceCardLoading />
+                      <ServiceCardLoading />
+                      <ServiceCardLoading />
+                      <ServiceCardLoading />
+                      <ServiceCardLoading />
+                      <ServiceCardLoading />
+                    </>
+                  ) : (
+                    <>
+                      {venues.map((venue, index) => (
+                        <ServiceCard key={index} {...venue} />
+                      ))}
+                    </>
+                  )}
                 </div>
               </div>
             </div>

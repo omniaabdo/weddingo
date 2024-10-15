@@ -25,26 +25,26 @@ function WelcomeSection() {
                       className="rounded main-image "
                     />
                     <div className="position-absolute top-0 start-0 m-2">
-                      <Button variant="light" size="sm" className="me-1">
+                      <Button variant="light" size="sm" className="ms-1">
                         ✏️
                       </Button>
                       <Button variant="light" size="sm">
                         📷
                       </Button>
                     </div>
-                    <div className="position-absolute bottom-0 start-0 bg-primary text-white p-1 rounded countdown">
-                      <span>20</span> days <span>4</span> hrs
-                    </div>
+                    {/* <div className="position-absolute bottom-0 start-0 bg-primary text-white p-1 rounded countdown">
+                      <span>20</span> يوم <span>4</span> ساعة
+                    </div> */}
                   </div>
                 </Col>
 
                 {/* Center Section: Welcome Message and Edit */}
                 <Col xs={12} md={9} className="welcome-profile_welcome-col-2">
-                  <h4 className="mb-1 fw-bold">Welcome Omnia Abdo</h4>
+                  <h4 className="mb-1 fw-bold">اهلا بك , حسن علي</h4>
                   <p className="mb-4">
                     October 5, 2024{" "}
                     <a href="#edit" className="text-primary">
-                      Edit
+                      تعديل
                     </a>
                   </p>
 
@@ -52,27 +52,18 @@ function WelcomeSection() {
                   <Row className="gx-3">
                     {[
                       {
-                        title: "Services hired",
-                        value: "0 out of 21",
+                        title: "المفضلة",
+                        value: "0 مكان",
                         hlink: "/profile/vendor-manager",
                         active: false,
                       },
                       {
-                        title: "Tasks completed",
-                        value: "0 out of 81",
+                        title: "الخدمات",
+                        value: "1 خدمة مضافة",
                         hlink: "/profile/checklist",
                         active: true,
                       },
-                      {
-                        title: "Guests attending",
-                        value: "2 out of 2",
-                        active: false,
-                      },
-                      {
-                        title: "Seated guests",
-                        value: "2 out of 2",
-                        active: true,
-                      },
+                     
                     ].map((item, index) => (
                       <Col xs={6} md={3} key={index} className="mb-3">
                         <Link to={item.hlink}>

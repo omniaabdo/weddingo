@@ -7,120 +7,73 @@ export default function HomeFooter() {
         <div className="container">
           <div className="row">
             <div className="col-lg-3 col-md-6 col-sm-12 home-footer_content">
-              <h6 className="home-footer_content-title">WeddingWire</h6>
+              <h6 className="home-footer_content-title">الصفحات الرئيسية</h6>
               <ul className="home-footer_content-list">
                 <li>
-                  <a href="#">Weddings</a>
-                </li>
-
-                <li>
-                  <a href="#">home</a>
+                  <Link to={"/"}>الرئيسية</Link>
                 </li>
                 <li>
-                  <Link to={'/about'}>About us</Link>
+                  <Link to={"/about"}>من نحن</Link>
                 </li>
                 <li>
-                <Link to={'/contact'}>Contact us</Link>
-                </li>
-                <li>
-                  <a href="#">Nondiscrimination</a>
-                </li>
-                <li>
-                  <a href="#">Careers</a>
+                  <Link to={"/contact"}>تواصل معنا</Link>
                 </li>
               </ul>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12 home-footer_content">
-              <h6 className="home-footer_content-title">Planning Tools</h6>
+              <h6 className="home-footer_content-title">خدماتنا </h6>
               <ul className="home-footer_content-list">
                 <li>
-                  <a href="#">Your wedding website</a>
+                  <Link to={"/"}>استكشاف قاعات الزفاف</Link>
                 </li>
                 <li>
-                  <a href="#">Wedding invitations</a>
+                  <Link to={"/"}>مصورين حفلات الزفاف</Link>
                 </li>
                 <li>
-                  <a href="#">Checklist</a>
+                  <Link to={"/"}>مراكز التجميل</Link>
                 </li>
                 <li>
-                  <a href="#">Guest list</a>
+                  <Link to={"/"}>اماكن التصوير المشهورة</Link>
                 </li>
                 <li>
-                  <a href="#">Budget</a>
-                </li>
-                <li>
-                  <a href="#">Vendor manager</a>
-                </li>
-                <li>
-                  <a href="#">Seating chart</a>
-                </li>
-                <li>
-                  <a href="#">Hotel Blocks</a>
-                </li>
-                <li>
-                  <a href="#">Cost Guide</a>
-                </li>
-                <li>
-                  <a href="#">Help</a>
+                  <Link to={"/"}>متجر الادوات</Link>
                 </li>
               </ul>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12 home-footer_content">
-              <h6 className="home-footer_content-title">More</h6>
+              <h6 className="home-footer_content-title">المزيد</h6>
               <ul className="home-footer_content-list">
                 <li>
-                  <a href="#">Wedding planning app</a>
+                  <Link to={"/"}>صفحتي الشخصية</Link>
                 </li>
                 <li>
-                  <a href="#">Hashtag generator</a>
+                  <Link to={"/"}>الميزانية</Link>
                 </li>
                 <li>
-                  <a href="#">Wedding giveaways</a>
+                  <Link to={"/"}>مدير الخدمات</Link>
                 </li>
                 <li>
-                  <a href="#">Wedding timeline</a>
-                </li>
-                <li>
-                  <a href="#">Color generator</a>
-                </li>
-                <li>
-                  <a href="#">Real Weddings</a>
-                </li>
-                <li>
-                  <a href="#">Honeymoons</a>
+                  <Link to={"/"}>البائعون</Link>
                 </li>
               </ul>
 
-              <h6 className="home-footer_content-title">Going to a wedding?</h6>
+              <h6 className="home-footer_content-title">سجل دخول الان </h6>
               <ul className="home-footer_content-list">
-                <li>
-                  <a href="#">Find a couple’s wedding website</a>
-                </li>
-              </ul>
-
-              <h6 className="home-footer_content-title">Are you a vendor? </h6>
-              <ul className="home-footer_content-list">
-                <li>
-                  <a href="#">Learn about WeddingWire for Business</a>
-                </li>
-                <li>
-                  <a href="#">Visit vendor support</a>
-                </li>
+                <li>للاستمتاع بهذة الخدمات عليك بالاشتراك لدينا وتمتع بتلك الخدمات مجانا ... نحن في انتظارك الان</li>
               </ul>
             </div>
 
             <div className="col-lg-3 col-md-6 col-sm-12 home-footer_content">
-              <h6 className="home-footer_content-title">Who Are We? </h6>
+              <h6 className="home-footer_content-title">من نحن  </h6>
               <ul className="home-footer_content-list">
                 <li>
                   <img src={logo} alt="" />
                   <p>
-                    Get the WeddingWire app App iconPlan your wedding wherever
-                    and whenever you want on the WeddingWire app.
+                   نقدم لك افضل الحلول والاسعار والامكانيات لجعل حفل زفافك هو الامثل والافضل .
                   </p>
                 </li>
               </ul>
-              <h6 className="home-footer_content-title">Follow us on</h6>
+              <h6 className="home-footer_content-title">تابعنا الان علي</h6>
               <ul class="home-footer_content-list socialLinks__list">
                 <li>
                   <a
@@ -206,7 +159,7 @@ export default function HomeFooter() {
             </div>
           </div>
           <div className="home-footer-devider">
-            <p>© 2006 - 2024 The Knot Worldwide Inc.</p>
+            <p>© 2023 - 2024 حقوق النشر والطباعة محفوظة .</p>
           </div>
         </div>
       </footer>

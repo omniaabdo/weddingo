@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import "../../assets/css/photographer-service-details.css";
 import {
@@ -11,7 +11,13 @@ import {
 } from "react-icons/fa";
 import DisplayDateGrid from "./DisplayDateGrid";
 import MinBreadcrumb from "../MinBreadcrumb";
+import SingleServiceDetailsLoading, {
+  CarouselLoading,
+  DescriptionContentLoading,
+} from "../loading-components/SingleServiceDetailsLoading";
 export default function PhotographerServiceDetails() {
+  const [loading, setLoading] = useState(true);
+
   const [data, setData] = useState({
     name: "Sample Name",
     description: "This is a sample description for the item.",
@@ -36,101 +42,134 @@ export default function PhotographerServiceDetails() {
       instegramLink: "https://instagram.com/sample",
     },
   });
+
+  const endLoading = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    endLoading();
+  }, []);
+
   return (
     <>
       <section>
         <MinBreadcrumb
           links={[
-            { title: "Profile", link: "/profile" },
-            { title: "Add vendor", link: "/profile/my-services" },
+            { title: "صفحتي", link: "/profile" },
+            { title: "اضافة خدمة", link: "/profile/my-services" },
             {
-              title: "Details",
+              title: "تفاصيل",
               link: "/profile/my-services/photographer/details",
             },
           ]}
         />
         <div className="container">
           <Row className="mt-3">
-            <Col md={8} lg={8}>
-              <div className="content-div">
-                <h6>
-                  <b>Description</b>
-                </h6>
-                <p> {data.description}</p>
-              </div>
-              <div className="content-div">
-                <h6>
-                  <b>Ferures</b>
-                </h6>
-                <ul>
-                  {data.feature.map((item, index) => (
-                    <>
-                      <li key={index}>
-                        <span>
-                          <FaCheck />
-                        </span>
-                        {item}
-                      </li>
-                    </>
-                  ))}
-                </ul>
-              </div>
-              <div className="content-div">
-                <h6>
-                  <b>Avlabile Date</b>
-                </h6>
-                <DisplayDateGrid selectedDates={data.avalabileFrom} />
-              </div>
-            </Col>
-            <Col md={8} lg={4}>
-              <Card className="border-0">
-                <Card.Body>
-                  <Card.Title>{data.name}</Card.Title>
-                  <Card.Text className="text-muted text-underline">
-                    CONTACT INFROMATION
-                  </Card.Text>
-                  <div className=" p-3">
-                    <p className="text-muted">
-                      <FaPhone />
-                      <span className=" px-2 text-underline">
-                        {data.contacts.phoneNumber}
-                      </span>
-                    </p>
-                    <p className="text-muted">
-                      <FaLocationArrow />
-                      <span className=" px-2 text-underline">
-                        {data.location.city} - {data.location.state}
-                      </span>
-                    </p>
-                    <ul className="social-media-info-list">
-                      <li className="facebook-item">
-                        <a href={data.contacts.facebookLink} className="btn">
-                          <FaFacebook />
-                        </a>
-                      </li>
-                      <li className="twitter-item">
-                        <a href={data.contacts.twitterLink} className="btn">
-                          <FaTwitter />
-                        </a>
-                      </li>
-                      <li className="instegram-item">
-                        <a href={data.contacts.instegramLink} className="btn">
-                          <FaInstagram />
-                        </a>
-                      </li>
+            {loading ? (
+              <>
+                <Col md={8} lg={8}>
+                  <CarouselLoading />
+                  <DescriptionContentLoading />
+                  <DescriptionContentLoading />
+                  <DescriptionContentLoading />
+                </Col>
+                <Col md={8} lg={4}>
+                  <SingleServiceDetailsLoading />
+                </Col>
+              </>
+            ) : (
+              <>
+                <Col md={8} lg={8}>
+                  <div className="content-div">
+                    <h6>
+                      <b>التفاصيل</b>
+                    </h6>
+                    <p> {data.description}</p>
+                  </div>
+                  <div className="content-div">
+                    <h6>
+                      <b>الميزات والخدمات المقدمة</b>
+                    </h6>
+                    <ul>
+                      {data.feature.map((item, index) => (
+                        <>
+                          <li key={index}>
+                            <span>
+                              <FaCheck />
+                            </span>
+                            {item}
+                          </li>
+                        </>
+                      ))}
                     </ul>
                   </div>
-                  <div className="d-flex flex-column gap-2">
-                    <button className="btn btn-primary w-100 text-center">
-                      Add Pakeges
-                    </button>
-                    <button className="btn btn-secondary w-100 text-center">
-                      Add Albums
-                    </button>
+                  <div className="content-div">
+                    <h6>
+                      <b>الايام المتاحة</b>
+                    </h6>
+                    <DisplayDateGrid selectedDates={data.avalabileFrom} />
                   </div>
-                </Card.Body>
-              </Card>
-            </Col>
+                </Col>
+                <Col md={8} lg={4}>
+                  <Card className="border-0">
+                    <Card.Body>
+                      <Card.Title>{data.name}</Card.Title>
+                      <Card.Text className="text-muted text-underline">
+                        معلومات الاتصال
+                      </Card.Text>
+                      <div className=" p-3">
+                        <p className="text-muted">
+                          <FaPhone />
+                          <span className=" px-2 text-underline">
+                            {data.contacts.phoneNumber}
+                          </span>
+                        </p>
+                        <p className="text-muted">
+                          <FaLocationArrow />
+                          <span className=" px-2 text-underline">
+                            {data.location.city} - {data.location.state}
+                          </span>
+                        </p>
+                        <ul className="social-media-info-list">
+                          <li className="facebook-item">
+                            <a
+                              href={data.contacts.facebookLink}
+                              className="btn"
+                            >
+                              <FaFacebook />
+                            </a>
+                          </li>
+                          <li className="twitter-item">
+                            <a href={data.contacts.twitterLink} className="btn">
+                              <FaTwitter />
+                            </a>
+                          </li>
+                          <li className="instegram-item">
+                            <a
+                              href={data.contacts.instegramLink}
+                              className="btn"
+                            >
+                              <FaInstagram />
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="d-flex flex-column gap-2">
+                        <button className="btn btn-primary w-100 text-center">
+                          اضافة عروض
+                        </button>
+                        <button className="btn btn-secondary w-100 text-center">
+                          اضافة اعمال{" "}
+                        </button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </>
+            )}
           </Row>
         </div>
       </section>

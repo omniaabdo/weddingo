@@ -7,7 +7,7 @@ function Budget() {
       <NavBar />
       <section>
         <div className="container">
-          <h1>Checklist</h1>
+          <h2>ميزانيتي</h2>
         </div>
       </section>
     </>

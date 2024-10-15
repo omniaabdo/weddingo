@@ -9,7 +9,7 @@ const loginFunctionBTN = (img, text) => {
     <>
       <div className="lgf-single-card card">
         <img src={img} alt="apple Logo" />
-        <b> Sign in with {text}</b>
+        <b> سجل دخول باستخدام {text}</b>
       </div>
     </>
   );
@@ -21,7 +21,7 @@ export default function Login() {
   const setLoginBtn = () => {
     const isLogin = localStorage.setItem("user", true);
     console.log(isLogin);
-    
+
     if (isLogin) {
       navigator("/");
     }
@@ -34,50 +34,54 @@ export default function Login() {
     <>
       <section className="login-form">
         <div className="container">
-          <div className="login-form__form card">
-            <div className="img-content"></div>
-            <div className="text-content">
-              <h4> Log in to your account </h4>
-              <p>
-                {" "}
-                Not a member yet? <Link to={"/register"}>Join now</Link>
-              </p>
-              <div className="login-functions">
-                {loginFunctionBTN(facebook, "facebook")}
-                {loginFunctionBTN(google, "google")}
-                {loginFunctionBTN(apple, "apple")}
-              </div>
-              <p className="tc-devided"> Or log in with your email</p>
-
-              <form className="">
-                <div class=" mb-2 form-control-sm">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="floatingInput"
-                    placeholder="email"
-                  />
-                </div>
-                <div className=" mb-2 form-control-sm">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="floatingPassword"
-                    placeholder="Password"
-                  />
-                </div>
-                <div className="">
-                  <p className="f-forgrt-password">
+          <div className="row ">
+            <div className="col-lg-8 col-md-10 col-sm-12  m-auto">
+              <div className="login-form__form card">
+                <div className="img-content"></div>
+                <div className="text-content">
+                  <h4> سجل الدخول الان </h4>
+                  <p>
                     {" "}
-                    <a href="#">forget your password?</a>
+                    ليس لديك حساب الان ?{" "}
+                    <Link to={"/register"}>انضم الينا</Link>
                   </p>
+                  <div className="login-functions">
+                    {loginFunctionBTN(facebook, "الفبسبوك")}
+                    {loginFunctionBTN(google, " جوجل")}
+                  </div>
+                  <p className="tc-devided"> او سجل الان بالبريد الالكتروني</p>
+
+                  <form className="">
+                    <div class=" mb-2 form-control-sm">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="floatingInput"
+                        placeholder="ادخل البريد الالكتروني ..."
+                      />
+                    </div>
+                    <div className=" mb-2 form-control-sm">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="floatingPassword"
+                        placeholder="ادخل كلمة المرور ..."
+                      />
+                    </div>
+                    <div className="">
+                      <p className="f-forgrt-password">
+                        {" "}
+                        <a href="#">نسيت كلمة السر؟ </a>
+                      </p>
+                    </div>
+                    <div className="form-button">
+                      <Link className="btn btn-primary" onClick={setLoginBtn}>
+                        دخول الان
+                      </Link>
+                    </div>
+                  </form>
                 </div>
-                <div className="form-button">
-                  <Link className="btn btn-primary" onClick={setLoginBtn}>
-                    Log in
-                  </Link>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>

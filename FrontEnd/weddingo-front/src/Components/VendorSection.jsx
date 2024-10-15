@@ -11,254 +11,71 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+
 const VendorSection = () => {
   const venues = [
     {
-      title: "The Ashford Estate",
+      title: "قصر أشفورد",
       rating: 4.9,
       reviews: 52,
-      location: "Allentown, NJ",
+      location: "ألينتاون، نيو جيرسي",
       image: img,
     },
     {
-      title: "Windows on the Water",
+      title: "قصر أشفورد",
+      rating: 4.9,
+      reviews: 52,
+      location: "ألينتاون، نيو جيرسي",
+      image: img,
+    },
+    {
+      title: "ويندوز أون ووتر",
       rating: 5.0,
       reviews: 100,
-      location: "Millstone ",
+      location: "ميلستون",
       image: img,
     },
     {
-      title: "Palace Hall",
+      title: "قاعة بالاس",
       rating: 4.8,
       reviews: 40,
-      location: "Toms River, NJ",
+      location: "تومز ريفر، نيو جيرسي",
       image: img,
     },
     {
-      title: "Palace Hall",
+      title: "قاعة بالاس",
       rating: 4.8,
       reviews: 40,
-      location: "Toms River, NJ",
+      location: "تومز ريفر، نيو جيرسي",
       image: img,
     },
-    // Add more venues as needed
+    // يمكنك إضافة المزيد من القاعات إذا لزم الأمر
   ];
 
   const vendors = [
     {
-      title: "FIG catering",
+      title: "كايترينج فيغ",
       rating: 4.8,
       reviews: 85,
-      location: "Colts Neck, NJ",
+      location: "كولتس نيك، نيو جيرسي",
       image: img,
     },
     {
-      title: "Ultimate Caterer",
+      title: "ألتيميت كايترير",
       rating: 4.6,
       reviews: 116,
-      location: "Marlboro, NJ",
+      location: "مارلبورو، نيو جيرسي",
       image: img,
     },
     {
-      title: "Haute Feast",
+      title: "هاوت فيست",
       rating: 5.0,
       reviews: 10,
-      location: "Asbury Park, NJ",
+      location: "أسابري بارك، نيو جيرسي",
       image: img,
     },
-    // Add more vendors as needed
+    // يمكنك إضافة المزيد من البائعين إذا لزم الأمر
   ];
-
-  // Helper function to chunk array into groups
-  const chunkArray = (arr, size) => {
-    const results = [];
-    for (let i = 0; i < arr.length; i += size) {
-      results.push(arr.slice(i, i + size));
-    }
-    return results;
-  };
-
-  return (
-    <section>
-      <div className="container mt-4">
-        <div className="row">
-          {/* Venues Section */}
-          <div className="col-md-6 mb-4">
-            <div className="rounded-container shadow-sm p-4">
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h5>Find your wedding venue</h5>
-              </div>
-              <p>Here are a few gems we recommend for you.</p>
-              <Carousel
-                indicators={false}
-                prevIcon={
-                  <FaChevronLeft className="custom-carousel-arrow-left" />
-                }
-                nextIcon={
-                  <FaChevronRight className="custom-carousel-arrow-right" />
-                }
-              >
-                {chunkArray(venues, 3).map((venueGroup, index) => (
-                  <Carousel.Item key={index}>
-                    <div className="d-flex justify-content-between">
-                      {venueGroup.map((venue, idx) => (
-                        <Card
-                          className="mx-2"
-                          key={idx}
-                          style={{ width: "30%" }}
-                        >
-                          <a href="." className="text-decoration-none">
-                            <Card.Img variant="top" src={venue.image} />
-                          </a>
-                          <Card.Body>
-                            <Card.Title>{venue.title}</Card.Title>
-                            <div className="text-muted mb-2">
-                              ⭐ {venue.rating} ({venue.reviews})
-                            </div>
-                            <Card.Text>{venue.location}</Card.Text>
-                          </Card.Body>
-                        </Card>
-                      ))}
-                    </div>
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-              <Button variant="info" className="mt-3">
-                Search for venues
-              </Button>
-            </div>
-          </div>
-
-          {/* Vendors Section */}
-          <div className="col-md-6 mb-4">
-            <div className="rounded-container shadow-sm p-4">
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h5>Book all your vendors</h5>
-                <Form.Select className="w-auto">
-                  <option>Catering</option>
-                  <option>Photography</option>
-                  <option>Decor</option>
-                  <option>Music</option>
-                </Form.Select>
-              </div>
-              <p>Read reviews, save favourites, get in touch.</p>
-              <Carousel
-                indicators={false}
-                prevIcon={
-                  <FaChevronLeft className="custom-carousel-arrow-left" />
-                }
-                nextIcon={
-                  <FaChevronRight className="custom-carousel-arrow-right" />
-                }
-              >
-                {chunkArray(vendors, 3).map((vendorGroup, index) => (
-                  <Carousel.Item key={index}>
-                    <div className="d-flex justify-content-between">
-                      {vendorGroup.map((vendor, idx) => (
-                        <Card
-                          className="mx-2"
-                          key={idx}
-                          style={{ width: "30%" }}
-                        >
-                          <a href="." className="text-decoration-none">
-                            <Card.Img variant="top" src={vendor.image} />
-                          </a>
-                          <Card.Body>
-                            <Card.Title>{vendor.title}</Card.Title>
-                            <div className="text-muted mb-2">
-                              ⭐ {vendor.rating} ({vendor.reviews})
-                            </div>
-                            <Card.Text>{vendor.location}</Card.Text>
-                          </Card.Body>
-                        </Card>
-                      ))}
-                    </div>
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-              <Button variant="info" className="mt-3">
-                Search for caterers
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-const VendorSection2 = () => {
-  const venues = [
-    {
-      title: "The Ashford Estate",
-      rating: 4.9,
-      reviews: 52,
-      location: "Allentown, NJ",
-      image: img,
-    },
-    {
-      title: "The Ashford Estate",
-      rating: 4.9,
-      reviews: 52,
-      location: "Allentown, NJ",
-      image: img,
-    },
-    {
-      title: "Windows on Water",
-      rating: 5.0,
-      reviews: 100,
-      location: "Millstone ",
-      image: img,
-    },
-    {
-      title: "Palace Hall",
-      rating: 4.8,
-      reviews: 40,
-      location: "Toms River, NJ",
-      image: img,
-    },
-    {
-      title: "Palace Hall",
-      rating: 4.8,
-      reviews: 40,
-      location: "Toms River, NJ",
-      image: img,
-    },
-    // Add more venues as needed
-  ];
-
-  const vendors = [
-    {
-      title: "FIG catering",
-      rating: 4.8,
-      reviews: 85,
-      location: "Colts Neck, NJ",
-      image: img,
-    },
-    {
-      title: "Ultimate Caterer",
-      rating: 4.6,
-      reviews: 116,
-      location: "Marlboro, NJ",
-      image: img,
-    },
-    {
-      title: "Haute Feast",
-      rating: 5.0,
-      reviews: 10,
-      location: "Asbury Park, NJ",
-      image: img,
-    },
-    // Add more vendors as needed
-  ];
-
-  // Helper function to chunk array into groups
-  // const chunkArray = (arr, size) => {
-  //   const results = [];
-  //   for (let i = 0; i < arr.length; i += size) {
-  //     results.push(arr.slice(i, i + size));
-  //   }
-  //   return results;
-  // };
 
   return (
     <section className="profile-vendoer min-section">
@@ -267,9 +84,9 @@ const VendorSection2 = () => {
           {/* Venues Section */}
           <div className="col-lg-6 col-sm-12">
             <div className="rounded-container shadow-sm p-4">
-                <h5>Find your wedding venue</h5>
+              <h5>ابحث عن القاعة المناسبة لك</h5>
               <div className="div-card-subtitle d-flex justify-content-between align-items-center my-3">
-              <p>Here are a few gems we recommend for you.</p>
+                <p>اليك افضل الاقتراحات منا</p>
               </div>
               <Swiper
                 modules={[Navigation, Pagination, A11y]}
@@ -316,7 +133,7 @@ const VendorSection2 = () => {
                 ))}
               </Swiper>
               <Button variant="info" className="mt-3">
-                Search for venues
+                استكشف المزيد
               </Button>
             </div>
           </div>
@@ -324,14 +141,14 @@ const VendorSection2 = () => {
           {/* Vendors Section */}
           <div className="col-lg-6 col-sm-12">
             <div className="rounded-container shadow-sm p-4">
-              <h5>Book all your vendors</h5>
+              <h5>افضل اماكن التصوير</h5>
               <div className="div-card-subtitle  d-flex justify-content-between align-items-center my-3">
-              <p>Read reviews, save favourites, get in touch.</p>
-              <Form.Select className="w-auto">
-                  <option>Catering</option>
-                  <option>Photography</option>
-                  <option>Decor</option>
-                  <option>Music</option>
+                <p>خلد الذكريات الان في افضل الاماكن</p>
+                <Form.Select className="w-auto">
+                  <option>فلتر الان</option>
+                  <option>مصور</option>
+                  <option>موسيقي</option>
+                  <option>طعام</option>
                 </Form.Select>
               </div>
               <Swiper
@@ -379,15 +196,14 @@ const VendorSection2 = () => {
                 ))}
               </Swiper>
               <Button variant="info" className="mt-3">
-                Search for venues
+                استكشف المزيد
               </Button>
             </div>
           </div>
-
         </div>
       </div>
     </section>
   );
 };
 
-export default VendorSection2;
+export default VendorSection;

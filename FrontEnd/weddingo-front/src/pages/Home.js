@@ -22,81 +22,82 @@ import { useEffect } from "react";
 
 const singleServiceData = [
   {
-    sup_title: "Find a wedding dress that's uniquely you",
-    title: "Dress catalog",
-    des: "Discover the latest trends in wedding dresses by top designers and bridesmaid dresses. Choose your favorite from our catalog!",
+    sup_title: "ابحثي عن فستان الزفاف الذي يعكس شخصيتك الفريدة",
+    title: "كتالوج الفساتين",
+    des: "اكتشفي أحدث صيحات فساتين الزفاف من أشهر المصممين وفستان الوصيفات. اختاري المفضل لديك من كتالوجنا!",
     go_to: "/about",
     data: [
       {
-        name: "Carolena Mecatora",
+        name: "كارولينا ميكاتورا",
         img: dress_1,
       },
       {
-        name: "classes Style",
+        name: "ستايل كلاسيك",
         img: dress_2,
       },
       {
-        name: "Modern Close",
+        name: "مودرن كلوز",
         img: dress_3,
       },
       {
-        name: "Joane Malkom",
+        name: "جوان مالكوم",
         img: dress_4,
       },
     ],
     dir: "ltr",
   },
   {
-    sup_title: "Find the Perfect Ride for Your Journey",
-    title: "Car Rental Catalog",
-    des: "Explore our wide range of vehicles for rent, from economy cars to luxury models. Choose the perfect car for your trip!",
+    sup_title: "ابحث عن السيارة المثالية لرحلتك",
+    title: "كتالوج تأجير السيارات",
+    des: "استكشف مجموعتنا الواسعة من السيارات للإيجار، من السيارات الاقتصادية إلى الطرازات الفاخرة. اختر السيارة المثالية لرحلتك!",
     go_to: "/rentals",
     data: [
       {
-        name: "Ford Mustang",
+        name: "فورد موستانج",
         img: car_1,
       },
       {
-        name: "Chevrolet Camaro",
+        name: "شيفروليه كامارو",
         img: car_2,
       },
       {
-        name: "Tesla Model 3",
+        name: "تسلا موديل 3",
         img: car_3,
       },
       {
-        name: "BMW X5",
+        name: "بي إم دبليو X5",
         img: car_4,
       },
     ],
     dir: "rtl",
   },
   {
-    sup_title: "Find the Perfect Wedding Location",
-    title: "Wedding Venue Catalog",
-    des: "Explore breathtaking wedding venues that cater to your every desire. Choose the perfect location to celebrate your special day!",
+    sup_title: "ابحث عن المكان المثالي لحفل زفافك",
+    title: "كتالوج قاعات الزفاف",
+    des: "استكشف أماكن زفاف خلابة تلبي كل رغباتك. اختر الموقع المثالي للاحتفال بيومك الخاص!",
     go_to: "/venues",
     data: [
       {
-        name: "Sunset Beach Resort",
+        name: "منتجع شاطئ الغروب",
         img: location_1,
       },
       {
-        name: "Mountain View",
+        name: "إطلالة الجبل",
         img: location_2,
       },
       {
-        name: "Royal Garden Palace",
+        name: "قصر الحديقة الملكية",
         img: location_3,
       },
       {
-        name: "Lakeside Villa",
+        name: "فيلا البحيرة",
         img: location_4,
       },
     ],
     dir: "ltr",
   },
 ];
+
 
 export default function Home() {
   useEffect(() => {}, [window.scrollTo(0, 0)]);

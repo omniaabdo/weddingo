@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Breadcrumb from "../Components/Breadcrumb";
 import Services from "../Components/Services";
+import MinBreadcrumb from "../Components/MinBreadcrumb";
 
 export default function SingleServices() {
   useEffect(() => {
@@ -8,7 +9,12 @@ export default function SingleServices() {
   }, []);
   return (
     <>
-      <Breadcrumb title={"Services"} active_link={"/services"} />
+      {/* <Breadcrumb title={"Services"} active_link={"/services"} /> */}
+      <MinBreadcrumb
+          links={[
+            { title: "الخدمات", link: "/services" },
+          ]}
+        />
       <Services />
     </>
   );

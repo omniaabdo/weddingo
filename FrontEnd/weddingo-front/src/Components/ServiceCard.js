@@ -43,11 +43,11 @@ function ServiceCard({
             ))}
           </ul>
           {peopleCapacity && (
-            <p className="card-text">👥 Capacity: {peopleCapacity} people</p>
+            <p className="card-text">👥 سعة الاشخاص: {peopleCapacity} فرد</p>
           )}
 
           <Link className="btn btn-primary" to={"/services/service-detail"}>
-            Request pricing
+            استكشف المزيد الان
           </Link>
 
           {/* <p className="text-muted mt-2">⚡ Responds within 24 hours</p> */}

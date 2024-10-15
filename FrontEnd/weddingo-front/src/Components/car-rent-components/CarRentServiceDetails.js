@@ -25,8 +25,8 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 export default function CarRentServiceDetails() {
   const [data, setData] = useState({
-    name: "Sample Name",
-    description: "This is a sample description for the item.",
+    name: "سيارة للايجار",
+    description: "وصف للسيارة ",
     avalabileFrom: ["2024-10-10", "2024-10-15", "2024-10-20", "2024-10-25"], // أمثلة لتواريخ متاحة
     feature: [
       "Feature1",
@@ -38,8 +38,8 @@ export default function CarRentServiceDetails() {
     ],
     isAvailable: true,
     location: {
-      city: "Cairo",
-      state: "Egypt",
+      city: "القاهرة ",
+      state: "مصر",
     },
     contacts: {
       phoneNumber: [1234567890],
@@ -54,10 +54,10 @@ export default function CarRentServiceDetails() {
       <section>
         <MinBreadcrumb
           links={[
-            { title: "Profile", link: "/profile" },
-            { title: "Add vendor", link: "/profile/my-services" },
+            { title: "صفحتي", link: "/profile" },
+            { title: "اضافة خدمة", link: "/profile/my-services" },
             {
-              title: "Details",
+              title: "تفاصيل",
               link: "/profile/my-services/car/details",
             },
           ]}
@@ -100,13 +100,13 @@ export default function CarRentServiceDetails() {
               </div>
               <div className="content-div">
                 <h6>
-                  <b>Description</b>
+                  <b>التفاصيل</b>
                 </h6>
                 <p> {data.description}</p>
               </div>
               <div className="content-div">
                 <h6>
-                  <b>Ferures</b>
+                  <b>الميزات والخدمات المقدمة</b>
                 </h6>
                 <ul>
                   {data.feature.map((item, index) => (
@@ -123,7 +123,7 @@ export default function CarRentServiceDetails() {
               </div>
               <div className="content-div">
                 <h6>
-                  <b>Avlabile Date</b>
+                  <b>الايام المتاحة</b>
                 </h6>
                 <DisplayDateGrid selectedDates={data.avalabileFrom} />
               </div>
@@ -133,7 +133,7 @@ export default function CarRentServiceDetails() {
                 <Card.Body>
                   <Card.Title>{data.name}</Card.Title>
                   <Card.Text className="text-muted text-underline">
-                    CONTACT INFROMATION
+                    معلومات الاتصال
                   </Card.Text>
                   <div className=" p-3">
                     <p className="text-muted">
@@ -168,10 +168,10 @@ export default function CarRentServiceDetails() {
                   </div>
                   <div className="d-flex flex-column gap-2">
                     <button className="btn btn-primary w-100 text-center">
-                      Add Pakeges
+                     اضافة عروض
                     </button>
                     <button className="btn btn-secondary w-100 text-center">
-                      Add Albums
+                      اضافة اعمال
                     </button>
                   </div>
                 </Card.Body>

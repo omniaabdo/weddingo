@@ -16,7 +16,7 @@
 .pro-div .pro-div_option-list {
     position: absolute;
     top: 50px;
-    right: 0;
+    left: 0;
     width: 300px;
     background-color: #fff;
     z-index: 100;

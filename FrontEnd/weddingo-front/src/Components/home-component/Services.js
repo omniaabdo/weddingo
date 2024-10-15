@@ -9,35 +9,46 @@ import apple from "../../assets/img/smail-logos/apple.svg";
 
 const servicesData = [
   {
+    img: venus, // صورة تمثل قاعة الزفاف
+    icon: banquet_hall, // أيقونة لتمثيل القاعة
+    title: "قاعات الزفاف",
+    des: "استعرض أفضل قاعات الاحتفالات وقم بحجز مكان مميز للاحتفال بحبك.",
+  },
+  {
     img: venus,
-    icon: banquet_hall,
-    title: "Wedding Venues",
-    des: "Explore and tour top-rated reception venues to book a special space to celebrate your love.",
-  },
-  {
-    img: photography,
     icon: camera,
-    title: "Wedding Photographers",
-    des: "Browse local photographers and their work to find one who’ll capture the essence of your day.",
-  },
+    title: "مصورين الزفاف",
+    des: "تصفح أعمال المصورين المحليين وابحث عن المصور الذي سيُخلّد لحظات يومك المميز.", },
   {
-    img: catering,
+    img: venus,
     icon: apple,
-    title: "Wedding Caterers",
-    des: "Find experienced chefs, bartenders, and caterers to craft the ultimate menu to remember.",
-  },
+    title: "تأجير سيارات الزفاف",
+    des: "استأجر سيارات فاخرة ومميزة لترافقك في يومك الخاص وتضيف لمسة من الفخامة.",
+ },
   {
     img: venus,
     icon: dress,
-    title: "Wedding Attire",
-    des: "Shop in style for your unique wedding look by exploring boutiques and stores near you.",
-  },
+    title: "فساتين الزفاف",
+    des: "تسوق لأجمل إطلالة زفاف من خلال استكشاف المتاجر والبوتيكات القريبة منك.",
+},
+  {
+    img: venus,
+    icon: dress,
+    title: "بيوتي سنتر",
+    des: "احصلي على أروع إطلالة في يوم زفافك من خلال أفضل مراكز التجميل المتخصصة.",
+},
+  {
+    img: venus,
+    icon: dress,
+    title: "سوق الأجهزة",
+    des: "تسوق لأفضل العروض على الأجهزة المنزلية والإلكترونية لاستكمال تجهيزات منزلك.",
+},
 ];
 
 const ServiceCard = ({ main_img, icon, title, des }) => {
   return (
     <>
-      <div className="col-lg-3 col-md-6 col-sm-12">
+      <div className="col-lg-4 col-md-6 col-sm-12">
         <div className="home_services-cards-single card">
           <img src={main_img} alt="this is img" className="single_card-img" />
           <div className="card_contant-container">
@@ -57,9 +68,9 @@ export default function Services() {
     <>
       <section className="home_services min-section">
         <div className="container">
-          <h4 className="home_services-title">Find every vendor you need</h4>
+          <h4 className="home_services-title">تعرف علي خدماتنا المقدمة</h4>
           <p className="home_services-pharagraph">
-            Connect with seasoned wedding pros to help bring your day to life.
+            شاهد الخدمات المقدمة لدينا واستمتع .. نحن في خدمتك
           </p>
           <div className="home_services-cards row">
             {servicesData.map((item) => (

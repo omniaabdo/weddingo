@@ -22,29 +22,31 @@ export default function NavProfile() {
           <div className="option-list_persoal-info d-flex align-items-start">
             <img src={persone} alt="" />
             <div>
-              <h4>Hassan</h4>
+              <h4>
+                مرحبا ,<br /> حسن
+              </h4>
             </div>
           </div>
           <div className="option-list_profile-btn">
-            <Link to={"/profile"}>Go To My Profile</Link>
+            <Link to={"/profile"}>صفحتي الشخصية</Link>
           </div>
           <div className="option-list_tools-div">
             <button className="btn">
               <FaUsers />
-              Vendor
+              البائعون
             </button>
             <button className="btn">
               <FaClipboardList />
-              Checklist
+              الخدمات
             </button>
             <button className="btn">
               <FaDollarSign />
-              Budget
+              الميزانية
             </button>
             <button className="btn"></button>
           </div>
           <div className="option-list_setting">
-            <Link onClick={logOut}>Log Out</Link>
+            <Link onClick={logOut}>تسجيل الخروج</Link>
           </div>
         </div>
       </div>

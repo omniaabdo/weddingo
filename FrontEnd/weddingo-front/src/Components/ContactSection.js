@@ -8,46 +8,45 @@ export default function ContactSection() {
         <div className="container">
           <div className="row">
             <div className="col-lg-6 col-sm-12 contact-us_content">
-              <h1>GET IN TOUCH WITH US</h1>
+              <h1>تواصل معنا</h1>
               <p>
-                The design of this page is nothing crazy, but it seems that Domo
-                doesn't want to appear crazy, after all. Their overall website
-                design is just as clean, so the simplistic approach to this page
-                complements their brand well.
+                تصميم هذه الصفحة بسيط ولكنه يتماشى مع رؤية Domo التي لا تريد أن
+                تظهر بشكل معقد. تصميم موقعهم الإلكتروني ككل بسيط ونظيف، لذا فإن
+                هذا النهج البسيط في تصميم الصفحة يعزز علامتهم التجارية بشكل جيد.
               </p>
               <ul className="contact-us_content-list">
                 <li>
                   <div className="list-icon">
-                    <img src={email_icon} alt="" />
+                    <img src={email_icon} alt="أيقونة البريد الإلكتروني" />
                   </div>
                   <p> example@domen.com</p>
                 </li>
                 <li>
                   <div className="list-icon">
-                    <img src={phone_icon} alt="" />
+                    <img src={phone_icon} alt="أيقونة الهاتف" />
                   </div>
                   <p> 01XXXXXXXXX</p>
                 </li>
                 <li>
                   <div className="list-icon">
-                    <img src={location_icon} alt="" />
+                    <img src={location_icon} alt="أيقونة الموقع" />
                   </div>
-                  <p> Egypt, Cairo - Assuit</p>
+                  <p> مصر، القاهرة - أسيوط</p>
                 </li>
               </ul>
             </div>
             <div className="col-lg-6 col-sm-12 contact-us_form">
               <form>
                 <div class="mb-4">
-                  <label class="form-label">Full Name</label>
+                  <label class="form-label">الاسم الكامل</label>
                   <input
-                    type="email"
+                    type="text"
                     class="form-control"
-                    placeholder="Full Name (ex..jon doe)"
+                    placeholder="الاسم الكامل (مثل.. جون دو)"
                   />
                 </div>
                 <div class="mb-4">
-                  <label class="form-label">Email address</label>
+                  <label class="form-label">عنوان البريد الإلكتروني</label>
                   <input
                     type="email"
                     class="form-control"
@@ -55,11 +54,11 @@ export default function ContactSection() {
                   />
                 </div>
                 <div class="mb-4">
-                  <label class="form-label">Messages</label>
+                  <label class="form-label">الرسالة</label>
                   <textarea class="form-control" rows="5"></textarea>
                 </div>
                 <div className="mt-3">
-                  <button className="btn btn-primary">Send</button>
+                  <button className="btn btn-primary">إرسال الان</button>
                 </div>
               </form>
             </div>

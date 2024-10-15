@@ -9,7 +9,7 @@ export default function ContactUs() {
   }, []);
   return (
     <>
-      <Breadcrumb title={"CONTACT US"} active_link={"contact us"} />
+      <Breadcrumb title={"تواصل معنا الان"} active_link={"contact"} active_title={'تواصل معنا'} />
       <ContactSection />
       <NewsListSection />
     </>

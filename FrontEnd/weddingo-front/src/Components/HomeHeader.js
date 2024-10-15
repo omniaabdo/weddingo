@@ -40,32 +40,32 @@ export default function HomeHeader() {
                       aria-current="page"
                       to={"/services"}
                     >
-                      Venues
+                      القاعات
                     </Link>
                   </li>
                   <li class="nav-item">
                     <Link class="nav-link" to={"/services"}>
-                      Photographers
+                      المصورون
                     </Link>
                   </li>
                   <li class="nav-item">
                     <Link class="nav-link" to={"/services"}>
-                      Bueaty Centers
+                      مراكز التجميل
                     </Link>
                   </li>
                   <li class="nav-item">
                     <Link class="nav-link" to={"/services"}>
-                      Locations
+                      مواقع التصوير
                     </Link>
                   </li>
                   <li class="nav-item">
                     <Link class="nav-link" to={"/services"}>
-                      Car Rent
+                      سيارات 
                     </Link>
                   </li>
                   <li class="nav-item">
                     <Link class="nav-link" to={"/services"}>
-                      Store
+                      المتجر
                     </Link>
                   </li>
                 </ul>
@@ -76,8 +76,8 @@ export default function HomeHeader() {
                 ) : (
                   <>
                     <div className="reg-log-div">
-                      <Link to={"/login"}>Login </Link>
-                      <Link to={"/register"}>Join Now</Link>
+                      <Link to={"/login"}>تسجيل دخزل </Link>
+                      <Link to={"/register"}>انضم الينا</Link>
                     </div>
                   </>
                 )}
