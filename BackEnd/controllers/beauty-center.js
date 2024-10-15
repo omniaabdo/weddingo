@@ -2,12 +2,32 @@ const beautyCenterModel = module.require("../models/beauty-center")
 
 const get = async (req, res) => {
     try {
-        let data = await beautyCenterModel.find()
-        res.json({ data: data })
+        // Get page and limit from query params (default to page 1, 10 items per page)
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        
+        // Calculate how many documents to skip
+        const skip = (page - 1) * limit;
+        
+        // Fetch the paginated data
+        const data = await beautyCenterModel.find()
+            .skip(skip)
+            .limit(limit);
+        
+        // Get the total count of documents (for calculating total pages)
+        const totalDocuments = await beautyCenterModel.countDocuments();
+
+        // Send paginated response
+        res.json({
+            data: data,
+            currentPage: page,
+            totalPages: Math.ceil(totalDocuments / limit),
+            totalDocuments: totalDocuments
+        });
     } catch (e) {
-        res.json({ message: e.message })
+        res.status(500).json({ message: e.message });
     }
-}
+};
 
 const getById = async (req, res) => {
     try {

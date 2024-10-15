@@ -2,12 +2,27 @@ const homeStoreModel = module.require("../models/home-store")
 
 const get = async (req, res) => {
     try {
-        let data = await homeStoreModel.find().populate("category")
-        res.json({ data: data })
+        const page = parseInt(req.query.page) || 1; 
+        const limit = parseInt(req.query.limit) || 10; 
+
+        const skip = (page - 1) * limit;
+        let data = await homeStoreModel.find()
+            .populate("category")
+            .skip(skip)   
+            .limit(limit); 
+
+        const totalItems = await homeStoreModel.countDocuments();
+
+        res.json({
+            data: data,
+            currentPage: page,
+            totalPages: Math.ceil(totalItems / limit),
+            totalItems: totalItems
+        });
     } catch (e) {
-        res.json({ message: e.message })
+        res.json({ message: e.message });
     }
-}
+};
 
 const getById = async (req, res) => {
     try {

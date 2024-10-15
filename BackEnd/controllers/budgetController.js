@@ -23,11 +23,29 @@ const createBudget = async (req, res) => {
 // Get the current user's budget
 const getBudget = async (req, res) => {
   try {
-    const budget = await Budget.findOne({ user: req.user.id });
-    if (!budget) {
-      return res.status(404).json({ message: 'Budget not found' });
+    const { page = 1, limit = 10 } = req.query;
+
+    const pageNumber = parseInt(page, 10);
+    const limitNumber = parseInt(limit, 10);
+
+    const budgets = await Budget.find({ user: req.user.id })
+      .limit(limitNumber) 
+      .skip((pageNumber - 1) * limitNumber)
+      .exec();
+
+    const totalBudgets = await Budget.countDocuments({ user: req.user.id });
+
+    if (budgets.length === 0) {
+      return res.status(404).json({ message: 'No budgets found' });
     }
-    res.json(budget);
+
+    res.json({
+      totalPages: Math.ceil(totalBudgets / limitNumber), 
+      currentPage: pageNumber,   
+      pageSize: limitNumber,    
+      data: budgets,
+      totalDocuments: totalBudgets
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

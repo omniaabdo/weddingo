@@ -1,7 +1,7 @@
 const express = require("express");
 const routes = express.Router();
 
-const locationControllers = require("../controlloers/location/location");
+const locationControllers = require("../controllers/location");
 
 routes.get("/", locationControllers.getAll);
 routes.get("/:id", locationControllers.getOne);

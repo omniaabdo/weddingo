@@ -2,12 +2,23 @@ const homeStoreCategoryModel = module.require("../models/home-store-category")
 
 const get = async (req, res) => {
     try {
-        let data = await homeStoreCategoryModel.find()
-        res.json({ data: data })
+        let page = parseInt(req.query.page) || 1; 
+        let limit = parseInt(req.query.limit) || 10;
+        let skip = (page - 1) * limit;
+
+        let data = await homeStoreCategoryModel.find().skip(skip).limit(limit);
+        let totalItems = await homeStoreCategoryModel.countDocuments();
+
+        res.json({
+            data: data,
+            currentPage: page,
+            totalPages: Math.ceil(totalItems / limit),
+            totalItems: totalItems
+        });
     } catch (e) {
-        res.json({ message: e.message })
+        res.json({ message: e.message });
     }
-}
+};
 
 const getById = async (req, res) => {
     try {

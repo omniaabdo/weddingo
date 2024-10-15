@@ -12,13 +12,49 @@ const logger = require('./utils/logger');
 const beautyCenter = require('./routes/beauty-center.js')
 const homeStore = require('./routes/home-store.js')
 const homeStoreCategory = require('./routes/home-store-category.js')
-
-const multer = require('multer');
-const storage = multer.memoryStorage(); // This will store the file in memory as a Buffer
-const upload = multer({ storage: storage });
-
-
 const app = express();
+
+const path = require('path');
+const fs = require('fs');
+
+const multer  = require('multer')
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+  
+  app.post('/upload', upload.single('file'), (req, res) => {
+    res.json({
+      message: 'File uploaded successfully!',
+      file: req.file
+    });
+  });
+
+app.get('/image/:filename', (req, res) => {
+    const { filename } = req.params;
+    const filepath = path.join(__dirname, 'uploads', filename);
+  
+    if (fs.existsSync(filepath)) {
+      res.sendFile(filepath);
+    } else {
+      res.status(404).json({ message: 'File not found' });
+    }
+  });
+  
+  if (!fs.existsSync('uploads')) {
+    fs.mkdirSync('uploads');
+  }
+  
+app.post('/api/upload', upload.single('file'), function (req, res) {
+    res.json(req.file);
+  })
+
 
 // Connect to MongoDB
 connectDB();

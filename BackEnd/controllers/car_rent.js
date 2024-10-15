@@ -2,18 +2,25 @@ const Car = require("../../models/car_rent");
 
 const getAll = async (req, res, next) => {
   try {
-    const getAll = await Car.find();
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 10; 
+    const skip = (page - 1) * limit;
+
+    const getAll = await Car.find().skip(skip).limit(limit);
+    const totalDocuments = await Car.countDocuments();
+
     res.status(200).json({
-      state: true,
-      messege: "Data Fatched Successfuly",
-      count: getAll.length,
-      data: getAll,
+      currentPage: page,
+      totalPages: Math.ceil(totalDocuments / limit), 
+      totalDocuments: totalDocuments, 
+      data: getAll, 
     });
   } catch (error) {
     console.log(error);
     next(error);
   }
 };
+
 const getOne = async (req, res, next) => {
   try {
     const getOne = await Car.findById(req.params.id);

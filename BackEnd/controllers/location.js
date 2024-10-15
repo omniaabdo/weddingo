@@ -1,11 +1,18 @@
 const Location = require("../../models/location");
+
 const getAll = async (req, res, next) => {
   try {
-    const getAll = await Location.find();
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 10; 
+    const skip = (page - 1) * limit;
+
+    const getAll = await Location.find().skip(skip).limit(limit);
+    const total = await Location.countDocuments();
+
     res.status(200).json({
-      state: true,
-      messege: "Data Fatched Successfuly",
-      count: getAll.length,
+      totalDocuments: total, 
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
       data: getAll,
     });
   } catch (error) {
@@ -13,6 +20,7 @@ const getAll = async (req, res, next) => {
     next(error);
   }
 };
+
 const getOne = async (req, res, next) => {
   try {
     const getOne = await Location.findById(req.params.id);
@@ -28,6 +36,7 @@ const getOne = async (req, res, next) => {
     next(error);
   }
 };
+
 const create = async (req, res, next) => {
   try {
     const create = new Location(req.body);
@@ -43,6 +52,7 @@ const create = async (req, res, next) => {
     next(error);
   }
 };
+
 const update = async (req, res, next) => {
   try {
     const update = await Location.findById(req.params.id);
@@ -65,6 +75,7 @@ const update = async (req, res, next) => {
     next(error);
   }
 };
+
 const deleteOne = async (req, res, next) => {
   try {
     const deleteOne = await Location.findByIdAndDelete(req.params.id);
