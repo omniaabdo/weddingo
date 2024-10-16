@@ -1,3 +1,4 @@
+"use strict";
 const Budget = require('../models/Budget');
 
 // Create a new budget

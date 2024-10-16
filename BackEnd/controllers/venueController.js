@@ -1,3 +1,4 @@
+"use strict";
 const Venue = require('../models/Venue');
 
 // Add a new venue
@@ -12,11 +13,23 @@ const addVenue = async (req, res) => {
   }
 };
 
-// Get all venues
+// Get all venues with pagination
 const getVenues = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query; // default page 1, limit 10
   try {
-    const venues = await Venue.find();
-    res.json(venues);
+    const venues = await Venue.find()
+      .limit(limit * 1) // limit the number of results
+      .skip((page - 1) * limit) // skip items based on current page
+      .exec();
+
+    // Count total documents for pagination info
+    const count = await Venue.countDocuments();
+
+    res.json({
+      venues,
+      totalPages: Math.ceil(count / limit),
+      currentPage: Number(page),
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -1,3 +1,4 @@
+"use strict";
 const beautyCenterModel = module.require("../models/beauty-center")
 
 const get = async (req, res) => {

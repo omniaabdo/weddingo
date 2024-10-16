@@ -67,8 +67,8 @@ app.use(compression());
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
 
 // Routes
-app.use('/api/users', userRoutes);
-app.use('/api/venues', venueRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/venue', venueRoutes);
 app.use('/api/budget', require('./routes/budget'));
 app.use("/beauty-center",beautyCenter)
 app.use("/home-store",homeStore)
