@@ -71,7 +71,7 @@ export default function Login() {
                     <div className="">
                       <p className="f-forgrt-password">
                         {" "}
-                        <a href="#">نسيت كلمة السر؟ </a>
+                        <Link to={"/forget-password"}>نسيت كلمة السر؟ </Link>
                       </p>
                     </div>
                     <div className="form-button">

@@ -5,74 +5,12 @@ import {
   FaDollarSign,
   FaHeart,
   FaUsers,
+  
 } from "react-icons/fa";
+import { BiSolidDashboard } from "react-icons/bi";
+
 import "../assets/css/WeddingNavBar.css";
 import { Navbar, Nav } from "react-bootstrap";
-// const NavBar = () => {
-//   return (
-//     <div className="container">
-//       <Navbar expand="lg" className="navbar-custom">
-//         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-//         <Navbar.Collapse id="basic-navbar-nav">
-//           <Nav className="mx-auto nav-custom">
-//             <div className="collapse navbar-collapse" id="navbarNav">
-//               <ul className="navbar-nav ms-auto">
-//                 <li className="nav-item-custom">
-//                   <NavLink
-//                     className="nav-link"
-//                     to={"/profile"}
-//                     activeClassName="active"
-//                   >
-//                     <center>
-//                       <FaHeart />
-//                     </center>
-//                     My Wedding
-//                   </NavLink>
-//                 </li>
-//                 <li className="nav-item-custom">
-//                   <NavLink
-//                     className="nav-link"
-//                     to="/profile/vendor-manager"
-//                     activeClassName="active"
-//                   >
-//                     <center>
-//                       <FaUsers />
-//                     </center>
-//                     Vendor Manager
-//                   </NavLink>
-//                 </li>
-//                 <li className="nav-item-custom">
-//                   <NavLink
-//                     className="nav-link"
-//                     to="/profile/checklist"
-//                     activeClassName="active"
-//                   >
-//                     <center>
-//                       <FaClipboardList />{" "}
-//                     </center>
-//                     Checklist
-//                   </NavLink>
-//                 </li>
-//                 <li className="nav-item-custom">
-//                   <NavLink
-//                     className="nav-link"
-//                     to="/profile/budget"
-//                     activeClassName="active"
-//                   >
-//                     <center>
-//                       <FaDollarSign />
-//                     </center>
-//                     Budget
-//                   </NavLink>
-//                 </li>
-//               </ul>
-//             </div>
-//           </Nav>
-//         </Navbar.Collapse>
-//       </Navbar>
-//     </div>
-//   );
-// };
 
 const NavBar = () => {
   const { pathname } = useLocation();
@@ -84,7 +22,7 @@ const NavBar = () => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <ul className="profile-nav_list">
+              <ul className="profile-nav_list flex-wrap">
                 <li className="nav-item-custom">
                   <Link
                     className={`nav-link ${
@@ -135,6 +73,19 @@ const NavBar = () => {
                       <FaDollarSign />
                     </center>
                     الميزانية
+                  </NavLink>
+                </li>
+                <li className="nav-item-custom">
+                  <NavLink
+                    className={`nav-link ${
+                      pathname === "/profile/admin" && "active"
+                    }`}
+                    to="/profile/admin"
+                  >
+                    <center>
+                      <BiSolidDashboard />
+                    </center>
+                    الادمن{" "}
                   </NavLink>
                 </li>
               </ul>

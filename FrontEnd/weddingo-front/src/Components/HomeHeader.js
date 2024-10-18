@@ -76,7 +76,7 @@ export default function HomeHeader() {
                 ) : (
                   <>
                     <div className="reg-log-div">
-                      <Link to={"/login"}>تسجيل دخزل </Link>
+                      <Link to={"/login"}>تسجيل دخول </Link>
                       <Link to={"/register"}>انضم الينا</Link>
                     </div>
                   </>

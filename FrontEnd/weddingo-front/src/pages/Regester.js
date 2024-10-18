@@ -31,9 +31,17 @@ export default function Register() {
                   <div className="login-functions">
                     {loginFunctionBTN(facebook, "فيسبوك")}
                     {loginFunctionBTN(google, "جوجل")}
+                    <form>
+                      <div class="mb-2 form-control-sm">
+                        <select class="form-control" id="selelct-input-form">
+                          <option selected>نوع المستخدم </option>
+                          <option>عميل (عريس/عروس)</option>
+                          <option>بائع (مقدم خدمة)</option>
+                        </select>
+                      </div>
+                    </form>
                   </div>
-                  <hr />
-                  <h6 className="py-1"> او سجل بالبريد الالكتروني </h6>
+                  <h6 className="mt-3 py-1"> او سجل بالبريد الالكتروني </h6>
 
                   <form>
                     <div class=" mb-2 form-control-sm">

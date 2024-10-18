@@ -179,9 +179,9 @@ export default function ServiceDetail() {
                       تتراوح الاسعار من : $7,000 - $8,450
                     </div>
 
-                    {/* <button class="btn btn-primary btn-block mt-3">
-                      Request pricing
-                    </button> */}
+                     <button class="btn btn-primary btn-block mt-3">
+                      اضافة للميزانية
+                    </button> 
                   </div>
                 </div>
               </>

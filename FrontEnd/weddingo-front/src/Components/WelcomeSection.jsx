@@ -24,14 +24,14 @@ function WelcomeSection() {
                       alt="Wedding"
                       className="rounded main-image "
                     />
-                    <div className="position-absolute top-0 start-0 m-2">
+                    {/* <div className="position-absolute top-0 start-0 m-2">
                       <Button variant="light" size="sm" className="ms-1">
                         ✏️
                       </Button>
                       <Button variant="light" size="sm">
                         📷
                       </Button>
-                    </div>
+                    </div> */}
                     {/* <div className="position-absolute bottom-0 start-0 bg-primary text-white p-1 rounded countdown">
                       <span>20</span> يوم <span>4</span> ساعة
                     </div> */}
@@ -43,9 +43,9 @@ function WelcomeSection() {
                   <h4 className="mb-1 fw-bold">اهلا بك , حسن علي</h4>
                   <p className="mb-4">
                     October 5, 2024{" "}
-                    <a href="#edit" className="text-primary">
+                    <Link to={"/profile/edit-profile"} className="text-primary">
                       تعديل
-                    </a>
+                    </Link>
                   </p>
 
                   {/* Status Cards Section */}

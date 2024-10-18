@@ -10,7 +10,11 @@ import photo14 from "../assets/img/services/14.jpeg";
 import photo15 from "../assets/img/services/15.jpeg";
 import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
-import FilterType, { FilterCapacity } from "./FilterType";
+import FilterType, {
+  FilterCapacity,
+  FilterCarType,
+  FilterPrice,
+} from "./FilterType";
 import ServiceCardLoading from "./loading-components/ServiceCardLoading";
 import { FilterLoading } from "./loading-components/FilterLoading";
 import TextLoading, {
@@ -35,13 +39,7 @@ export default function Services() {
       rating: 4.9,
       location: "غلينديل، كاليفورنيا",
       priceRange: "",
-      features: [
-        "حفل زفاف/استقبال",
-        "داخلي",
-        "غرف جاهزية",
-        "تنظيف",
-        "إقامة",
-      ],
+      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف", "إقامة"],
       peopleCapacity: 300,
     },
     {
@@ -50,13 +48,7 @@ export default function Services() {
       rating: 5.0,
       location: "ميشن هيلز، كاليفورنيا",
       priceRange: "",
-      features: [
-        "حفل زفاف/استقبال",
-        "داخلي",
-        "خارجي",
-        "غرف جاهزية",
-        "تنظيف",
-      ],
+      features: ["حفل زفاف/استقبال", "داخلي", "خارجي", "غرف جاهزية", "تنظيف"],
       peopleCapacity: null,
     },
     {
@@ -74,17 +66,10 @@ export default function Services() {
       rating: 4.9,
       location: "غلينديل، كاليفورنيا",
       priceRange: "",
-      features: [
-        "حفل زفاف/استقبال",
-        "داخلي",
-        "غرف جاهزية",
-        "تنظيف",
-        "إقامة",
-      ],
+      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف", "إقامة"],
       peopleCapacity: 300,
     },
   ];
-  
 
   const endLoading = () => {
     setTimeout(() => {
@@ -138,6 +123,8 @@ export default function Services() {
                     <p>الفلاتر</p>
                     <FilterType />
                     <FilterCapacity />
+                    <FilterPrice start={1000} />
+                    <FilterCarType />
                   </>
                 )}
               </div>
@@ -154,6 +141,11 @@ export default function Services() {
                     </>
                   ) : (
                     <>
+                      <h6>
+                        وجدنا
+                        <b> {" "+venues.length+" "} </b>
+                        نتيجة مطابقة لك
+                      </h6>
                       {venues.map((venue, index) => (
                         <ServiceCard key={index} {...venue} />
                       ))}
