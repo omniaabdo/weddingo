@@ -35,6 +35,21 @@ const getVenues = async (req, res) => {
   }
 };
 
+const getOneVenues = async (req, res, next) => {
+  try {
+    const getOne = await Venue.findById(req.params.id);
+
+    res.status(200).json({
+      state: true,
+      message: "Data Fetched Successfully",
+      data: getOne
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 // Update a venue
 const updateVenue = async (req, res) => {
   try {
@@ -67,6 +82,7 @@ const deleteVenue = async (req, res) => {
 module.exports = {
   addVenue,
   getVenues,
+  getOneVenues,
   updateVenue,
   deleteVenue,
 };

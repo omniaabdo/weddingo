@@ -9,8 +9,19 @@ import SingleServiceDetailsLoading, {
   CarouselLoading,
   DescriptionContentLoading,
 } from "./loading-components/SingleServiceDetailsLoading";
+import { BeautyCenterService } from "../services/beauty-center-service.tsx";
+import { LocationService } from "../services/location-service.tsx";
+import { PhotographerService } from "../services/photographer.tsx";
+import { CarRentService } from "../services/car-rent.tsx";
+import { StoreService } from "../services/store-service.tsx";
+import { VenueService } from "../services/venue-service.tsx";
+import { useParams } from "react-router-dom";
+
 export default function ServiceDetail() {
   const [loading, setLoading] = useState(true);
+  const [serviceDetailData, setServiceDetailData] = useState({});
+  const { id } = useParams();
+
   const endLoading = () => {
     setTimeout(() => {
       setLoading(false);
@@ -19,7 +30,108 @@ export default function ServiceDetail() {
 
   useEffect(() => {
     endLoading();
+    getData();
   }, []);
+
+  const getData = async () => {
+    if(window.location.href.includes('beauty-center')) {
+      getBeautyCenterById();
+    }
+    if(window.location.href.includes('location')) {
+      getLocationById();
+    }
+    if(window.location.href.includes('photographer')) {
+      getPhotographerById();
+    }
+    if(window.location.href.includes('car-rent')) {
+      getCarRentById();
+    }
+    if(window.location.href.includes('home-store')) {
+      getStoreById();
+    }
+    if(window.location.href.includes('venue')) {
+      getVenueById(); 
+    }
+  }
+
+  const getBeautyCenterById = async () => {
+    try {
+      setLoading(true);
+      const response = await BeautyCenterService.getBeautyCenterById(id);
+      if (response && response.data) {
+        setLoading(false);
+        setServiceDetailData(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getLocationById = async () => {
+    try {
+      setLoading(true);
+      const response = await LocationService.getLocationById(id);
+      if (response && response.data) {
+        setLoading(false);
+        setServiceDetailData(response.data.Location);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getPhotographerById = async () => {
+    try {
+      setLoading(true);
+      const response = await PhotographerService.getPhotographerById(id);
+      if (response && response.data) {
+        setLoading(false);
+        setServiceDetailData(response.data.photographer);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getCarRentById = async () => {
+    try {
+      setLoading(true);
+      const response = await CarRentService.getCarRentById(id);
+      if (response && response.data) {
+        setLoading(false);
+        setServiceDetailData(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getVenueById = async () => {
+    try {
+      setLoading(true);
+      const response = await VenueService.getVenueById(id);
+      if (response && response.data) {
+        setLoading(false);
+        setServiceDetailData(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getStoreById = async () => {
+    try {
+      setLoading(true);
+      const response = await StoreService.getStoreById(id);
+      if (response && response.data) {
+        setLoading(false);
+        setServiceDetailData(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <section className="min-section single-service">
       <div className="container">
@@ -44,7 +156,7 @@ export default function ServiceDetail() {
                         <FaChevronRight className="custom-carousel-arrow-right" />
                       }
                     >
-                      <Carousel.Item>
+                      {/* <Carousel.Item>
                         <img
                           style={{ objectFit: "cover" }}
                           className="d-block"
@@ -67,65 +179,42 @@ export default function ServiceDetail() {
                           src={photo15}
                           alt="First slide"
                         />
-                      </Carousel.Item>
+                      </Carousel.Item> */}
+                      { serviceDetailData.media ? (serviceDetailData.media.images.map((image, index) => (
+                        <Carousel.Item key={index}>
+                          <img
+                            className="d-block w-100"
+                            src={image}
+                            alt={`Slide ${index}`}
+                            style={{ objectFit: "cover" }}
+                          />
+                        </Carousel.Item>
+                      ))) : ''}
                     </Carousel>
                   </div>
                   <div className="col-12 mt-5 content-type pricing">
                     <h4 className="content-type_title">معلومات عن الاسعار</h4>
                     <ul className="pricing_list">
                       <li>
-                        <i></i> <span>تتراوح الاسعار من : $7,000 - $8,450</span>
+                        <i></i> <span>الاسعار : {serviceDetailData.price}</span>
                       </li>
                       <li>
-                        <i></i> <span>عادتا يتم الاتفق علي $7,750</span>
+                        {/* <i></i> <span>عادتا يتم الاتفق علي $7,750</span> */}
                       </li>
                     </ul>
                   </div>
                   <div className="col-12 mt-5 content-type about">
                     <h4 className="content-type_title">عن المكان </h4>
                     <p>
-                      قاعة "رويال جاردن" تعد من أجمل القاعات التي تقدم مزيجًا من
-                      الأناقة والرفاهية. تتميز القاعة بمساحات داخلية واسعة
-                      ومجهزة بأحدث التجهيزات لتلبية احتياجات حفلات الزفاف
-                      الكبيرة والصغيرة. حديقة القاعة الخارجية تُعد المكان
-                      المثالي لإقامة حفلات الزفاف في الهواء الطلق، مع ممرات
-                      مرصوفة وحدائق مزينة بالزهور الملونة. يمكن إضافة لمسات من
-                      الزينة مثل الأضواء والزهور لتعزيز جمال المكان. في الداخل،
-                      تم تصميم القاعة بديكور عصري وفاخر، حيث تحتوي على أرضية رقص
-                      خشبية كبيرة وثريات مذهلة. القاعة قادرة على استيعاب ما يصل
-                      إلى 500 ضيف، وتوفر مساحة مخصصة لعروض الترفيه مع منصة مخصصة
-                      للـ DJ ونظام صوتي متكامل. بالإضافة إلى ذلك، يوجد بار مجهز
-                      لتقديم المشروبات، مما يضمن أن تكون الليلة مليئة بالبهجة
-                      والمرح.
+                      {serviceDetailData.description}
                     </p>
                   </div>
                   <div className="col-12 mt-5 content-type content-div FQ">
                     <h4 className="content-type_title">المميزات والخدمات</h4>
                     <ul>
-                      <li>
-                        <span>
-                          <FaCheck />
-                        </span>
-                        ميزة رقم 1
-                      </li>
-                      <li>
-                        <span>
-                          <FaCheck />
-                        </span>
-                        ميزة رقم 1
-                      </li>
-                      <li>
-                        <span>
-                          <FaCheck />
-                        </span>
-                        ميزة رقم 1
-                      </li>
-                      <li>
-                        <span>
-                          <FaCheck />
-                        </span>
-                        ميزة رقم 1
-                      </li>
+                    {serviceDetailData.feature ? (serviceDetailData.feature.map((feature, index) => (
+                        <li key={index}>✔ {feature}</li>
+                      ))) : ''}
                     </ul>
                   </div>
                 </>
@@ -155,7 +244,7 @@ export default function ServiceDetail() {
                       <i class="fa fa-heart" aria-hidden="true"></i>
                     </div>
 
-                    <h3 class="card-title mt-2">قاعة "رويال جاردن"</h3>
+                    <h3 class="card-title mt-2">{serviceDetailData.name}</h3>
 
                     <div class="rating">
                       <span class="text-warning">⭐⭐⭐⭐</span>
@@ -166,17 +255,21 @@ export default function ServiceDetail() {
                     <ul className="card-list">
                       <li>
                         <img src={location} />
-                        <span>اسيوط الجديدة - اسيوط </span>
+                        {serviceDetailData.location ? (
+                          <span>{serviceDetailData.location.city} - {serviceDetailData.location.state} </span>
+                        ) : ''}
                       </li>
                       <li>
                         <img src={phone} />
-                        <span>01550005909</span>
+                        {serviceDetailData.contacts ? (
+                          <span>{serviceDetailData.contacts.phoneNumber}</span>
+                        ) : ''}
                       </li>
                     </ul>
 
                     <div class="price-range mt-3">
                       <i class="fa fa-money-bill-wave"></i>
-                      تتراوح الاسعار من : $7,000 - $8,450
+                       الاسعار : {serviceDetailData.price}
                     </div>
 
                      <button class="btn btn-primary btn-block mt-3">

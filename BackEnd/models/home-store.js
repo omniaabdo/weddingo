@@ -26,8 +26,27 @@ const homeStoreSchema = new mongoose.Schema(
         message: "Invalid category ID",
       },
     },
-    image: {
-      type: Buffer
+    media: {
+      images: {
+        type: [String],
+        default: [],
+        validate: {
+          validator: function (v) {
+            return v.every(file => /\.(jpg|jpeg|png|gif)$/.test(file));
+          },
+          message: "Each image must be a valid file type (jpg, jpeg, png, gif)",
+        },
+      },
+      video: {
+        type: String,
+        default: "",
+        validate: {
+          validator: function (v) {
+            return !v || /\.(mp4|mov|avi|mkv)$/.test(v);
+          },
+          message: "Video must be a valid file type (mp4, mov, avi, mkv)",
+        },
+      },
     },
     price: {
       type: Number,
