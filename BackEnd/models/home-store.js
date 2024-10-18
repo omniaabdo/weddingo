@@ -27,8 +27,7 @@ const homeStoreSchema = new mongoose.Schema(
       },
     },
     image: {
-      type: Buffer,
-      required: [true, "Image is required"],
+      type: Buffer
     },
     price: {
       type: Number,

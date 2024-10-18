@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../assets/css/services.css";
-import photo1 from "../assets/img/services/1.png";
-import photo2 from "../assets/img/services/2.jpeg";
-import photo3 from "../assets/img/services/3.jpeg";
-import photo4 from "../assets/img/services/4.jpeg";
-import photo6 from "../assets/img/services/6.jpeg";
-import photo8 from "../assets/img/services/8.jpeg";
-import photo14 from "../assets/img/services/14.jpeg";
-import photo15 from "../assets/img/services/15.jpeg";
-import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
 import FilterType, {
   FilterCapacity,
@@ -20,56 +11,63 @@ import { FilterLoading } from "./loading-components/FilterLoading";
 import TextLoading, {
   PharagraphLoading,
 } from "./loading-components/TextLoading";
+import { BeautyCenterService } from "../services/beauty-center-service.tsx";
+import { LocationService } from "../services/location-service.tsx";
+import { PhotographerService } from "../services/photographer.tsx";
+import { CarRentService } from "../services/car-rent.tsx";
+import { StoreService } from "../services/store-service.tsx";
+import { VenueService } from "../services/venue-service.tsx";
 
 export default function Services() {
   const [loading, setLoading] = useState(true);
-  const venues = [
-    {
-      images: [photo1, photo14],
-      title: "كوايت كانون",
-      rating: 3.8,
-      location: "مونتيبيلو، كاليفورنيا",
-      priceRange: "7,000 - 8,450 دولار",
-      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف"],
-      peopleCapacity: null,
-    },
-    {
-      images: [photo2, photo1],
-      title: "قاعة متروبول",
-      rating: 4.9,
-      location: "غلينديل، كاليفورنيا",
-      priceRange: "",
-      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف", "إقامة"],
-      peopleCapacity: 300,
-    },
-    {
-      images: [photo3, photo4],
-      title: "قاعة لوس أنجلوس - ذا لاند مارك",
-      rating: 5.0,
-      location: "ميشن هيلز، كاليفورنيا",
-      priceRange: "",
-      features: ["حفل زفاف/استقبال", "داخلي", "خارجي", "غرف جاهزية", "تنظيف"],
-      peopleCapacity: null,
-    },
-    {
-      images: [photo15, photo14],
-      title: "كوايت كانون",
-      rating: 3.8,
-      location: "مونتيبيلو، كاليفورنيا",
-      priceRange: "7,000 - 8,450 دولار",
-      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف"],
-      peopleCapacity: null,
-    },
-    {
-      images: [photo6, photo14],
-      title: "قاعة متروبول",
-      rating: 4.9,
-      location: "غلينديل، كاليفورنيا",
-      priceRange: "",
-      features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف", "إقامة"],
-      peopleCapacity: 300,
-    },
-  ];
+  const [venues, setVenues] = useState([]);
+  // const venues = [
+  //   {
+  //     images: [photo1, photo14],
+  //     title: "كوايت كانون",
+  //     rating: 3.8,
+  //     location: "مونتيبيلو، كاليفورنيا",
+  //     priceRange: "7,000 - 8,450 دولار",
+  //     features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف"],
+  //     peopleCapacity: null,
+  //   },
+  //   {
+  //     images: [photo2, photo1],
+  //     title: "قاعة متروبول",
+  //     rating: 4.9,
+  //     location: "غلينديل، كاليفورنيا",
+  //     priceRange: "",
+  //     features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف", "إقامة"],
+  //     peopleCapacity: 300,
+  //   },
+  //   {
+  //     images: [photo3, photo4],
+  //     title: "قاعة لوس أنجلوس - ذا لاند مارك",
+  //     rating: 5.0,
+  //     location: "ميشن هيلز، كاليفورنيا",
+  //     priceRange: "",
+  //     features: ["حفل زفاف/استقبال", "داخلي", "خارجي", "غرف جاهزية", "تنظيف"],
+  //     peopleCapacity: null,
+  //   },
+  //   {
+  //     images: [photo15, photo14],
+  //     title: "كوايت كانون",
+  //     rating: 3.8,
+  //     location: "مونتيبيلو، كاليفورنيا",
+  //     priceRange: "7,000 - 8,450 دولار",
+  //     features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف"],
+  //     peopleCapacity: null,
+  //   },
+  //   {
+  //     images: [photo6, photo14],
+  //     title: "قاعة متروبول",
+  //     rating: 4.9,
+  //     location: "غلينديل، كاليفورنيا",
+  //     priceRange: "",
+  //     features: ["حفل زفاف/استقبال", "داخلي", "غرف جاهزية", "تنظيف", "إقامة"],
+  //     peopleCapacity: 300,
+  //   },
+  // ];
 
   const endLoading = () => {
     setTimeout(() => {
@@ -78,8 +76,85 @@ export default function Services() {
   };
 
   useEffect(() => {
+    getData();
     endLoading();
   }, []);
+
+  const getData = async () => {
+    if(window.location.href.includes('beauty-center')) getBeautyCenter();
+    if(window.location.href.includes('location')) getLocation();
+    if(window.location.href.includes('photographer')) getPhotographer();
+    if(window.location.href.includes('car-rent')) getCarRent();
+    if(window.location.href.includes('home-store')) getStore();
+    if(window.location.href.includes('venue')) getVenue();
+  }
+
+
+  const getBeautyCenter = async () => {
+    try {
+      const response = await BeautyCenterService.getBeautyCenter();
+      if (response && response.data) {
+        setVenues(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getLocation = async () => {
+    try {
+      const response = await LocationService.getLocation();
+      if (response && response.data) {
+        setVenues(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getPhotographer = async () => {
+    try {
+      const response = await PhotographerService.getPhotographer();
+      if (response && response.data) {
+        setVenues(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getCarRent = async () => {
+    try {
+      const response = await CarRentService.getCarRent();
+      if (response && response.data) {
+        setVenues(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getVenue = async () => {
+    try {
+      const response = await VenueService.getVenue();
+      if (response && response.venues) {
+        setVenues(response.venues);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const getStore = async () => {
+    try {
+      const response = await StoreService.getStore();
+      if (response && response.data) {
+        setVenues(response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div className="services pt-5">
@@ -146,9 +221,9 @@ export default function Services() {
                         <b> {" "+venues.length+" "} </b>
                         نتيجة مطابقة لك
                       </h6>
-                      {venues.map((venue, index) => (
+                      {venues.length > 0 ? (venues.map((venue, index) => (
                         <ServiceCard key={index} {...venue} />
-                      ))}
+                      ))): ''}
                     </>
                   )}
                 </div>
@@ -157,85 +232,6 @@ export default function Services() {
           </div>
         </div>
       </div>
-      {/* <div className="services-card">
-          <div>
-            <Link to="service-detail" className='link-service'>
-              <img src={photo1} className="card-service" alt="logo" />
-              <h4 className="service-card-name">مكان 123</h4>
-              <p className="service-card-price">7007</p>
-            </Link>
-          </div>
-          <div>
-            <img src={photo2} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 34</h4>
-            <p className="service-card-price">78000</p>
-          </div>
-          <div>
-            <img src={photo3} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 7856</h4>
-            <p className="service-card-price">10050</p>
-          </div>
-          <div>
-            <img src={photo4} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 56</h4>
-            <p className="service-card-price">70000</p>
-          </div>
-          <div>
-            <img src={photo6} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 12</h4>
-            <p className="service-card-price">2133</p>
-          </div>
-          <div>
-            <img src={photo8} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 8756</h4>
-            <p className="service-card-price">2333</p>
-          </div>
-          <div>
-            <img src={photo14} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 66</h4>
-            <p className="service-card-price">30000</p>
-          </div>
-          <div>
-            <img src={photo15} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 443</h4>
-            <p className="service-card-price">23000</p>
-          </div>
-          <div>
-            <img src={photo1} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 123</h4>
-            <p className="service-card-price">7007</p>
-          </div>
-          <div>
-            <img src={photo2} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 34</h4>
-            <p className="service-card-price">78000</p>
-          </div>
-          <div>
-            <img src={photo3} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 7856</h4>
-            <p className="service-card-price">10050</p>
-          </div>
-          <div>
-            <img src={photo4} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 56</h4>
-            <p className="service-card-price">70000</p>
-          </div>
-          <div>
-            <img src={photo6} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 12</h4>
-            <p className="service-card-price">2133</p>
-          </div>
-          <div>
-            <img src={photo8} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 8756</h4>
-            <p className="service-card-price">2333</p>
-          </div>
-          <div>
-            <img src={photo14} className="card-service" alt="logo" />
-            <h4 className="service-card-name">مكان 66</h4>
-            <p className="service-card-price">30000</p>
-          </div>
-        </div> */}
     </div>
   );
 }

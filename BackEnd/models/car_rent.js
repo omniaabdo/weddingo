@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const carRentSchema = new mongoose.Schema(
   {
-    carName: {
+    name: {
       type: String,
       required: [true, "Car name is required"],
       trim: true,

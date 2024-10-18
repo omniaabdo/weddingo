@@ -1,7 +1,7 @@
 "use strict";
-const Photographer = require("../../models/photographer");
-const Album = require("../../models/album");
-const Packege = require("../../models/packege");
+const Photographer = require("../models/photographer");
+const Album = require("../models/album");
+const Packege = require("../models/packege");
 
 // Get all photographers with pagination
 const getAll = async (req, res, next) => {
