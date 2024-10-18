@@ -52,6 +52,20 @@
 
     /*#endregion HomeSections */
 
+/*#region Error*/
+    /*-------------- Error Page -------------------*/
+    .error .error_image {
+       order: 1;
+    }
+    .error .error_text-div {
+       order: 2;
+    }
+    .error .error_buttons {
+       order: 3;
+    }
+
+    /*#endregion Error*/
+
 
 }
 
@@ -111,10 +125,16 @@
     .breadcrumb {
         min-height: 40vh !important;
     }
+
     /*#endregion breadcrumb */
 
+    /*#region Error*/
+    /*-------------- Error Page -------------------*/
+    .error .error_image {
+        display: none !important;
+    }
 
-
+    /*#endregion Error*/
 
 }
 

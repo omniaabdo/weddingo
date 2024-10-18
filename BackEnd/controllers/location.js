@@ -1,5 +1,5 @@
 "use strict";
-const Location = require("../../models/location");
+const Location = require("../models/location");
 
 // Get all locations with pagination
 const getAll = async (req, res, next) => {

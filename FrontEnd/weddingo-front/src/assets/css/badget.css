@@ -1,0 +1,45 @@
+.badget .budget-content {
+
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.badget .badget-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.badget .badget-list li .badget-list_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid gray;
+}
+.badget .badget-list li .badget-list_item svg{
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+.badget .badget-list li:last-child .badget-list_item {
+    
+    border-bottom-color: transparent;
+}
+.badget .budget-content form div {
+    border: none;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.badget .budget-content form input {
+    /* border: none !important; */
+    /* border: 1px solid gray !important; */
+    /* border-radius: 0 !important; */
+    outline-color: transparent !important;
+}
+
+.badget .budget-content form input:focus {
+    border-color: gray !important;
+    outline: none;
+    box-shadow: none;
+
+}

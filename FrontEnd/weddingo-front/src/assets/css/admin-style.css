@@ -1,0 +1,53 @@
+.admin-dashboard .admin-dashboard_cards-contnent .card {
+    max-height: 40rem;
+    margin: 1rem 0;
+}
+
+.admin-dashboard .admin-dashboard_cards-contnent .card img {
+    height: 15rem;
+    object-fit: cover;
+
+}
+
+.admin-dashboard .admin-dashboard_cards-contnent .card .card-body .card-text {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.admin-dashboard .admin-dashboard_cards-contnent .card .user-data {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: .5rem;
+}
+
+.admin-dashboard .admin-dashboard_cards-contnent .card .user-data img {
+    height: 50px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-inline-end: .5rem;
+}
+
+.admin-dashboard .admin-dashboard_cards-contnent .card .card-buttons {
+    margin-top: auto;
+
+}
+
+.admin-dashboard .admin-dashboard_cards-contnent .card .card-img {
+    position: relative;
+}
+
+.admin-dashboard .admin-dashboard_cards-contnent .card .card-img .card-bages {
+    position: absolute;
+    margin: 1rem;
+    padding: .4rem 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 10px;
+}

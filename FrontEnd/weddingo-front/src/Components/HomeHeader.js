@@ -3,13 +3,8 @@ import Logo from "../assets/img/logo.png";
 import NavProfile from "./NavProfile";
 import { useEffect, useState } from "react";
 
-export default function HomeHeader() {
-  const [isLogin, setIsLogin] = useState();
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    setIsLogin(user);
-  }, []);
+export default function HomeHeader({ userData }) {
+  
   return (
     <>
       <header className="home_header">
@@ -38,45 +33,45 @@ export default function HomeHeader() {
                     <Link
                       class="nav-link active"
                       aria-current="page"
-                      to={"/services"}
+                      to={"/services/venue"}
                     >
                       القاعات
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/photographer"}>
                       المصورون
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/beauty-center"}>
                       مراكز التجميل
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/location"}>
                       مواقع التصوير
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
-                      سيارات 
+                    <Link class="nav-link" to={"/services/car-rent"}>
+                      سيارات
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/home-store"}>
                       المتجر
                     </Link>
                   </li>
                 </ul>
-                {isLogin ? (
+                {userData ? (
                   <>
-                    <NavProfile />
+                    <NavProfile userData={userData} />
                   </>
                 ) : (
                   <>
                     <div className="reg-log-div">
-                      <Link to={"/login"}>تسجيل دخزل </Link>
+                      <Link to={"/login"}>تسجيل دخول </Link>
                       <Link to={"/register"}>انضم الينا</Link>
                     </div>
                   </>

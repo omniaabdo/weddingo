@@ -14,12 +14,20 @@ const beautyCenterSchema = new mongoose.Schema(
             type: String,
             maxlength: [500, "Description cannot exceed 500 characters"], // Limit description length
         },
-        address: {
-            type: String,
-            required: [true, "Address is required"],
-            trim: true,
-            maxlength: [250, "Address cannot exceed 250 characters"], // Limit address length
-        },
+        location: {
+            city: {
+              type: String,
+              trim: true,
+              default: "",
+              maxlength: [100, "City name cannot exceed 100 characters"],
+            },
+            state: {
+              type: String,
+              trim: true,
+              default: "",
+              maxlength: [100, "State name cannot exceed 100 characters"],
+            },
+          },
         contacts: {
             phoneNumber: {
                 type: [Number],
@@ -74,10 +82,16 @@ const beautyCenterSchema = new mongoose.Schema(
                 message: "Available days must be valid day names",
             },
         },
-        features: {
+        feature: {
             type: [String],
             default: [],
-        },
+            validate: {
+              validator: function (v) {
+                return v.length <= 5;
+              },
+              message: "You can specify a maximum of 5 features",
+            },
+          },
         services: {
             type: [String],
             default: [],

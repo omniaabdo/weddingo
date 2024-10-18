@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../models/User'); // Assuming you have a User model
 const sendEmail = require('../utils/sendEmail'); // A utility to send emails (e.g., using Nodemailer)
+const User = require('../models/User');
 
 // Generate JWT
 const signToken = (id, role) => {
