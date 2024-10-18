@@ -9,3 +9,11 @@
 {"level":"info","message":"MongoDB connected"}
 {"level":"info","message":"Server running on port 8000"}
 {"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"error","message":"MongoDB connection failed: connect ETIMEDOUT ::1:27017, connect ECONNREFUSED 127.0.0.1:27017"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"error","message":"MongoDB connection failed: connect ETIMEDOUT ::1:27017, connect ECONNREFUSED 127.0.0.1:27017"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
