@@ -1,5 +1,5 @@
 "use strict";
-const Car = require("../../models/car_rent");
+const Car = require("../models/car_rent");
 
 const getAll = async (req, res, next) => {
   try {

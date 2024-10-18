@@ -70,8 +70,12 @@ function App() {
         />
         <Route path="/forget-password" element={<ForgetPasswoed />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/services" element={<SingleServices />} />
-
+        <Route path="/services/beauty-center" element={<SingleServices />} />
+        <Route path="/services/location" element={<SingleServices />} />
+        <Route path="/services/photographer" element={<SingleServices />} />
+        <Route path="/services/car-rent" element={<SingleServices />} />
+        <Route path="/services/home-store" element={<SingleServices />} />
+        <Route path="/services/venue" element={<SingleServices />} />
         <Route
           path="/services/service-detail"
           element={<SingleServicesDetails />}

@@ -10,6 +10,9 @@ const userRoutes = require("./routes/userroutes");
 const venueRoutes = require("./routes/venueRoutes");
 const logger = require("./utils/logger");
 const beautyCenter = require("./routes/beauty-center.js");
+const location = require("./routes/location.js");
+const photographer = require("./routes/photographer.js");
+const carRent = require("./routes/car_rent.js");
 const homeStore = require("./routes/home-store.js");
 const homeStoreCategory = require("./routes/home-store-category.js");
 const app = express();
@@ -65,9 +68,12 @@ app.use(
 app.use('/api/users', userRoutes);
 app.use('/api/venues', venueRoutes);
 app.use('/api/budget', require('./routes/budget'));
-app.use("/beauty-center",beautyCenter)
-app.use("/home-store",homeStore)
-app.use("/home-store-category",homeStoreCategory)
+app.use("/beauty-center", beautyCenter)
+app.use("/home-store", homeStore)
+app.use("/location", location)
+app.use("/photographer", photographer)
+app.use("/home-store-category", homeStoreCategory)
+app.use("/car-rent", carRent)
 
 // Error Handling Middleware
 app.use(errorHandler);

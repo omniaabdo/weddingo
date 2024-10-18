@@ -38,33 +38,33 @@ export default function HomeHeader() {
                     <Link
                       class="nav-link active"
                       aria-current="page"
-                      to={"/services"}
+                      to={"/services/venue"}
                     >
                       القاعات
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/photographer"}>
                       المصورون
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/beauty-center"}>
                       مراكز التجميل
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/location"}>
                       مواقع التصوير
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/car-rent"}>
                       سيارات 
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to={"/services"}>
+                    <Link class="nav-link" to={"/services/home-store"}>
                       المتجر
                     </Link>
                   </li>
