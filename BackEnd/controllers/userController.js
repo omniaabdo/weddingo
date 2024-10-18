@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../models/User'); // Assuming you have a User model
 const sendEmail = require('../utils/sendEmail'); // A utility to send emails (e.g., using Nodemailer)
-const User = require('../models/User');
 
 // Generate JWT
 const signToken = (id, role) => {
@@ -76,10 +75,10 @@ exports.login = async (req, res) => {
   }
 };
 
-// Get user details by ID
+// Get user details
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user.id);
     if (!user) {
       return res.status(404).json({
         status: 'fail',
@@ -98,25 +97,29 @@ exports.getUser = async (req, res) => {
   }
 };
 
-// Update user details (for both user and admin)
+// Update user details
 exports.updateUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, currentPassword, password } = req.body;
 
-    // Only allow admin to change roles
-    if (req.user.role !== 'admin' && role) {
-      return res.status(403).json({
+    const user = await User.findById(req.user.id).select('+password');
+
+    // Check if current password is provided and if it's correct
+    if (currentPassword && !(await user.correctPassword(currentPassword, user.password))) {
+      return res.status(401).json({
         status: 'fail',
-        message: 'You do not have permission to change the role',
+        message: 'Incorrect current password',
       });
     }
 
+    // Prepare user data for update
     const updatedData = { name, email };
     if (password) {
       updatedData.password = await bcrypt.hash(password, 12); // Re-hash the new password
     }
 
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, updatedData, {
+    // Update user data
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, updatedData, {
       new: true,
       runValidators: true,
     });
@@ -128,8 +131,10 @@ exports.updateUser = async (req, res) => {
       });
     }
 
+    const token = signToken(updatedUser._id, updatedUser.role);
     res.status(200).json({
       status: 'success',
+      token,
       data: { user: updatedUser },
     });
   } catch (err) {
@@ -143,7 +148,7 @@ exports.updateUser = async (req, res) => {
 // Delete user
 exports.deleteUser = async (req, res) => {
   try {
-    const userToDelete = await User.findById(req.params.id);
+    const userToDelete = await User.findById(req.user.id);
     if (!userToDelete) {
       return res.status(404).json({
         status: 'fail',
@@ -159,7 +164,7 @@ exports.deleteUser = async (req, res) => {
       });
     }
 
-    await User.findByIdAndDelete(req.params.id);
+    await User.findByIdAndDelete(req.user.id);
 
     res.status(204).json({
       status: 'success',
