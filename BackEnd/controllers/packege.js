@@ -1,3 +1,4 @@
+"use strict";
 const Packege = require("../../models/packege");
 
 const getAllFor = async (req, res, next) => {

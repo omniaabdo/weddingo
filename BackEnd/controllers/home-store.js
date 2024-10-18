@@ -1,3 +1,4 @@
+"use strict";
 const homeStoreModel = module.require("../models/home-store")
 
 const get = async (req, res) => {

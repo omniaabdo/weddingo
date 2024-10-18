@@ -1,3 +1,4 @@
+"use strict";
 const Album = require("../../models/album");
 
 const getAllFor = async (req, res, next) => {

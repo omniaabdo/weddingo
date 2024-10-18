@@ -1,14 +1,12 @@
 const express = require('express');
-const { createBudget, getBudget, updateBudget, deleteBudget } = require('../controllers/budgetController');
-const auth = require('../middleware/auth');  // Assuming you have an authentication middleware
-
+const budgetcontroller=require('../controllers/budgetController');
 const router = express.Router();
 
 // Routes for the budget
-router.post('/', auth, createBudget);  // Create a budget
-router.get('/', auth, getBudget);      // Get the current user's budget
-router.put('/', auth, updateBudget);   // Update a budget
-router.delete('/', auth, deleteBudget); // Delete a budget
+router.post('/',budgetcontroller.createBudget);  // Create a budget
+router.get('/', budgetcontroller.getBudget);      // Get the current user's budget
+router.put('/', budgetcontroller.updateBudget);   // Update a budget
+router.delete('/', budgetcontroller.deleteBudget); // Delete a budget
 
 module.exports = router;
 

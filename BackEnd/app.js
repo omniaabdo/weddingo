@@ -62,12 +62,12 @@ app.use(
 );
 
 // Routes
-app.use("/api/users", userRoutes);
-app.use("/api/venues", venueRoutes);
-app.use("/api/budget", require("./routes/budget"));
-app.use("/beauty-center", beautyCenter);
-app.use("/home-store", homeStore);
-app.use("/home-store-category", homeStoreCategory);
+app.use('/api/users', userRoutes);
+app.use('/api/venues', venueRoutes);
+app.use('/api/budget', require('./routes/budget'));
+app.use("/beauty-center",beautyCenter)
+app.use("/home-store",homeStore)
+app.use("/home-store-category",homeStoreCategory)
 
 // Error Handling Middleware
 app.use(errorHandler);

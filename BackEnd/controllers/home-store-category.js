@@ -1,3 +1,4 @@
+"use strict";
 const homeStoreCategoryModel = module.require("../models/home-store-category")
 
 const get = async (req, res) => {
