@@ -5,7 +5,60 @@
     --hover-primary-color: #4f92c9;
     --bg-gray-color: #efefefef;
     --light-black-color: #444;
-    --p-font-size: 0.8rem
+    --p-font-size: 0.8rem;
+
+    --bs-primary: rgb(94, 174, 236) !important;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+
+
+    --bs-primary-rgb: 94, 174, 236;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark-rgb: 33, 37, 41;
+
+
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #5EAEEC !important;
+    --bs-btn-border-color: #5EAEEC !important;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #4f92c9;
+    --bs-btn-hover-border-color: #4f92c9;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #4f92c9;
+    --bs-btn-active-border-color: #4f92c9;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #5EAEEC !important;
+    --bs-btn-disabled-border-color: #5EAEEC !important;
+
+
+}
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #5EAEEC !important;
+    --bs-btn-border-color: #5EAEEC !important;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #4f92c9;
+    --bs-btn-hover-border-color: #4f92c9;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #4f92c9;
+    --bs-btn-active-border-color: #4f92c9;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #5EAEEC !important;
+    --bs-btn-disabled-border-color: #5EAEEC !important;
 }
 
 * {
@@ -673,7 +726,7 @@ p {
     color: var(--bg-gray-color);
     text-transform: uppercase;
     font-size: 1.6rem;
-letter-spacing: 1.1rem;
+    letter-spacing: 1.1rem;
 }
 
 .subscription .subscription_content h1.frist::before,
@@ -708,6 +761,7 @@ letter-spacing: 1.1rem;
     padding-inline: 1.3rem;
 
 }
+
 .subscription .subscription_content .subscription_content-form .input-group button:hover {
     background-color: #222;
 
@@ -746,6 +800,7 @@ letter-spacing: 1.1rem;
     display: flex;
     padding: 1rem;
 }
+
 /* .breadcrumb .breadcrumb_content {
     position: absolute;
     top: 0;

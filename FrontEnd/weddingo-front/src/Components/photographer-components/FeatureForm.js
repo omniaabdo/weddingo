@@ -28,25 +28,25 @@ function FeatureForm({ handleFraturesData }) {
   };
 
   return (
-    <Form>
+    <Form dir={'ltr'}>
       <Form.Group className="mb-3">
-        <Form.Label>Features</Form.Label>
+        <Form.Label>الميزات</Form.Label>
 
         {edit && (
           <>
-            {/* datalist لإدخال الفيتشرز */}
+            {/* datalist لإدخال الميزات */}
             <InputGroup className="mb-3">
               <Form.Control
                 type="text"
                 list="featureList"
                 value={newFeature}
                 onChange={(e) => setNewFeature(e.target.value)}
-                placeholder="Add a feature and press Add"
+                placeholder="أضف ميزة واضغط على إضافة"
               />
               <datalist id="featureList">
-                <option value="Feature1" />
-                <option value="Feature2" />
-                <option value="Feature3" />
+                <option value="ميزة1" />
+                <option value="ميزة2" />
+                <option value="ميزة3" />
               </datalist>
               <Button variant="primary" onClick={addFeature}>
                 +
@@ -55,6 +55,7 @@ function FeatureForm({ handleFraturesData }) {
           </>
         )}
       </Form.Group>
+
       {edit ? (
         <>
           <Button
@@ -64,7 +65,7 @@ function FeatureForm({ handleFraturesData }) {
               return handleFraturesData(formData.feature);
             }}
           >
-            conform features
+            تأكيد الميزات
           </Button>
         </>
       ) : (
@@ -76,14 +77,14 @@ function FeatureForm({ handleFraturesData }) {
             }}
             className="mt-2"
           >
-            Add Feature
+            إضافة ميزة
           </Button>
         </>
       )}
 
-      {/* قائمة الفيتشرز الحالية */}
+      {/* قائمة الميزات الحالية */}
       <div className="mb-2">
-        {formData.feature.length != 0 ? (
+        {formData.feature.length !== 0 ? (
           <>
             {formData.feature.map((f, index) => (
               <Badge
@@ -99,7 +100,7 @@ function FeatureForm({ handleFraturesData }) {
           </>
         ) : (
           <>
-            <p>No Features Added Yet.</p>
+            <p>لا توجد ميزات مضافة بعد.</p>
           </>
         )}
       </div>

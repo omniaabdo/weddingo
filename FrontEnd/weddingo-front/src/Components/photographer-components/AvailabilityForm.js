@@ -27,7 +27,7 @@ function AvailabilityForm({ handleSelectedDates }) {
 
   return (
     <div className="mt-4">
-      <h5>Select Available Days:</h5>
+      <h5>اختر الأيام المتاحة:</h5>
       {edit && (
         <>
           <Row>
@@ -45,7 +45,7 @@ function AvailabilityForm({ handleSelectedDates }) {
                   {/* رقم اليوم */}
                   <p>{day.format("DD MMM")}</p>
 
-                  {/* Checkbox */}
+                  {/* خانة الاختيار */}
                   <Form.Check
                     type="checkbox"
                     value={day.format("YYYY-MM-DD")}
@@ -70,7 +70,7 @@ function AvailabilityForm({ handleSelectedDates }) {
               return handleSelectedDates(selectedDates);
             }}
           >
-            Confirm Available Days
+            تأكيد الأيام المتاحة
           </Button>
         </>
       ) : (
@@ -82,7 +82,7 @@ function AvailabilityForm({ handleSelectedDates }) {
               setEdit(true);
             }}
           >
-            Added Days
+            إضافة أيام
           </Button>
         </>
       )}
@@ -90,8 +90,8 @@ function AvailabilityForm({ handleSelectedDates }) {
 
       {/* عرض التواريخ المختارة */}
       <div className="mt-3">
-        <h6>Selected Dates:</h6>
-        {selectedDates.length != 0 ? (
+        <h6>التواريخ المختارة:</h6>
+        {selectedDates.length !== 0 ? (
           <>
             <ul
               className="d-flex flex-wrap gap-3"
@@ -106,7 +106,7 @@ function AvailabilityForm({ handleSelectedDates }) {
           </>
         ) : (
           <>
-            <p>No Days Selected </p>
+            <p>لا توجد أيام مختارة</p>
           </>
         )}
       </div>

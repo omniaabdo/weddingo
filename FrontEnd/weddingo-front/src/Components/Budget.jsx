@@ -3,6 +3,8 @@ import NavBar from "./NavBar";
 import { Col, Row } from "react-bootstrap";
 import '../assets/css/badget.css'
 import { FaCamera, FaCar, FaHome, FaTeamspeak } from "react-icons/fa";
+import { GiAmpleDress } from "react-icons/gi";
+
 function Budget() {
   return (
     <>
@@ -41,8 +43,8 @@ function Budget() {
                   </li>
                   <li>
                     <div className="badget-list_item">
-                      <Fadress />
-                      <span>30,000 جنيها </span>
+                      <GiAmpleDress />
+                      <span>10,000 جنيها </span>
                     </div>
                   </li>
                 </ul>
@@ -65,6 +67,9 @@ function Budget() {
                       />
                     </div>
                   </form>
+                  <p className="text-primary">
+                    باقي من الميزانية 25,000 جنيها
+                  </p>
                 </div>
               </div>
             </Col>

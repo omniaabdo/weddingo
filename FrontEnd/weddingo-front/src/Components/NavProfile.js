@@ -1,4 +1,4 @@
-import persone from "../assets/img/single-services/photographers/1.jpg";
+import persone from "../assets/img/avatar/avatar2.jpg";
 import "../assets/css/nav-profile.css";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -7,23 +7,44 @@ import {
   FaHeart,
   FaUsers,
 } from "react-icons/fa";
-export default function NavProfile() {
+import { useEffect, useState } from "react";
+export default function NavProfile({ userData }) {
+  const [userInfromation, setUserInfromation] = useState(null);
+  const userInfo = () => {
+    const name = userData.name.split(" ")[0];
+    const img = userData.img || "";
+    setUserInfromation({
+      name,
+      img,
+    });
+  };
   const navigator = useNavigate();
   const logOut = () => {
-    localStorage.setItem("user", false);
-    navigator("/login");
+    localStorage.removeItem("userData");
+    window.location.reload();
   };
-
+  useEffect(() => {
+    userData && userInfo();
+  }, []);
   return (
     <>
       <div className="pro-div">
         <img src={persone} alt="" />
         <div className="pro-div_option-list">
           <div className="option-list_persoal-info d-flex align-items-start">
-            <img src={persone} alt="" />
+            {userInfromation?.img ? (
+              <>
+                <img src={userInfromation.img} alt="user Image" />
+              </>
+            ) : (
+              <>
+                <img src={persone} alt="Avatar Image" />
+              </>
+            )}
+
             <div>
               <h4>
-                مرحبا ,<br /> حسن
+                مرحبا ,<br /> {userInfromation?.name}
               </h4>
             </div>
           </div>

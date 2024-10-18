@@ -40,11 +40,25 @@ import AdminDashboard from "./Components/AdminDashboard";
 
 function App() {
   const { pathname } = useLocation();
-  const [isLogin, setIsLogin] = useState();
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    setIsLogin(user);
+    // Function to handle local storage changes
+    const updateUserData = () => {
+      const user = JSON.parse(localStorage.getItem("userData")); // Adjust the key name to match
+      setUserData(user);
+    };
+
+    // Initial fetch of user data
+    updateUserData();
+
+    // Set up event listener for storage changes
+    window.addEventListener("storage", updateUserData);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener("storage", updateUserData);
+    };
   }, []);
 
   return (
@@ -55,18 +69,18 @@ function App() {
       pathname === "/reset-password" ? (
         <Header />
       ) : (
-        <HomeHeader />
+        <HomeHeader userData={userData?.data} />
       )}
 
       <Routes>
         <Route path="" element={<Home />} />
         <Route
           path="/login"
-          element={isLogin ? <Navigate to="/" /> : <Login />}
+          element={userData ? <Navigate to="/" /> : <Login />}
         />
         <Route
           path="/register"
-          element={isLogin ? <Navigate to="/" /> : <Register />}
+          element={userData ? <Navigate to="/" /> : <Register />}
         />
         <Route path="/forget-password" element={<ForgetPasswoed />} />
         <Route path="/reset-password" element={<ResetPassword />} />
@@ -137,11 +151,11 @@ export default App;
         <Route path="" element={<Home />} />
         <Route
           path="/login"
-          element={isLogin ? <Navigate to="/" /> : <Login />}
+          element={userData ? <Navigate to="/" /> : <Login />}
         />
         <Route
           path="/register"
-          element={isLogin ? <Navigate to="/" /> : <Register />}
+          element={userData ? <Navigate to="/" /> : <Register />}
         />
         <Route path="/forget-password" element={<ForgetPasswoed />} />
         <Route path="/reset-password" element={<ResetPassword />} />

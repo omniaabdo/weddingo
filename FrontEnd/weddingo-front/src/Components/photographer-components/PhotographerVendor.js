@@ -56,10 +56,10 @@ export default function PhotographerVendor() {
       <section className="checklist">
         <MinBreadcrumb
           links={[
-            { title: "Profile", link: "/profile" },
-            { title: "Add vendor", link: "/profile/my-services" },
+            { title: "صفحتي", link: "/profile" },
+            { title: "اضافة خدمة", link: "/profile/my-services" },
             {
-              title: "Photographer",
+              title: "اضافة مصور",
               link: "/profile/my-services/photographer",
             },
           ]}
@@ -68,9 +68,9 @@ export default function PhotographerVendor() {
           <Row className="my-5 align-items-center">
             <Col md={6}>
               <h3>
-                <b>Photographer Services</b>
+                <b>خدمات المصور</b>
               </h3>
-              <p>here you can add your infromation as photographer </p>
+              <p>هنا يمكنك اضافة البيانات الاساسية لمصور حفلات الزفاف</p>
             </Col>
           </Row>
           <Row>
@@ -79,9 +79,9 @@ export default function PhotographerVendor() {
                 <Row>
                   <Col md={6}>
                     <div className="card p-3 my-1">
-                      <h5>Basic Information</h5>
+                      <h5>المعلومات الأساسية</h5>
                       <Form.Group className="mb-3">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>الاسم</Form.Label>
                         <Form.Control
                           type="text"
                           name="name"
@@ -92,7 +92,7 @@ export default function PhotographerVendor() {
                       </Form.Group>
 
                       <Form.Group className="mb-3">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label>الوصف</Form.Label>
                         <Form.Control
                           as="textarea"
                           name="description"
@@ -107,9 +107,9 @@ export default function PhotographerVendor() {
                   </Col>
                   <Col md={6}>
                     <div className="card p-3 my-1">
-                      <h5>Contacts</h5>
+                      <h5>جهات الاتصال</h5>
                       <Form.Group className="mb-3">
-                        <Form.Label>Phone Numbers (Comma separated)</Form.Label>
+                        <Form.Label>أرقام الهاتف (مفصولة بفواصل)</Form.Label>
                         <Form.Control
                           type="text"
                           placeholder="123456789,987654321"
@@ -127,7 +127,7 @@ export default function PhotographerVendor() {
                       </Form.Group>
 
                       <Form.Group className="mb-3">
-                        <Form.Label>Facebook Link</Form.Label>
+                        <Form.Label>رابط فيسبوك</Form.Label>
                         <Form.Control
                           type="text"
                           value={formData.contacts.facebookLink}
@@ -138,7 +138,7 @@ export default function PhotographerVendor() {
                       </Form.Group>
 
                       <Form.Group className="mb-3">
-                        <Form.Label>Twitter Link</Form.Label>
+                        <Form.Label>رابط تويتر</Form.Label>
                         <Form.Control
                           type="text"
                           value={formData.contacts.twitterLink}
@@ -149,7 +149,7 @@ export default function PhotographerVendor() {
                       </Form.Group>
 
                       <Form.Group className="mb-3">
-                        <Form.Label>Instagram Link</Form.Label>
+                        <Form.Label>رابط إنستجرام</Form.Label>
                         <Form.Control
                           type="text"
                           value={formData.contacts.instegramLink}
@@ -162,9 +162,9 @@ export default function PhotographerVendor() {
                   </Col>
                   <Col md={12}>
                     <div className="card p-3 my-1">
-                      <h5>Location</h5>
+                      <h5>الموقع</h5>
                       <Form.Group className="mb-3">
-                        <Form.Label>City</Form.Label>
+                        <Form.Label>المدينة</Form.Label>
                         <Form.Control
                           type="text"
                           value={formData.location.city}
@@ -175,7 +175,7 @@ export default function PhotographerVendor() {
                       </Form.Group>
 
                       <Form.Group className="mb-3">
-                        <Form.Label>State</Form.Label>
+                        <Form.Label>الولاية</Form.Label>
                         <Form.Control
                           type="text"
                           value={formData.location.state}
@@ -202,7 +202,7 @@ export default function PhotographerVendor() {
                     console.log(formData);
                   }}
                 >
-                  Submit
+                  إرسال
                 </Button>
               </Form>
             </Col>
