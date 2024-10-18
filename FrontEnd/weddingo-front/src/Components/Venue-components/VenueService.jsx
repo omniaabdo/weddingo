@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import '../../assets/css/Venueform.css'; // Import the CSS file for custom styles
 import { Button, Col, Form, Row } from "react-bootstrap";
-import MinBreadcrumb from "../MinBreadcrumb";
 import AvailabilityForm from "../photographer-components/AvailabilityForm";
 import FeatureForm from "../photographer-components/FeatureForm";
 const VenueForm = ({ onSubmit }) => {
