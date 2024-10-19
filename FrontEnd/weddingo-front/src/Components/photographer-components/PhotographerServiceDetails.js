@@ -15,8 +15,30 @@ import SingleServiceDetailsLoading, {
   CarouselLoading,
   DescriptionContentLoading,
 } from "../loading-components/SingleServiceDetailsLoading";
+import { useLocation, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getPhotographerApi } from "../../services/store/photographer/photgrapherSingleService";
 export default function PhotographerServiceDetails() {
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const { loading, photographer, error } = useSelector(
+    (state) => state.singlePhotographerReducer
+  );
+  const dispatch = useDispatch();
+  const [photographerData, setPhotographerData] = useState(null);
+  const getUserData = () => {
+    dispatch(getPhotographerApi(id));
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  useEffect(() => {
+    if (photographer) {
+      setPhotographerData(photographer.data);
+      console.log("This is data", photographer);
+    }
+  }, [photographer]);
 
   const [data, setData] = useState({
     name: "حسن علي حسن ",
@@ -64,22 +86,12 @@ export default function PhotographerServiceDetails() {
       state: "Egypt",
     },
     contacts: {
-      phoneNumber: ['01234567890'],
+      phoneNumber: ["01234567890"],
       facebookLink: "https://facebook.com/sample",
       twitterLink: "https://twitter.com/sample",
       instegramLink: "https://instagram.com/sample",
     },
   });
-
-  const endLoading = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-  };
-
-  useEffect(() => {
-    endLoading();
-  }, []);
 
   return (
     <>
@@ -110,92 +122,116 @@ export default function PhotographerServiceDetails() {
               </>
             ) : (
               <>
-                <Col md={8} lg={8}>
-                  <div className="content-div">
-                    <h6>
-                      <b>التفاصيل</b>
-                    </h6>
-                    <p> {data.description}</p>
-                  </div>
-                  <div className="content-div">
-                    <h6>
-                      <b>الميزات والخدمات المقدمة</b>
-                    </h6>
-                    <ul>
-                      {data.feature.map((item, index) => (
-                        <>
-                          <li key={index}>
-                            <span>
-                              <FaCheck />
-                            </span>
-                            {item}
-                          </li>
-                        </>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="content-div">
-                    <h6>
-                      <b>الايام المتاحة</b>
-                    </h6>
-                    <DisplayDateGrid selectedDates={data.avalabileFrom} />
-                  </div>
-                </Col>
-                <Col md={8} lg={4}>
-                  <Card className="border-0">
-                    <Card.Body>
-                      <Card.Title>{data.name}</Card.Title>
-                      <Card.Text className="text-muted text-underline">
-                        معلومات الاتصال
-                      </Card.Text>
-                      <div className=" p-3">
-                        <p className="text-muted">
-                          <FaPhone />
-                          <span className=" px-2 text-underline">
-                            {data.contacts.phoneNumber}
-                          </span>
-                        </p>
-                        <p className="text-muted">
-                          <FaLocationArrow />
-                          <span className=" px-2 text-underline">
-                            {data.location.city} - {data.location.state}
-                          </span>
-                        </p>
-                        <ul className="social-media-info-list">
-                          <li className="facebook-item">
-                            <a
-                              href={data.contacts.facebookLink}
-                              className="btn"
-                            >
-                              <FaFacebook />
-                            </a>
-                          </li>
-                          <li className="twitter-item">
-                            <a href={data.contacts.twitterLink} className="btn">
-                              <FaTwitter />
-                            </a>
-                          </li>
-                          <li className="instegram-item">
-                            <a
-                              href={data.contacts.instegramLink}
-                              className="btn"
-                            >
-                              <FaInstagram />
-                            </a>
-                          </li>
+                {photographerData && (
+                  <>
+                    <Col md={8} lg={8}>
+                      <div className="content-div">
+                        <h6>
+                          <b>التفاصيل</b>
+                        </h6>
+                        <p> {photographerData.description}</p>
+                      </div>
+                      <div className="content-div">
+                        <h6>
+                          <b>الميزات والخدمات المقدمة</b>
+                        </h6>
+                        <ul>
+                          {photographerData.feature.map((item, index) => (
+                            <>
+                              <li key={index}>
+                                <span>
+                                  <FaCheck />
+                                </span>
+                                {item}
+                              </li>
+                            </>
+                          ))}
                         </ul>
                       </div>
-                      <div className="d-flex flex-column gap-2">
-                        <button className="btn btn-primary w-100 text-center">
-                          اضافة عروض
-                        </button>
-                        <button className="btn btn-secondary w-100 text-center">
-                          اضافة اعمال{" "}
-                        </button>
+                      <div className="content-div">
+                        <h6>
+                          <b>الايام المتاحة</b>
+                        </h6>
+                        {photographerData?.avalabileDate?.length != 0 ? (
+                          <>
+                            <DisplayDateGrid
+                              selectedDates={photographerData.avalabileDate}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <p>لا يوجد ايام متاحة </p>
+                          </>
+                        )}
                       </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
+                    </Col>
+                    <Col md={8} lg={4}>
+                      <Card className="border-0">
+                        <Card.Body>
+                          <Card.Title>{photographerData.name}</Card.Title>
+                          <Card.Text className="text-muted text-underline">
+                            معلومات الاتصال
+                          </Card.Text>
+                          <div className=" p-3">
+                            <p className="text-muted">
+                              <FaPhone />
+                              {photographerData?.contacts?.phoneNumber?.map(
+                                (item, index) => (
+                                  <>
+                                    <span className=" px-2 text-underline">
+                                      {item}
+                                    </span>
+                                  </>
+                                )
+                              )}
+                            </p>
+                            <p className="text-muted">
+                              <FaLocationArrow />
+                              <span className=" px-2 ">
+                                {photographerData.location.city} -{" "}
+                                {photographerData.location.state}
+                              </span>
+                            </p>
+                            <ul className="social-media-info-list">
+                              <li className="facebook-item">
+                                <a
+                                  href={photographerData.contacts.facebookLink}
+                                  className="btn"
+                                >
+                                  <FaFacebook />
+                                </a>
+                              </li>
+                              <li className="twitter-item">
+                                <a
+                                  href={photographerData.contacts.twitterLink}
+                                  className="btn"
+                                >
+                                  <FaTwitter />
+                                </a>
+                              </li>
+                              <li className="instegram-item">
+                                <a
+                                  href={photographerData.contacts.instegramLink}
+                                  className="btn"
+                                >
+                                  <FaInstagram />
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="d-flex flex-column gap-2">
+                            <button className="btn btn-primary w-100 text-center">
+                              اضافة عروض
+                            </button>
+                            <button className="btn btn-secondary w-100 text-center">
+                              اضافة اعمال{" "}
+                            </button>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </>
+                )}
               </>
             )}
           </Row>

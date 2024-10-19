@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Badge, InputGroup } from "react-bootstrap";
 
-function FeatureForm({ handleFraturesData }) {
+function FeatureForm({ handleFraturesData, disable }) {
   const [formData, setFormData] = useState({
     feature: [],
   });
@@ -28,14 +28,14 @@ function FeatureForm({ handleFraturesData }) {
   };
 
   return (
-    <Form dir={'ltr'}>
+    <Form>
       <Form.Group className="mb-3">
         <Form.Label>الميزات</Form.Label>
 
         {edit && (
           <>
             {/* datalist لإدخال الميزات */}
-            <InputGroup className="mb-3">
+            <InputGroup className="mb-3" dir={"ltr"}>
               <Form.Control
                 type="text"
                 list="featureList"
@@ -48,7 +48,7 @@ function FeatureForm({ handleFraturesData }) {
                 <option value="ميزة2" />
                 <option value="ميزة3" />
               </datalist>
-              <Button variant="primary" onClick={addFeature}>
+              <Button variant="primary" onClick={addFeature} disabled={disable}>
                 +
               </Button>
             </InputGroup>
@@ -64,6 +64,7 @@ function FeatureForm({ handleFraturesData }) {
               setEdit(false);
               return handleFraturesData(formData.feature);
             }}
+            disabled={disable} // إضافة خاصية disable
           >
             تأكيد الميزات
           </Button>
@@ -76,6 +77,7 @@ function FeatureForm({ handleFraturesData }) {
               setEdit(true);
             }}
             className="mt-2"
+            disabled={disable} // إضافة خاصية disable
           >
             إضافة ميزة
           </Button>

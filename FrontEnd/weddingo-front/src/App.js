@@ -105,7 +105,7 @@ function App() {
             <Route index element={<AddVendor />} />
             <Route path="photographer" element={<PhotographerVendor />} />
             <Route
-              path="photographer/details"
+              path="photographer/details/:id"
               element={<PhotographerServiceDetails />}
             />
 

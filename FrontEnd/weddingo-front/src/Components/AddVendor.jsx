@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { Col, Row, Button } from "react-bootstrap";
 import {
@@ -15,7 +15,29 @@ import car from "../assets/img/single-services/cars/1.jpg";
 import { Link } from "react-router-dom";
 import "../assets/css/checklist.css";
 import VendorCardService from "./VendorCardService";
+import VendorCardServiceLoading from "./loading-components/VendorCardServiceLoading";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUserServicesApi } from "../services/store/users/getUserServices";
 function AddVendor() {
+  const { loading, data, error } = useSelector(
+    (state) => state.userDataReducer
+  );
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState(null);
+  const getUserData = () => {
+    dispatch(getAllUserServicesApi());
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (data) {
+      setUserData(data.data);
+    }
+  }, [data]);
+
   return (
     <>
       {" "}
@@ -37,34 +59,58 @@ function AddVendor() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  الخدمات المتاحة {" "}
+                  الخدمات المتاحة{" "}
                 </button>
                 <ul class="dropdown-menu">
                   <li>
-                    <Link className={"dropdown-item"} to={"/profile/my-services/photographer"}>
+                    <Link
+                      className={"dropdown-item"}
+                      to={"/profile/my-services/photographer"}
+                    >
                       اضافة مصور
                     </Link>
                   </li>
                   <li>
-                    <Link  className={"dropdown-item"}  to={"/profile/my-services/car"}>اضافة سيارة</Link>
+                    <Link
+                      className={"dropdown-item"}
+                      to={"/profile/my-services/car"}
+                    >
+                      اضافة سيارة
+                    </Link>
                   </li>
                   <li>
                     {" "}
-                    <Link className={"dropdown-item"}  to={"/profile/my-services/Venues"}>اضافة قاعة</Link>
+                    <Link
+                      className={"dropdown-item"}
+                      to={"/profile/my-services/Venues"}
+                    >
+                      اضافة قاعة
+                    </Link>
                   </li>
                   <li>
                     {" "}
-                    <Link className={"dropdown-item"}  to={"/profile/my-services/Location"}>
+                    <Link
+                      className={"dropdown-item"}
+                      to={"/profile/my-services/Location"}
+                    >
                       اضافة موقع تصوير
                     </Link>
                   </li>
                   <li>
                     {" "}
-                    <Link className={"dropdown-item"}  to={"/profile/my-services/store"}>اضافة متجر</Link>
+                    <Link
+                      className={"dropdown-item"}
+                      to={"/profile/my-services/store"}
+                    >
+                      اضافة متجر
+                    </Link>
                   </li>
                   <li>
                     {" "}
-                    <Link className={"dropdown-item"}  to={"/profile/my-services/beauty-center"}>
+                    <Link
+                      className={"dropdown-item"}
+                      to={"/profile/my-services/beauty-center"}
+                    >
                       اضافة مركز تجميل
                     </Link>
                   </li>
@@ -73,7 +119,39 @@ function AddVendor() {
             </Col>
           </Row>
           <Row className="my-5 align-items-center">
-            <VendorCardService
+            {loading ? (
+              <>
+                <VendorCardServiceLoading />
+                <VendorCardServiceLoading />
+                <VendorCardServiceLoading />
+                <VendorCardServiceLoading />
+              </>
+            ) : (
+              <>
+                {error ? (
+                  <>
+                    <p>حدث خطأ أثناء تحميل البيانات، الرجاء المحاولة لاحقًا.</p>
+                  </>
+                ) : (
+                  <>
+                    {userData?.photographers?.length > 0 ? (
+                      userData.photographers.map((item) => (
+                        <VendorCardService
+                          key={item._id} // تأكد من وجود key فريدة لكل عنصر
+                          img={item.images || photographer}
+                          title={item.name}
+                          goTo={`/profile/my-services/photographer/details/${item._id}`}
+                          ICON={FaCamera}
+                        />
+                      ))
+                    ) : (
+                      <p>لا يوجد خدمات مضافة</p>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+            {/* <VendorCardService
               img={photographer}
               title={"مصور"}
               goTo={"/profile/my-services/photographer/details"}
@@ -96,7 +174,7 @@ function AddVendor() {
               title={"موقع تصوير"}
               goTo={"/profile/my-services/car/details"}
               ICON={FaPhotoVideo}
-            />
+            /> */}
           </Row>
         </div>
       </section>

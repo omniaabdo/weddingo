@@ -1,6 +1,21 @@
-const errorHandler = (err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send({ error: 'Something went wrong!' });
+exports.throwError = (statusCode, message) => {
+    const error = new Error(message);
+    error.statusCode = statusCode;
+    throw error;
+  };
+  
+
+const errorHandler = (error, req, res, next) => {
+  const status = error.statusCode || 500;
+  const message = error.message || "Interval Server Error !";
+  const data = error.data;
+
+  res.status(status).json({
+    status: "failed",
+    message: message,
+    data: data,
+  });
 };
 
 module.exports = errorHandler;
+

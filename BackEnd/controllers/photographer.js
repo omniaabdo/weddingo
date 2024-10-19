@@ -20,7 +20,7 @@ const getAll = async (req, res, next) => {
     const totalPhotographers = await Photographer.countDocuments();
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Fetched Successfully",
       count: getAll.length,
       totalPages: Math.ceil(totalPhotographers / limit),
@@ -41,13 +41,9 @@ const getOne = async (req, res, next) => {
     const getPackeges = await Packege.find({ userId: req.params.id });
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Fetched Successfully",
-      data: {
-        photographer: getOne,
-        albums: getAlbums,
-        packages: getPackeges,
-      },
+      data: getOne,
     });
   } catch (error) {
     console.log(error);
@@ -57,11 +53,14 @@ const getOne = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const create = new Photographer(req.body);
+    console.log(req.body);
+    console.log(req.userId);
+
+    const create = new Photographer({ ...req.body, userId: req.userId });
     await create.save();
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Created Successfully",
       data: create,
     });
@@ -76,7 +75,7 @@ const update = async (req, res, next) => {
     const update = await Photographer.findById(req.params.id);
     if (!update) {
       res.status(404).json({
-        state: true,
+        status: "success",
         message: "Data Not Found",
       });
       return;
@@ -84,7 +83,7 @@ const update = async (req, res, next) => {
     update.$set({ ...req.body });
     await update.save();
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Updated Successfully",
       data: update,
     });
@@ -100,7 +99,7 @@ const deleteOne = async (req, res, next) => {
     const album = await Album.deleteMany({ uersId: req.params.id });
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Deleted Successfully",
       data: {
         photographer: deleteOne,

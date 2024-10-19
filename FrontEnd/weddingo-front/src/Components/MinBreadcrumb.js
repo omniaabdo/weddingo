@@ -11,7 +11,7 @@ export default function MinBreadcrumb({ links }) {
             </li>
             {links.map((item, index) => (
               <>
-                <li>
+                <li key={index}>
                   <Link to={item.link}>{item.title}</Link>
                 </li>
               </>
