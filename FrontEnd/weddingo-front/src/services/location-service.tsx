@@ -13,4 +13,14 @@ export class LocationService {
     }
   };
 
+  static getLocationById = async (id): any => {
+    try {
+      const response = await axios.get(`${BASE_URL}/Location/${id}`);
+      console.log('response', response);
+      return response.data;
+    } catch (error) {
+      console.error('There was an error getting the data!', error);
+      throw error; 
+    }
+  };
 }

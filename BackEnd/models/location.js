@@ -130,6 +130,11 @@ const locationSchema = new mongoose.Schema(
         },
       },
     },
+    price: {
+      type: Number,
+      required: [true, "Price is required"],
+      min: [0, "Price cannot be negative"],
+    },
     packeges: {
       type: [
         {

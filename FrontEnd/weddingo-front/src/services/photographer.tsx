@@ -13,4 +13,14 @@ export class PhotographerService {
     }
   };
 
+  static getPhotographerById = async (id): any => {
+    try {
+      const response = await axios.get(`${BASE_URL}/photographer/${id}`);
+      console.log('response', response);
+      return response.data;
+    } catch (error) {
+      console.error('There was an error getting the data!', error);
+      throw error; 
+    }
+  };
 }

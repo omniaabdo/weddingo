@@ -90,10 +90,20 @@ function App() {
         <Route path="/services/car-rent" element={<SingleServices />} />
         <Route path="/services/home-store" element={<SingleServices />} />
         <Route path="/services/venue" element={<SingleServices />} />
+
+
+        <Route path="/services/beauty-center/service-detail/:id" element={<SingleServicesDetails />} />
+        <Route path="/services/location/service-detail/:id" element={<SingleServicesDetails />} />
+        <Route path="/services/photographer/service-detail/:id" element={<SingleServicesDetails />} />
+        <Route path="/services/car-rent/service-detail/:id" element={<SingleServicesDetails />} />
+        <Route path="/services/home-store/service-detail/:id" element={<SingleServicesDetails />} />
+        <Route path="/services/venue/service-detail/:id" element={<SingleServicesDetails />} />
         <Route
-          path="/services/service-detail"
+          path="/services/service-detail/:id"
           element={<SingleServicesDetails />}
         />
+
+
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
 

@@ -25,6 +25,11 @@ const photographerSchema = new mongoose.Schema(
         message: "Available from date must be valid and not in the future",
       },
     },
+    price: {
+      type: Number,
+      required: [true, "Price is required"],
+      min: [0, "Price cannot be negative"],
+    },
     avalabileTo: {
       type: Date,
       required: [true, "Available to date is required"],
@@ -108,14 +113,26 @@ const photographerSchema = new mongoose.Schema(
         },
       },
     },
-    images: {
-      type: String,
-      default: "",
-      validate: {
-        validator: function (v) {
-          return !v || /\.(jpg|jpeg|png|gif)$/.test(v);
+    media: {
+      images: {
+        type: [String],
+        default: [],
+        validate: {
+          validator: function (v) {
+            return v.every(file => /\.(jpg|jpeg|png|gif)$/.test(file));
+          },
+          message: "Each image must be a valid file type (jpg, jpeg, png, gif)",
         },
-        message: "Image must be a valid file type (jpg, jpeg, png, gif)",
+      },
+      video: {
+        type: String,
+        default: "",
+        validate: {
+          validator: function (v) {
+            return !v || /\.(mp4|mov|avi|mkv)$/.test(v);
+          },
+          message: "Video must be a valid file type (mp4, mov, avi, mkv)",
+        },
       },
     },
   },
