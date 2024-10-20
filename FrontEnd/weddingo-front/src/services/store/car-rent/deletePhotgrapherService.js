@@ -4,8 +4,9 @@ import { BASE_URL } from "../../../utils/config";
 // إنشاء الـ asyncThunk لإرسال بيانات المصور إلى الـ API
 export const deletePhotographerApi = createAsyncThunk(
   "deletePhotographer",
-  async ({ id, url }) => {
-    return await fetch(`${BASE_URL}/${url}/${id}`, {
+  async (photographerId) => {
+
+    return await fetch(`${BASE_URL}/photographer/${photographerId}`, {
       method: "DELETE",
     })
       .then((response) => response.json())

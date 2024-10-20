@@ -1,9 +1,12 @@
-exports.throwError = (statusCode, message) => {
-    const error = new Error(message);
-    error.statusCode = statusCode;
-    throw error;
-  };
-  
+function throwError(statusCode, message) {
+  const error = new Error(message);
+  error.statusCode = statusCode;
+  throw error;
+}
+
+exports = {
+  throwError,
+};
 
 const errorHandler = (error, req, res, next) => {
   const status = error.statusCode || 500;
@@ -18,4 +21,3 @@ const errorHandler = (error, req, res, next) => {
 };
 
 module.exports = errorHandler;
-

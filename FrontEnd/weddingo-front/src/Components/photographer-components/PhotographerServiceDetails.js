@@ -296,9 +296,9 @@ export default function PhotographerServiceDetails() {
                             >
                               اضافة عروض
                             </button>
-                            <button className="btn btn-warning text-white w-100 text-center">
+                            {/* <button className="btn btn-warning text-white w-100 text-center">
                               اضافة اعمال{" "}
-                            </button>
+                            </button> */}
                           </div>
                         </Card.Body>
                       </Card>

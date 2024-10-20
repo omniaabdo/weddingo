@@ -84,7 +84,7 @@ app.use("/home-store", homeStore);
 app.use("/location", location);
 app.use("/photographer", upload.array("files"), photographer);
 app.use("/home-store-category", homeStoreCategory);
-app.use("/car-rent", carRent);
+app.use("/car-rent", upload.array("files"), carRent);
 app.use("/packege", packageRoutes);
 
 // Error Handling Middleware

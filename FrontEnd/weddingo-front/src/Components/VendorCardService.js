@@ -11,6 +11,7 @@ export default function VendorCardService({
   ICON,
   id,
   deleteService,
+  url,
 }) {
   return (
     <>
@@ -18,7 +19,7 @@ export default function VendorCardService({
         <div className="card checklist_single-card">
           <button
             className="btn btn-danger de-btn"
-            onClick={() => deleteService(id)}
+            onClick={() => deleteService({ id, url })}
           >
             <FaTrash />
           </button>

@@ -110,7 +110,7 @@ function App() {
             />
 
             <Route path="car" element={<CarRentVendor />} />
-            <Route path="car/details" element={<CarRentServiceDetails />} />
+            <Route path="car/details/:id" element={<CarRentServiceDetails />} />
             <Route path="Venues" element={<VenueForm />} />
             <Route path="Location" element={<LocationForm />} />
             <Route path="beauty-center" element={<BeautyCenter />} />

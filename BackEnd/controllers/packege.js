@@ -2,6 +2,7 @@ const Packege = require("../models/packege");
 const Photographer = require("../models/photographer");
 
 const { throwError } = require("../middleware/errorHandler");
+const ERRORHANDELLER = require("../utils/errorHandler");
 const getAllFor = async (req, res, next) => {
   try {
     const getAll = await Packege.find({ userId: req.params.id });
@@ -35,8 +36,18 @@ const create = async (req, res, next) => {
     const serviceId = req.params.serviceId;
     const packegeData = req.body;
 
-    const create = new Packege({ packages: req.body, serviceId: serviceId });
-    await create.save();
+    // if exist update, else create new one
+    const isExist = await Packege.findOne({ serviceId: serviceId });
+    if (isExist) {
+      await isExist.$set({ packages: packegeData });
+      await isExist.save();
+    } else {
+      const create = new Packege({
+        packages: packegeData,
+        serviceId: serviceId,
+      });
+      await create.save();
+    }
 
     res.status(200).json({
       status: "success",

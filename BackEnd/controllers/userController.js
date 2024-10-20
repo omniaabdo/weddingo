@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Photographer = require("../models/photographer");
+const Cars = require("../models/car_rent");
 
 const { throwError } = require("../middleware/errorHandler");
 // Generate JWT
@@ -193,13 +194,16 @@ exports.getServices = async (req, res) => {
     const getAllPhotgraphersServices = await Photographer.find({
       userId: userData.id,
     });
-    console.log(getAllPhotgraphersServices);
+    const getAllCarRentServices = await Cars.find({
+      userId: userData.id,
+    });
 
     res.status(200).json({
       status: "success",
       message: "data feached successfuly",
       data: {
         photographers: getAllPhotgraphersServices,
+        cars: getAllCarRentServices,
       },
     });
   } catch (err) {

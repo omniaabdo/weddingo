@@ -49,7 +49,7 @@ export default function AddPricesFeatures({
         setIsUploading(false);
         setErrorMassage("");
         if (result.data.status === "success") {
-          console.log(result.data.status);
+          setPackages([]);
           onHide();
           onFinshed();
         } else {
@@ -75,7 +75,10 @@ export default function AddPricesFeatures({
             <Button
               variant="secondary"
               className="btn-close d-block m-0 me-auto"
-              onClick={onHide}
+              onClick={() => {
+                setPackages([]);
+                onHide();
+              }}
             ></Button>
           )}
         </Modal.Header>

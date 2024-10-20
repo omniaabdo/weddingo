@@ -35,8 +35,8 @@ function AddVendor() {
     dispatch(getAllUserServicesApi());
   };
 
-  const deleteService = (id) => {
-    dispatch(deletePhotographerApi(id)).then((resulte) => {
+  const deleteService = ({ id, url }) => {
+    dispatch(deletePhotographerApi({ id, url })).then((resulte) => {
       if (resulte.payload.status === "success") {
         handleCloseConfromModule();
         handleShow({
@@ -208,11 +208,25 @@ function AddVendor() {
                           ICON={FaCamera}
                           id={item._id}
                           deleteService={handleShowConfromModule}
+                          url={"photographer"}
                         />
                       ))
                     ) : (
                       <p>لا يوجد خدمات مضافة</p>
                     )}
+                    {userData?.cars?.length > 0 &&
+                      userData.cars.map((item) => (
+                        <VendorCardService
+                          key={item._id} // تأكد من وجود key فريدة لكل عنصر
+                          img={`${BASE_URL}/image/${item.images[0]}` || car}
+                          title={item.name}
+                          goTo={`/profile/my-services/car/details/${item._id}`}
+                          ICON={FaCar}
+                          id={item._id}
+                          deleteService={handleShowConfromModule}
+                          url={"car-rent"}
+                        />
+                      ))}
                   </>
                 )}
               </>

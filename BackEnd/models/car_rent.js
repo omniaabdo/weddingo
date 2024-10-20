@@ -51,13 +51,17 @@ const carRentSchema = new mongoose.Schema(
       required: [true, "Price per day is required"],
       min: [0, "Price must be a positive number"],
     },
-    avalabileFrom: {
-      type: Date,
-      required: [true, "Availability start date is required"],
-    },
-    avalabileTo: {
-      type: Date,
-      required: [true, "Availability end date is required"],
+    avalabileDate: {
+      type: [Date],
+      default: [],
+      // required: [true, "Available from date is required"],
+      // validate: {
+
+      //   validator: function (v) {
+      //     return v instanceof Date && v >= new Date();
+      //   },
+      //   message: "Available from date must be valid and not in the past",
+      // },
     },
     feature: {
       type: [String],
@@ -69,9 +73,9 @@ const carRentSchema = new mongoose.Schema(
         message: "Maximum of 10 features allowed",
       },
     },
-    isAvailable: { 
-      type: Boolean, 
-      default: true 
+    isAvailable: {
+      type: Boolean,
+      default: true,
     },
     location: {
       city: {
@@ -87,11 +91,13 @@ const carRentSchema = new mongoose.Schema(
     },
     contacts: {
       phoneNumber: {
-        type: [Number],
+        type: [String],
         default: [],
         validate: {
           validator: function (v) {
-            return v.every(num => String(num).length >= 7 && String(num).length <= 15);
+            return v.every(
+              (num) => String(num).length >= 7 && String(num).length <= 15
+            );
           },
           message: "Phone numbers must be between 7 and 15 digits",
         },
@@ -101,7 +107,7 @@ const carRentSchema = new mongoose.Schema(
         trim: true,
         validate: {
           validator: function (v) {
-            return !v || v.startsWith("https://www.facebook.com/");
+            return !v || v.startsWith("https://");
           },
           message: "Invalid Facebook link",
         },
@@ -111,7 +117,7 @@ const carRentSchema = new mongoose.Schema(
         trim: true,
         validate: {
           validator: function (v) {
-            return !v || v.startsWith("https://www.twitter.com/");
+            return !v || v.startsWith("https://");
           },
           message: "Invalid Twitter link",
         },
@@ -121,38 +127,35 @@ const carRentSchema = new mongoose.Schema(
         trim: true,
         validate: {
           validator: function (v) {
-            return !v || v.startsWith("https://www.instagram.com/");
+            return !v || v.startsWith("https://");
           },
           message: "Invalid Instagram link",
         },
       },
     },
-    media: {
-      images: {
-        type: [String],
-        default: [],
-        validate: {
-          validator: function (array) {
-            return array.length <= 10;
-          },
-          message: "Maximum of 10 images allowed",
+    images: {
+      type: [String],
+      default: [],
+      validate: {
+        validator: function (array) {
+          return array.length <= 10;
         },
+        message: "Maximum of 10 images allowed",
       },
-      video: {
-        type: String,
-        default: "",
-        validate: {
-          validator: function (v) {
-            return !v || v.startsWith("https://");
-          },
-          message: "Invalid video URL",
+    },
+    video: {
+      type: String,
+      default: "",
+      validate: {
+        validator: function (v) {
+          return !v || v.startsWith("https://");
         },
+        message: "Invalid video URL",
       },
     },
     userId: {
       type: mongoose.Schema.ObjectId,
-      ref: "user",
-      required: true,
+      ref: "Users",
     },
   },
   { timestamps: true }

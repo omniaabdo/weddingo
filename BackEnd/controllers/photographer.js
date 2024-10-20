@@ -58,8 +58,6 @@ const getOne = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    console.log(req.body);
-    console.log(req.userId);
 
     const create = new Photographer({ ...req.body, userId: req.userId });
     await create.save();
