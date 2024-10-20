@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../../../utils/config";
 
 // إنشاء الـ asyncThunk لإرسال بيانات المصور إلى الـ API
-export const getPhotographerApi = createAsyncThunk(
-  "getPhotographer",
+export const deletePhotographerApi = createAsyncThunk(
+  "deletePhotographer",
   async (photographerId) => {
 
     return await fetch(`${BASE_URL}/photographer/${photographerId}`, {
-      method: "GET",
+      method: "DELETE",
     })
       .then((response) => response.json())
       .then((result) => result)
@@ -16,20 +16,20 @@ export const getPhotographerApi = createAsyncThunk(
 );
 
 // إنشاء Slice لحالة بيانات المصور
-const singlePhotographerDataSlicer = createSlice({
-  name: "photographer/getbyid",
+const deletePhotgrapherService = createSlice({
+  name: "photographer/deleteOne",
   initialState: {
     loading: false,
     photographer: null,
     error: null,
   },
   extraReducers: (builder) => {
-    builder.addCase(getPhotographerApi.pending, (state) => {
+    builder.addCase(deletePhotographerApi.pending, (state) => {
       state.loading = true;
       state.photographer = null;
       state.error = null;
     });
-    builder.addCase(getPhotographerApi.fulfilled, (state, action) => {
+    builder.addCase(deletePhotographerApi.fulfilled, (state, action) => {
       state.loading = false;
       if (action.payload?.status === "success") {
         state.photographer = action.payload;
@@ -37,7 +37,7 @@ const singlePhotographerDataSlicer = createSlice({
         state.error = action.error;
       }
     });
-    builder.addCase(getPhotographerApi.rejected, (state, action) => {
+    builder.addCase(deletePhotographerApi.rejected, (state, action) => {
       state.loading = false;
       state.photographer = null;
       state.error = action.error;
@@ -45,4 +45,4 @@ const singlePhotographerDataSlicer = createSlice({
   },
 });
 
-export default singlePhotographerDataSlicer.reducer;
+export default deletePhotgrapherService.reducer;

@@ -3,7 +3,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import moment from "moment"; // مكتبة لتسهيل التعامل مع التواريخ
 
 export default function DisplayDateGrid({ selectedDates }) {
-  console.log("Date",selectedDates);
   
   const [days, setDays] = useState([]);
 

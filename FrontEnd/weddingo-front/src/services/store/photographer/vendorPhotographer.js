@@ -16,7 +16,7 @@ export const registerPhotographerApi = createAsyncThunk(
       body: JSON.stringify({
         name: photographerData.name,
         description: photographerData.description,
-        availableDays: photographerData.availableDays,
+        avalabileDate: photographerData.avalabileDate,
         feature: photographerData.feature,
         location: {
           city: photographerData.location.city,

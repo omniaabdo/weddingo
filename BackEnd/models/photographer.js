@@ -109,16 +109,18 @@ const photographerSchema = new mongoose.Schema(
         },
       },
     },
-    images: {
-      type: String,
-      default: "",
-      validate: {
-        validator: function (v) {
-          return !v || /\.(jpg|jpeg|png|gif)$/.test(v);
+    images: [
+      {
+        type: String,
+        default: "",
+        validate: {
+          validator: function (v) {
+            return !v || /\.(jpg|jpeg|png|gif)$/.test(v);
+          },
+          message: "Image must be a valid file type (jpg, jpeg, png, gif)",
         },
-        message: "Image must be a valid file type (jpg, jpeg, png, gif)",
       },
-    },
+    ],
     userId: {
       type: mongoose.Schema.ObjectId,
       ref: "Users",
