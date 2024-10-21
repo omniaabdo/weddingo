@@ -15,7 +15,6 @@ const photographerSchema = new mongoose.Schema(
       minlength: [10, "Description must be at least 10 characters long"],
       maxlength: [500, "Description cannot exceed 500 characters"],
     },
-<<<<<<< HEAD
     avalabileDate: {
       type: [Date],
       default: [],
@@ -27,32 +26,6 @@ const photographerSchema = new mongoose.Schema(
       //   },
       //   message: "Available from date must be valid and not in the past",
       // },
-=======
-    avalabileFrom: {
-      type: Date,
-      required: [true, "Available from date is required"],
-      validate: {
-        validator: function (v) {
-          return v instanceof Date && v <= new Date();
-        },
-        message: "Available from date must be valid and not in the future",
-      },
-    },
-    price: {
-      type: Number,
-      required: [true, "Price is required"],
-      min: [0, "Price cannot be negative"],
-    },
-    avalabileTo: {
-      type: Date,
-      required: [true, "Available to date is required"],
-      validate: {
-        validator: function (v) {
-          return v instanceof Date && v >= this.avalabileFrom;
-        },
-        message: "Available to date must be valid and after the available from date",
-      },
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
     },
     feature: {
       type: [String],
@@ -136,36 +109,15 @@ const photographerSchema = new mongoose.Schema(
         },
       },
     },
-<<<<<<< HEAD
     images: [
       {
-=======
-    media: {
-      images: {
-        type: [String],
-        default: [],
-        validate: {
-          validator: function (v) {
-            return v.every(file => /\.(jpg|jpeg|png|gif)$/.test(file));
-          },
-          message: "Each image must be a valid file type (jpg, jpeg, png, gif)",
-        },
-      },
-      video: {
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
         type: String,
         default: "",
         validate: {
           validator: function (v) {
-<<<<<<< HEAD
             return !v || /\.(jpg|jpeg|png|gif)$/.test(v);
           },
           message: "Image must be a valid file type (jpg, jpeg, png, gif)",
-=======
-            return !v || /\.(mp4|mov|avi|mkv)$/.test(v);
-          },
-          message: "Video must be a valid file type (mp4, mov, avi, mkv)",
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
         },
       },
     ],

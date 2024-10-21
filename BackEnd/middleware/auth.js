@@ -29,13 +29,8 @@ exports.protect = async (req, res, next) => {
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       return res.status(401).json({
-<<<<<<< HEAD
-        status: "fail",
-        message: "The user belonging to this token does no longer exist.",
-=======
         status: 'fail',
         message: 'The user belonging to this token no longer exists.',
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
       });
     }
 
@@ -51,15 +46,10 @@ exports.protect = async (req, res, next) => {
     req.user = currentUser;
     next();
   } catch (err) {
-<<<<<<< HEAD
-    res.status(400).json({
-      status: "fail",
-      message: "Invalid token or token has expired",
-=======
+
     return res.status(400).json({
       status: 'fail',
       message: 'Invalid token or token has expired',
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
     });
   }
 };
