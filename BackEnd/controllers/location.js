@@ -1,20 +1,23 @@
 "use strict";
 const Location = require("../models/location");
 
+// Get all locations with pagination
 const getAll = async (req, res, next) => {
   try {
-    const page = parseInt(req.query.page) || 1; 
-    const limit = parseInt(req.query.limit) || 10; 
+    // Pagination logic
+    const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
+    const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
     const skip = (page - 1) * limit;
 
+    // Fetch paginated data
     const getAll = await Location.find().skip(skip).limit(limit);
-    const total = await Location.countDocuments();
+    const total = await Location.countDocuments(); // Get total document count
 
     res.status(200).json({
-      totalDocuments: total, 
-      currentPage: page,
-      totalPages: Math.ceil(total / limit),
-      data: getAll,
+      totalDocuments: total, // Total number of documents in the collection
+      currentPage: page, // Current page
+      totalPages: Math.ceil(total / limit), // Total number of pages
+      data: getAll, // Paginated data
     });
   } catch (error) {
     console.log(error);
@@ -22,12 +25,13 @@ const getAll = async (req, res, next) => {
   }
 };
 
+// Get one location by ID
 const getOne = async (req, res, next) => {
   try {
     const getOne = await Location.findById(req.params.id);
     res.status(200).json({
       state: true,
-      messege: "Data Fatched Successfuly",
+      messege: "Data Fetched Successfully",
       data: {
         Location: getOne,
       },
@@ -38,6 +42,7 @@ const getOne = async (req, res, next) => {
   }
 };
 
+// Create a new location
 const create = async (req, res, next) => {
   try {
     const create = new Location(req.body);
@@ -45,7 +50,7 @@ const create = async (req, res, next) => {
 
     res.status(200).json({
       state: true,
-      messege: "Data Createed Successfuly",
+      messege: "Data Created Successfully",
       data: create,
     });
   } catch (error) {
@@ -54,6 +59,7 @@ const create = async (req, res, next) => {
   }
 };
 
+// Update an existing location
 const update = async (req, res, next) => {
   try {
     const update = await Location.findById(req.params.id);
@@ -68,7 +74,7 @@ const update = async (req, res, next) => {
     await update.save();
     res.status(200).json({
       state: true,
-      messege: "Data Updated Successfuly",
+      messege: "Data Updated Successfully",
       data: update,
     });
   } catch (error) {
@@ -77,12 +83,13 @@ const update = async (req, res, next) => {
   }
 };
 
+// Delete a location by ID
 const deleteOne = async (req, res, next) => {
   try {
     const deleteOne = await Location.findByIdAndDelete(req.params.id);
     res.status(200).json({
       state: true,
-      messege: "Data Deleted  Successfuly",
+      messege: "Data Deleted Successfully",
       data: {
         Location: deleteOne,
       },

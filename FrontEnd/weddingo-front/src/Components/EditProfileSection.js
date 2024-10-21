@@ -1,6 +1,8 @@
 import { useState } from "react";
+import axios from "axios"; // Import Axios
 import "../assets/css/edit-profile.css";
 import profile_img from '../assets/img/single-services/photographers/1.jpg'
+
 export default function EditProfileSection() {
   const [profileImage, setProfileImage] = useState("profile-picture.jpg");
   const [firstName, setFirstName] = useState("");
@@ -9,6 +11,8 @@ export default function EditProfileSection() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // For error messages
+  const [successMessage, setSuccessMessage] = useState(""); // For success messages
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -17,17 +21,30 @@ export default function EditProfileSection() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform the necessary actions (e.g., form submission)
-    console.log({
-      firstName,
-      lastName,
+
+    // Prepare data for submission
+    const updatedUserData = {
+      name: `${firstName} ${lastName}`,
       email,
       currentPassword,
-      newPassword,
-      confirmPassword,
-    });
+      password: newPassword,
+    };
+
+    try {
+      const response = await axios.patch('/api/v1/users/me', updatedUserData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you store the token in local storage
+        },
+      });
+      
+      setSuccessMessage("تم تعديل البروفايل بنجاح");
+      setErrorMessage(""); // Clear any previous error messages
+    } catch (error) {
+      setErrorMessage(error.response?.data?.message || "An error occurred!");
+      setSuccessMessage(""); // Clear any previous success messages
+    }
   };
 
   return (
@@ -72,6 +89,19 @@ export default function EditProfileSection() {
                       required
                     />
                   </div>
+                  {/* Last Name */}
+                  <div className="form-group my-3 py-3">
+                    <label htmlFor="last-name">الاسم الأخير</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="last-name"
+                      placeholder="أدخل الاسم الأخير"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
+                  </div>
                   {/* Email (Read-only) */}
                   <div className="form-group my-3 py-3">
                     <label htmlFor="email">البريد الإلكتروني</label>
@@ -86,9 +116,7 @@ export default function EditProfileSection() {
 
                   {/* Current Password */}
                   <div className="form-group my-3 py-3">
-                    <label htmlFor="current-password">
-                      كلمة المرور الحالية
-                    </label>
+                    <label htmlFor="current-password">كلمة المرور الحالية</label>
                     <input
                       type="password"
                       className="form-control"
@@ -114,9 +142,7 @@ export default function EditProfileSection() {
 
                   {/* Confirm New Password */}
                   <div className="form-group my-3 py-3">
-                    <label htmlFor="confirm-password">
-                      تأكيد كلمة المرور الجديدة
-                    </label>
+                    <label htmlFor="confirm-password">تأكيد كلمة المرور الجديدة</label>
                     <input
                       type="password"
                       className="form-control"
@@ -126,6 +152,10 @@ export default function EditProfileSection() {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>
+
+                  {/* Error and Success Messages */}
+                  {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+                  {successMessage && <div className="alert alert-success">{successMessage}</div>}
 
                   {/* Submit Button */}
                   <div className="text-center">
