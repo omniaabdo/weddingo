@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../../../utils/config";
+
 export const regesterUserApi = createAsyncThunk(
   "regester",
-
   async (userCredintianals) => {
     return await fetch(`${BASE_URL}/api/users/register`, {
       method: "POST",
@@ -11,6 +11,7 @@ export const regesterUserApi = createAsyncThunk(
         name: userCredintianals.fullName,
         email: userCredintianals.email,
         password: userCredintianals.password,
+        role: userCredintianals.userType, // Added role here
       }),
     })
       .then((response) => response.json())
@@ -34,7 +35,6 @@ const userDataSlicer = createSlice({
     });
     builder.addCase(regesterUserApi.fulfilled, (state, action) => {
       state.loading = false;
-    //   if(action.payload)
       state.user = action.payload;
       state.error = null;
     });

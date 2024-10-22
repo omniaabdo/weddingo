@@ -1,18 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
-import apple from "../assets/img/smail-logos/apple.svg";
-import facebook from "../assets/img/smail-logos/facebook.svg";
-import google from "../assets/img/smail-logos/google.svg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { regesterUserApi } from "../services/store/auth/rejester";
+import apple from "../assets/img/smail-logos/apple.svg";
+import facebook from "../assets/img/smail-logos/facebook.svg";
+import google from "../assets/img/smail-logos/google.svg";
+
 const loginFunctionBTN = (img, text) => {
   return (
-    <>
-      <div className="lgf-single-card card">
-        <img src={img} alt="apple Logo" />
-        <b> سجل دخول باستخدام{text}</b>
-      </div>
-    </>
+    <div className="lgf-single-card card">
+      <img src={img} alt="apple Logo" />
+      <b> سجل دخول باستخدام {text}</b>
+    </div>
   );
 };
 
@@ -83,8 +82,9 @@ export default function Register() {
       password,
       userType,
     };
+
     dispatch(regesterUserApi(formData)).then((result) => {
-      if (result.payload.status === "success") {
+      if (result.payload && result.payload.status === "success") {
         localStorage.setItem(
           "userDate",
           JSON.stringify({
@@ -98,24 +98,21 @@ export default function Register() {
         // Navigate to the home page
         navigate("/");
       } else {
-        if (/E11000 duplicate key error/.test(result.payload.message)) {
+        if (/E11000 duplicate key error/.test(result.payload?.message)) {
           setApiError("البريد موجود بالفعل");
+        } else {
+          setApiError(result.payload?.message || "خطأ غير متوقع، حاول مرة أخرى");
         }
       }
     });
 
-    // Reset form (optional)
-    // setFullName("");
-    // setEmail("");
-    // setPassword("");
-    // setUserType("");
     setErrors({});
   };
-  /*#endregion */
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <>
       <section className="register-form">
@@ -128,15 +125,6 @@ export default function Register() {
                   <div className="login-functions">
                     {loginFunctionBTN(facebook, "فيسبوك")}
                     {loginFunctionBTN(google, "جوجل")}
-                    <form>
-                      <div class="mb-2 form-control-sm">
-                        <select class="form-control" id="selelct-input-form">
-                          <option selected>نوع المستخدم </option>
-                          <option>عميل (عريس/عروس)</option>
-                          <option>بائع (مقدم خدمة)</option>
-                        </select>
-                      </div>
-                    </form>
                   </div>
                   <h6 className="mt-3 py-1"> او سجل بالبريد الالكتروني </h6>
 
@@ -206,7 +194,7 @@ export default function Register() {
                         required
                         disabled={loading && true}
                       >
-                        <option value="" disabled selected>
+                        <option value="" disabled>
                           نوع المستخدم
                         </option>
                         <option value="user">عميل (عريس/عروس)</option>
