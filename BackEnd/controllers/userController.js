@@ -1,205 +1,74 @@
-<<<<<<< HEAD
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const Photographer = require("../models/photographer");
-const Cars = require("../models/car_rent");
-=======
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const User = require('../models/User'); // Assuming you have a User model
-const sendEmail = require('../utils/sendEmail'); // A utility to send emails (e.g., using Nodemailer)
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const User = require('../models/user');
 
-const { throwError } = require("../middleware/errorHandler");
-// Generate JWT
-const signToken = (id, role) => {
-  return jwt.sign({ id, role }, process.env.JWT_SECRET, {
+// Utility to generate JWT token
+const signToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
-// Register a new user
+// Send response with token
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user,
+    },
+  });
+};
+
+// Register new user
 exports.register = async (req, res) => {
+  const { name, email, password, passwordConfirm, role } = req.body;
+
   try {
-    const { name, email, password, role } = req.body;
-
-    // Hash password before saving
-    const hashedPassword = await bcrypt.hash(password, 12);
-
-    // Create new user
     const newUser = await User.create({
       name,
       email,
-      password: hashedPassword,
-      role: role || "user", // Assign role or default to 'user'
+      password,
+      passwordConfirm,
+      role,
     });
 
-    const token = signToken(newUser._id, newUser.role);
-
-    res.status(201).json({
-      status: "success",
-      token,
-      data: { user: newUser },
-    });
+    createSendToken(newUser, 201, res);
   } catch (err) {
     res.status(400).json({
-      status: "fail",
+      status: 'fail',
       message: err.message,
     });
   }
 };
 
-// Login user
+// User login
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({
-      status: "fail",
-      message: "Please provide email and password",
-    });
-  }
 
   try {
-    const user = await User.findOne({ email }).select("+password"); // Explicitly select password
-    if (!user || !(await user.correctPassword(password, user.password))) {
-      return res.status(401).json({
-        status: "fail",
-        message: "Incorrect email or password",
+    if (!email || !password) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Please provide email and password!',
       });
     }
 
-    const token = signToken(user._id, user.role);
-    res.status(200).json({
-      status: "success",
-      token,
-      data: { user },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
-};
-
-// Get user details
-exports.getUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id);
-    if (!user) {
-      return res.status(404).json({
-        status: "fail",
-        message: "User not found",
-      });
-    }
-    res.status(200).json({
-      status: "success",
-      data: { user },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
-};
-
-// Update user details
-exports.updateUser = async (req, res) => {
-  try {
-    const { name, email, currentPassword, password } = req.body;
-
-<<<<<<< HEAD
-    // Only allow admin to change roles
-    if (req.user.role !== "admin" && role) {
-      return res.status(403).json({
-        status: "fail",
-        message: "You do not have permission to change the role",
-=======
-    const user = await User.findById(req.user.id).select('+password');
-
-    // Check if current password is provided and if it's correct
-    if (currentPassword && !(await user.correctPassword(currentPassword, user.password))) {
+    const user = await User.findOne({ email }).select('+password');
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({
         status: 'fail',
-        message: 'Incorrect current password',
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
+        message: 'Incorrect email or password',
       });
     }
 
-    // Prepare user data for update
-    const updatedData = { name, email };
-    if (password) {
-      updatedData.password = await bcrypt.hash(password, 12); // Re-hash the new password
-    }
-
-<<<<<<< HEAD
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
-      updatedData,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-=======
-    // Update user data
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, updatedData, {
-      new: true,
-      runValidators: true,
-    });
-
-    if (!updatedUser) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'User not found',
-      });
-    }
-
-    const token = signToken(updatedUser._id, updatedUser.role);
-    res.status(200).json({
-      status: 'success',
-      token,
-      data: { user: updatedUser },
-    });
+    createSendToken(user, 200, res);
   } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
-
-// Delete user
-exports.deleteUser = async (req, res) => {
-  try {
-    const userToDelete = await User.findById(req.user.id);
-    if (!userToDelete) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'User not found',
-      });
-    }
-
-    // Allow only admin or the user themselves to delete the account
-    if (req.user.role !== 'admin' && req.user._id.toString() !== userToDelete._id.toString()) {
-      return res.status(403).json({
-        status: 'fail',
-        message: 'You do not have permission to delete this account',
-      });
-    }
-
-    await User.findByIdAndDelete(req.user.id);
-
-    res.status(204).json({
-      status: 'success',
-      data: null,
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
+    res.status(500).json({
+      status: 'error',
       message: err.message,
     });
   }
@@ -207,51 +76,29 @@ exports.deleteUser = async (req, res) => {
 
 // Forgot Password
 exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({
         status: 'fail',
-        message: 'There is no user with that email address',
+        message: 'There is no user with that email address.',
       });
     }
 
-    // Create a reset token
-    const resetToken = crypto.randomBytes(32).toString('hex');
-    const resetTokenHash = crypto.createHash('sha256').update(resetToken).digest('hex');
-
-    user.passwordResetToken = resetTokenHash;
-    user.passwordResetExpires = Date.now() + 10 * 60 * 1000; // Token valid for 10 minutes
+    const resetToken = user.createPasswordResetToken();
     await user.save({ validateBeforeSave: false });
 
-    const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
+    // TODO: Send email with resetToken (use an email service)
 
-    // Send email
-    const message = `Forgot your password? Submit a PATCH request with your new password to: ${resetURL}`;
-    try {
-      await sendEmail({
-        email: user.email,
-        subject: 'Your password reset token (valid for 10 minutes)',
-        message,
-      });
-
-      res.status(200).json({
-        status: 'success',
-        message: 'Token sent to email!',
-      });
-    } catch (err) {
-      user.passwordResetToken = undefined;
-      user.passwordResetExpires = undefined;
-      await user.save({ validateBeforeSave: false });
-
-      return res.status(500).json({
-        status: 'fail',
-        message: 'There was an error sending the email. Try again later.',
-      });
-    }
+    res.status(200).json({
+      status: 'success',
+      message: 'Token sent to email!',
+    });
   } catch (err) {
-    res.status(400).json({
-      status: 'fail',
+    res.status(500).json({
+      status: 'error',
       message: err.message,
     });
   }
@@ -259,10 +106,9 @@ exports.forgotPassword = async (req, res) => {
 
 // Reset Password
 exports.resetPassword = async (req, res) => {
-  try {
-    const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+  const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
 
-    // Find user by reset token and check if token has not expired
+  try {
     const user = await User.findOne({
       passwordResetToken: hashedToken,
       passwordResetExpires: { $gt: Date.now() },
@@ -275,153 +121,54 @@ exports.resetPassword = async (req, res) => {
       });
     }
 
-    // Update the password and clear the reset token fields
-    user.password = await bcrypt.hash(req.body.password, 12);
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save();
 
-    // Log the user in (send a new token)
-    const token = signToken(user._id, user.role);
+    createSendToken(user, 200, res);
+  } catch (err) {
+    res.status(500).json({
+      status: 'error',
+      message: err.message,
+    });
+  }
+};
+
+// Get current user
+exports.getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
     res.status(200).json({
       status: 'success',
-      token,
-      data: { user },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
-
-// ADMIN CRUD OPERATIONS
-
-// Admin: Add User
-exports.adminAddUser = async (req, res) => {
-  try {
-    const { name, email, password, role } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 12);
-
-    const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-      role: role || 'user', // Assign role or default to 'user'
-    });
-
-    res.status(201).json({
-      status: 'success',
-      data: { user: newUser },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
-
-// Admin: Update User
-exports.adminUpdateUser = async (req, res) => {
-  try {
-    const { name, email, role } = req.body;
-    const updatedData = { name, email, role };
-
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, updatedData, {
-      new: true,
-      runValidators: true,
-    });
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
-
-    if (!updatedUser) {
-      return res.status(404).json({
-        status: "fail",
-        message: "User not found",
-      });
-    }
-
-    res.status(200).json({
-      status: "success",
-      data: { user: updatedUser },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
-};
-
-// Admin: Delete User
-exports.adminDeleteUser = async (req, res) => {
-  try {
-    const userToDelete = await User.findByIdAndDelete(req.params.id);
-    if (!userToDelete) {
-      return res.status(404).json({
-        status: "fail",
-        message: "User not found",
-      });
-    }
-
-<<<<<<< HEAD
-    // Allow only admin or the user themselves to delete the account
-    if (
-      req.user.role !== "admin" &&
-      req.user._id.toString() !== userToDelete._id.toString()
-    ) {
-      return res.status(403).json({
-        status: "fail",
-        message: "You do not have permission to delete this account",
-      });
-    }
-
-    await User.findByIdAndDelete(req.params.id);
-
-=======
->>>>>>> 198e85055a4db47ed4e94035ac76982399ae207c
-    res.status(204).json({
-      status: "success",
-      data: null,
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
-};
-
-// Get User Service By Token
-exports.getServices = async (req, res) => {
-  try {
-    const userId = req.userId;
-    console.log(userId);
-
-    const userData = await User.findById(userId);
-    // if (!userData) {
-    //   throwError(404, "user not found");
-    // }
-
-    const getAllPhotgraphersServices = await Photographer.find({
-      userId: userData.id,
-    });
-    const getAllCarRentServices = await Cars.find({
-      userId: userData.id,
-    });
-
-    res.status(200).json({
-      status: "success",
-      message: "data feached successfuly",
       data: {
-        photographers: getAllPhotgraphersServices,
-        cars: getAllCarRentServices,
+        user,
       },
     });
   } catch (err) {
-    res.status(400).json({
-      status: "fail",
+    res.status(500).json({
+      status: 'error',
+      message: err.message,
+    });
+  }
+};
+
+// Admin - Get all users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        users,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'error',
       message: err.message,
     });
   }
