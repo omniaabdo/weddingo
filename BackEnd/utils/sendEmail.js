@@ -1,28 +1,22 @@
 const nodemailer = require('nodemailer');
 
-// Send email utility function
-const sendEmail = async (options) => {
-  // Create a transporter
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST, // Use your SMTP service provider host
-    port: process.env.EMAIL_PORT, // Typically 587 or 465
-    auth: {
-      user: process.env.EMAIL_USERNAME, // Your email username
-      pass: process.env.EMAIL_PASSWORD, // Your email password
-    },
-  });
+const sendEmail = async options => {
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail', // Use your email service provider
+        auth: {
+            user: process.env.EMAIL_USERNAME,
+            pass: process.env.EMAIL_PASSWORD,
+        },
+    });
 
-  // Define the email options
-  const mailOptions = {
-    from: 'Your App <no-reply@yourapp.com>',
-    to: options.email,
-    subject: options.subject,
-    text: options.message,
-    // You can also use HTML content here
-  };
+    const mailOptions = {
+        from: options.email,
+        to: options.email,
+        subject: options.subject,
+        text: options.message,
+    };
 
-  // Send the email
-  await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 };
 
 module.exports = sendEmail;

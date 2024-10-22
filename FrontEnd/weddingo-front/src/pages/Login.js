@@ -4,11 +4,11 @@ import facebook from "../assets/img/smail-logos/facebook.svg";
 import google from "../assets/img/smail-logos/google.svg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserApi } from "../services/store/auth/login"; // Adjust the path accordingly
+import { loginUser, facebookLogin, googleLogin } from "../services/authService"; // Adjust the path accordingly
 
-const loginFunctionBTN = (img, text) => {
+const loginFunctionBTN = (img, text, onClick) => {
   return (
-    <div className="lgf-single-card card">
+    <div className="lgf-single-card card" onClick={onClick}>
       <img src={img} alt="logo" />
       <b> سجل دخول باستخدام {text}</b>
     </div>
@@ -23,32 +23,77 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [apiError, setApiError] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Reset API error
     setApiError("");
 
-    // Dispatch login action
-    dispatch(loginUserApi({ email, password })).then((result) => {
-      if (result.payload && result.payload.status === "success") {
+    try {
+      const result = await loginUser({ email, password });
+      if (result.status === "success") {
         localStorage.setItem(
           "userData",
           JSON.stringify({
-            token: result.payload.token,
+            token: result.token,
             data: {
-              name: result.payload.data.user.name,
-              email: result.payload.data.user.email,
+              name: result.data.user.name,
+              email: result.data.user.email,
             },
           })
         );
         window.location.reload();
-      } else {
-        if (result.error.message === "Incorrect email or password") {
-          setApiError("كلمة المرور او البريد عير صحيح"); // Show the error if login fails
-        }
       }
-    });
+    } catch (error) {
+      setApiError(error.message);
+    }
+  };
+
+  const handleFacebookLogin = async () => {
+    // Implement Facebook login logic here
+    // Use Facebook's SDK to get the access token and user ID
+    const accessToken = 'your_access_token'; // Replace with the access token from Facebook SDK
+    const userID = 'your_user_id'; // Replace with the user ID from Facebook SDK
+    try {
+      const result = await facebookLogin(accessToken, userID);
+      if (result.status === "success") {
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            token: result.token,
+            data: {
+              name: result.data.user.name,
+              email: result.data.user.email,
+            },
+          })
+        );
+        window.location.reload();
+      }
+    } catch (error) {
+      setApiError(error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    // Implement Google login logic here
+    // Use Google API to get the token ID
+    const tokenId = 'your_token_id'; // Replace with the token ID from Google API
+    try {
+      const result = await googleLogin(tokenId);
+      if (result.status === "success") {
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            token: result.token,
+            data: {
+              name: result.data.user.name,
+              email: result.data.user.email,
+            },
+          })
+        );
+        window.location.reload();
+      }
+    } catch (error) {
+      setApiError(error.message);
+    }
   };
 
   useEffect(() => {
@@ -68,8 +113,8 @@ export default function Login() {
                   ليس لديك حساب الان ? <Link to={"/register"}>انضم الينا</Link>
                 </p>
                 <div className="login-functions">
-                  {loginFunctionBTN(facebook, "الفبسبوك")}
-                  {loginFunctionBTN(google, " جوجل")}
+                  {loginFunctionBTN(facebook, "الفبسبوك", handleFacebookLogin)}
+                  {loginFunctionBTN(google, " جوجل", handleGoogleLogin)}
                 </div>
                 <p className="tc-devided"> او سجل الان بالبريد الالكتروني</p>
 
