@@ -23,16 +23,15 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-// Register new user
+// Register new user with hashed password
 exports.register = async (req, res) => {
-  const { name, email, password, passwordConfirm, role } = req.body;
+  const { name, email, password, role } = req.body;
 
   try {
     const newUser = await User.create({
       name,
       email,
-      password,
-      passwordConfirm,
+      password, // This should be hashed automatically
       role,
     });
 
@@ -45,6 +44,7 @@ exports.register = async (req, res) => {
   }
 };
 
+// User login with password comparison
 // User login
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -58,7 +58,7 @@ exports.login = async (req, res) => {
     }
 
     const user = await User.findOne({ email }).select('+password');
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(await user.correctPassword(password, user.password))) {
       return res.status(401).json({
         status: 'fail',
         message: 'Incorrect email or password',
@@ -73,7 +73,6 @@ exports.login = async (req, res) => {
     });
   }
 };
-
 // Forgot Password
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
@@ -121,7 +120,7 @@ exports.resetPassword = async (req, res) => {
       });
     }
 
-    user.password = req.body.password;
+    user.password = await bcrypt.hash(req.body.password, 12);
     user.passwordConfirm = req.body.passwordConfirm;
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
