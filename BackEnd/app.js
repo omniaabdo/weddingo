@@ -77,11 +77,11 @@ app.use(
 
 // Routes
 app.use("/api/users", userRoutes);
-app.use("/api/venues", venueRoutes);
+app.use("/api/venues", upload.array("files"), venueRoutes);
 app.use("/api/budget", require("./routes/budget"));
 app.use("/beauty-center", beautyCenter);
 app.use("/home-store", homeStore);
-app.use("/location", location);
+app.use("/location", upload.array("files"), location);
 app.use("/photographer", upload.array("files"), photographer);
 app.use("/home-store-category", homeStoreCategory);
 app.use("/car-rent", upload.array("files"), carRent);

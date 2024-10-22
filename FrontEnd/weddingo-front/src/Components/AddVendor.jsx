@@ -195,6 +195,7 @@ function AddVendor() {
                   </>
                 ) : (
                   <>
+                    <h3>خدمات التصوير</h3>
                     {userData?.photographers?.length > 0 ? (
                       userData.photographers.map((item) => (
                         <VendorCardService
@@ -214,7 +215,10 @@ function AddVendor() {
                     ) : (
                       <p>لا يوجد خدمات مضافة</p>
                     )}
-                    {userData?.cars?.length > 0 &&
+
+                    <h3>خدمات تاجير السيارات</h3>
+
+                    {userData?.cars?.length > 0 ? (
                       userData.cars.map((item) => (
                         <VendorCardService
                           key={item._id} // تأكد من وجود key فريدة لكل عنصر
@@ -226,7 +230,46 @@ function AddVendor() {
                           deleteService={handleShowConfromModule}
                           url={"car-rent"}
                         />
-                      ))}
+                      ))
+                    ) : (
+                      <p>لا يوجد خدمات مضافة</p>
+                    )}
+                    <h3>خدمات القاعات</h3>
+
+                    {userData?.venue?.length > 0 ? (
+                      userData.venue.map((item) => (
+                        <VendorCardService
+                          key={item._id} // تأكد من وجود key فريدة لكل عنصر
+                          img={`${BASE_URL}/image/${item.images[0]}` || car}
+                          title={item.name}
+                          goTo={`/profile/my-services/Venues/details/${item._id}`}
+                          ICON={FaHotel}
+                          id={item._id}
+                          deleteService={handleShowConfromModule}
+                          url={"api/venues"}
+                        />
+                      ))
+                    ) : (
+                      <p>لا يوجد خدمات مضافة</p>
+                    )}
+                    <h3>خدمات مواقع التصوير</h3>
+
+                    {userData?.locations?.length > 0 ? (
+                      userData.locations.map((item) => (
+                        <VendorCardService
+                          key={item._id} // تأكد من وجود key فريدة لكل عنصر
+                          img={`${BASE_URL}/image/${item.images[0]}` || car}
+                          title={item.name}
+                          goTo={`/profile/my-services/Location/details/${item._id}`}
+                          ICON={FaCheck}
+                          id={item._id}
+                          deleteService={handleShowConfromModule}
+                          url={"location"}
+                        />
+                      ))
+                    ) : (
+                      <p>لا يوجد خدمات مضافة</p>
+                    )}
                   </>
                 )}
               </>

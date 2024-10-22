@@ -1,5 +1,8 @@
 "use strict";
 const Location = require("../models/location");
+const Package = require("../models/packege");
+const ERRORHANDELLER = require("../utils/errorHandler");
+const { rmoveFile, changeName } = require("../utils/imageServices");
 
 // Get all locations with pagination
 const getAll = async (req, res, next) => {
@@ -29,11 +32,14 @@ const getAll = async (req, res, next) => {
 const getOne = async (req, res, next) => {
   try {
     const getOne = await Location.findById(req.params.id);
+    const getPackeges = await Package.findOne({ serviceId: getOne._id });
+
     res.status(200).json({
-      state: true,
-      messege: "Data Fetched Successfully",
+      status: "success",
+      message: "Data Fetched Successfully",
       data: {
-        Location: getOne,
+        ...getOne._doc,
+        packages: getPackeges?.packages,
       },
     });
   } catch (error) {
@@ -45,12 +51,12 @@ const getOne = async (req, res, next) => {
 // Create a new location
 const create = async (req, res, next) => {
   try {
-    const create = new Location(req.body);
+    const create = new Location({ ...req.body, userId: req.userId });
     await create.save();
 
     res.status(200).json({
-      state: true,
-      messege: "Data Created Successfully",
+      status: "success",
+      message: "Data Created Successfully",
       data: create,
     });
   } catch (error) {
@@ -87,9 +93,12 @@ const update = async (req, res, next) => {
 const deleteOne = async (req, res, next) => {
   try {
     const deleteOne = await Location.findByIdAndDelete(req.params.id);
+    if (!deleteOne) {
+      ERRORHANDELLER(404, "data not found");
+    }
     res.status(200).json({
-      state: true,
-      messege: "Data Deleted Successfully",
+      status: "success",
+      message: "Data Deleted Successfully",
       data: {
         Location: deleteOne,
       },
@@ -100,10 +109,46 @@ const deleteOne = async (req, res, next) => {
   }
 };
 
+const uploadeImages = async (req, res, next) => {
+  try {
+    const locationId = req.params.id;
+    const userId = req.userId;
+    const images = req.files;
+
+    const newPaths = [...images.map((item) => changeName(item.path))];
+
+    const updateService = await Location.findOne({
+      _id: locationId,
+      userId: userId,
+    });
+
+    if (!updateService) {
+      ERRORHANDELLER(404, "data not found");
+    }
+
+    updateService.images.map((item) => rmoveFile(item));
+    updateService.$set({ images: newPaths });
+    await updateService.save();
+
+    // const deleteOne = await Photographer.findByIdAndDelete(req.params.id);
+    // const album = await Album.deleteMany({ uersId: req.params.id });
+    console.log(updateService);
+
+    res.status(200).json({
+      status: "success",
+      message: "Data Updated Successfully",
+      data: updateService,
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 module.exports = {
   getAll,
   getOne,
   create,
   update,
   deleteOne,
+  uploadeImages
 };
