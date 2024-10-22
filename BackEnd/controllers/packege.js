@@ -1,11 +1,13 @@
-"use strict";
-const Packege = require("../../models/packege");
+const Packege = require("../models/packege");
+const Photographer = require("../models/photographer");
 
+const { throwError } = require("../middleware/errorHandler");
+const ERRORHANDELLER = require("../utils/errorHandler");
 const getAllFor = async (req, res, next) => {
   try {
     const getAll = await Packege.find({ userId: req.params.id });
     res.status(200).json({
-      state: true,
+      status: "success",
       messege: "Data Fatched Successfuly",
       count: getAll.length,
       data: getAll,
@@ -19,7 +21,7 @@ const getOne = async (req, res, next) => {
   try {
     const getOne = await Packege.findById(req.params.id);
     res.status(200).json({
-      state: true,
+      status: "success",
       messege: "Data Fatched Successfuly",
       data: getOne,
     });
@@ -30,11 +32,25 @@ const getOne = async (req, res, next) => {
 };
 const create = async (req, res, next) => {
   try {
-    const create = new Packege(req.body);
-    await create.save();
+    const userId = req.userId;
+    const serviceId = req.params.serviceId;
+    const packegeData = req.body;
+
+    // if exist update, else create new one
+    const isExist = await Packege.findOne({ serviceId: serviceId });
+    if (isExist) {
+      await isExist.$set({ packages: packegeData });
+      await isExist.save();
+    } else {
+      const create = new Packege({
+        packages: packegeData,
+        serviceId: serviceId,
+      });
+      await create.save();
+    }
 
     res.status(200).json({
-      state: true,
+      status: "success",
       messege: "Data Createed Successfuly",
       data: create,
     });
@@ -48,7 +64,7 @@ const update = async (req, res, next) => {
     const update = await Packege.findById(req.params.id);
     if (!update) {
       res.status(404).json({
-        state: true,
+        status: "success",
         messege: "Data Not Found",
       });
       return;
@@ -56,7 +72,7 @@ const update = async (req, res, next) => {
     update.$set({ ...req.body });
     await update.save();
     res.status(200).json({
-      state: true,
+      status: "success",
       messege: "Data Updated Successfuly",
       data: update,
     });
@@ -70,7 +86,7 @@ const deleteOne = async (req, res, next) => {
     const deleteOne = await Packege.findByIdAndDelete(req.params.id);
 
     res.status(200).json({
-      state: true,
+      status: "success",
       messege: "Data Deleted  Successfuly",
       data: deleteOne,
     });

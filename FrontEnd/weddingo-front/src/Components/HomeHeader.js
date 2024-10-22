@@ -9,15 +9,15 @@ export default function HomeHeader({ userData }) {
     <>
       <header className="home_header">
         <div className="container">
-          <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-              <a class="navbar-brand my-logo" href="#">
+          <nav className="navbar navbar-expand-lg">
+            <div className="container-fluid">
+              <a className="navbar-brand my-logo" href="#">
                 <Link to={"/"}>
                   <img src={Logo} alt="Logo" />
                 </Link>
               </a>
               <button
-                class="navbar-toggler"
+                className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"
@@ -25,41 +25,41 @@ export default function HomeHeader({ userData }) {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                  <li className="nav-item">
                     <Link
-                      class="nav-link active"
+                      className="nav-link active"
                       aria-current="page"
                       to={"/services/venue"}
                     >
                       القاعات
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/services/photographer"}>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/services/photographer"}>
                       المصورون
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/services/beauty-center"}>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/services/beauty-center"}>
                       مراكز التجميل
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/services/location"}>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/services/location"}>
                       مواقع التصوير
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/services/car-rent"}>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/services/car-rent"}>
                       سيارات
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/services/home-store"}>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/services/home-store"}>
                       المتجر
                     </Link>
                   </li>

@@ -74,17 +74,17 @@ export default function HomeFooter() {
                 </li>
               </ul>
               <h6 className="home-footer_content-title">تابعنا الان علي</h6>
-              <ul class="home-footer_content-list socialLinks__list">
+              <ul className="home-footer_content-list socialLinks__list">
                 <li>
                   <a
-                    class="socialLinks__item"
+                    className="socialLinks__item"
                     rel="nofollow noopener noreferrer"
                     href="https://www.facebook.com/weddingwire"
                     title="Facebook"
                     target="_blank"
                   >
                     <i
-                      class="svgIcon app-svg-async svgIcon__facebook "
+                      className="svgIcon app-svg-async svgIcon__facebook "
                       data-svg="https://cdn1.weddingwire.com/assets/svg/optimized/_common/facebook.svg"
                       data-svg-lazyload="1"
                       data-loaded="true"
@@ -97,14 +97,14 @@ export default function HomeFooter() {
                 </li>
                 <li>
                   <a
-                    class="socialLinks__item"
+                    className="socialLinks__item"
                     rel="nofollow noopener noreferrer"
                     href="https://twitter.com/weddingwire"
                     title="Twitter"
                     target="_blank"
                   >
                     <i
-                      class="svgIcon app-svg-async svgIcon__twitter "
+                      className="svgIcon app-svg-async svgIcon__twitter "
                       data-svg="https://cdn1.weddingwire.com/assets/svg/optimized/_common/twitter.svg"
                       data-svg-lazyload="1"
                       data-loaded="true"
@@ -117,14 +117,14 @@ export default function HomeFooter() {
                 </li>
                 <li>
                   <a
-                    class="socialLinks__item"
+                    className="socialLinks__item"
                     rel="nofollow noopener noreferrer"
                     href="https://www.pinterest.com/weddingwire/"
                     title="Pinterest"
                     target="_blank"
                   >
                     <i
-                      class="svgIcon app-svg-async svgIcon__pinterest "
+                      className="svgIcon app-svg-async svgIcon__pinterest "
                       data-svg="https://cdn1.weddingwire.com/assets/svg/optimized/_common/pinterest.svg"
                       data-svg-lazyload="1"
                       data-loaded="true"
@@ -137,14 +137,14 @@ export default function HomeFooter() {
                 </li>
                 <li>
                   <a
-                    class="socialLinks__item"
+                    className="socialLinks__item"
                     rel="nofollow noopener noreferrer"
                     href="https://www.instagram.com/weddingwire/"
                     title="Instagram"
                     target="_blank"
                   >
                     <i
-                      class="svgIcon app-svg-async svgIcon__instagram "
+                      className="svgIcon app-svg-async svgIcon__instagram "
                       data-svg="https://cdn1.weddingwire.com/assets/svg/optimized/_common/instagram.svg"
                       data-svg-lazyload="1"
                       data-loaded="true"

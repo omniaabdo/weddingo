@@ -115,12 +115,12 @@ function App() {
             <Route index element={<AddVendor />} />
             <Route path="photographer" element={<PhotographerVendor />} />
             <Route
-              path="photographer/details"
+              path="photographer/details/:id"
               element={<PhotographerServiceDetails />}
             />
 
             <Route path="car" element={<CarRentVendor />} />
-            <Route path="car/details" element={<CarRentServiceDetails />} />
+            <Route path="car/details/:id" element={<CarRentServiceDetails />} />
             <Route path="Venues" element={<VenueForm />} />
             <Route path="Location" element={<LocationForm />} />
             <Route path="beauty-center" element={<BeautyCenter />} />

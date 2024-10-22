@@ -35,3 +35,10 @@
     line-height: 1.8;
     z-index: 2;
 }
+.checklist_single-card .de-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    margin: .5rem;
+}

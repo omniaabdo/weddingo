@@ -2,7 +2,8 @@
 const Photographer = require("../models/photographer");
 const Album = require("../models/album");
 const Packege = require("../models/packege");
-
+const { changeName, rmoveFile } = require("../utils/imageServices");
+const { throwError } = require("../middleware/errorHandler");
 // Get all photographers with pagination
 const getAll = async (req, res, next) => {
   try {
@@ -20,7 +21,7 @@ const getAll = async (req, res, next) => {
     const totalPhotographers = await Photographer.countDocuments();
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Fetched Successfully",
       count: getAll.length,
       totalPages: Math.ceil(totalPhotographers / limit),
@@ -37,16 +38,16 @@ const getAll = async (req, res, next) => {
 const getOne = async (req, res, next) => {
   try {
     const getOne = await Photographer.findById(req.params.id);
-    const getAlbums = await Album.find({ uersId: req.params.id });
-    const getPackeges = await Packege.find({ userId: req.params.id });
+    const getPackeges = await Packege.findOne({ serviceId: getOne._id });
+
+    // const getAlbums = await Album.find({ uersId: req.params.id });
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Fetched Successfully",
       data: {
-        photographer: getOne,
-        albums: getAlbums,
-        packages: getPackeges,
+        ...getOne._doc, // إضافة بيانات المصور
+        packages: getPackeges?.packages, // إضافة الحزم إلى الاستجابة
       },
     });
   } catch (error) {
@@ -57,11 +58,12 @@ const getOne = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const create = new Photographer(req.body);
+
+    const create = new Photographer({ ...req.body, userId: req.userId });
     await create.save();
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Created Successfully",
       data: create,
     });
@@ -76,7 +78,7 @@ const update = async (req, res, next) => {
     const update = await Photographer.findById(req.params.id);
     if (!update) {
       res.status(404).json({
-        state: true,
+        status: "success",
         message: "Data Not Found",
       });
       return;
@@ -84,7 +86,7 @@ const update = async (req, res, next) => {
     update.$set({ ...req.body });
     await update.save();
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Updated Successfully",
       data: update,
     });
@@ -96,16 +98,61 @@ const update = async (req, res, next) => {
 
 const deleteOne = async (req, res, next) => {
   try {
+    const findPhotographer = await Photographer.findById(req.params.id);
+
+    if (!findPhotographer) {
+      throwError(404, "data not found");
+    }
+
+    findPhotographer.images.map((item) => rmoveFile(item));
     const deleteOne = await Photographer.findByIdAndDelete(req.params.id);
-    const album = await Album.deleteMany({ uersId: req.params.id });
+    const deletePackege = await Packege.findOneAndDelete({
+      serviceId: req.params.id,
+    });
+    // const album = await Album.deleteMany({ uersId: req.params.id });
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Deleted Successfully",
       data: {
         photographer: deleteOne,
-        album: album,
       },
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+const uploadeImages = async (req, res, next) => {
+  try {
+    const photographerId = req.params.id;
+    const userId = req.userId;
+    const images = req.files;
+
+    const newPaths = [...images.map((item) => changeName(item.path))];
+
+    const updateService = await Photographer.findOne({
+      _id: photographerId,
+      userId: userId,
+    });
+
+    if (!updateService) {
+      throwError(404, "data not found");
+    }
+
+    updateService.images.map((item) => rmoveFile(item));
+    updateService.$set({ images: newPaths });
+    await updateService.save();
+
+    // const deleteOne = await Photographer.findByIdAndDelete(req.params.id);
+    // const album = await Album.deleteMany({ uersId: req.params.id });
+    console.log(updateService);
+
+    res.status(200).json({
+      status: "success",
+      message: "Data Updated Successfully",
+      data: updateService,
     });
   } catch (error) {
     console.log(error);
@@ -119,4 +166,5 @@ module.exports = {
   create,
   update,
   deleteOne,
+  uploadeImages,
 };

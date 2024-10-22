@@ -15,6 +15,7 @@ const photographer = require("./routes/photographer.js");
 const carRent = require("./routes/car_rent.js");
 const homeStore = require("./routes/home-store.js");
 const homeStoreCategory = require("./routes/home-store-category.js");
+const packageRoutes = require("./routes/packege.js");
 const app = express();
 
 const path = require("path");
@@ -45,6 +46,16 @@ app.get("/image/:filename", (req, res) => {
     res.status(404).json({ message: "File not found" });
   }
 });
+app.get("/image/uploads/:filename", (req, res) => {
+  const { filename } = req.params;
+  const filepath = path.join(__dirname, "uploads", filename);
+
+  if (fs.existsSync(filepath)) {
+    res.sendFile(filepath);
+  } else {
+    res.status(404).json({ message: "File not found" });
+  }
+});
 
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads");
@@ -65,15 +76,16 @@ app.use(
 );
 
 // Routes
-app.use('/api/users', userRoutes);
-app.use('/api/venues', venueRoutes);
-app.use('/api/budget', require('./routes/budget'));
-app.use("/beauty-center", beautyCenter)
-app.use("/home-store", homeStore)
-app.use("/location", location)
-app.use("/photographer", photographer)
-app.use("/home-store-category", homeStoreCategory)
-app.use("/car-rent", carRent)
+app.use("/api/users", userRoutes);
+app.use("/api/venues", venueRoutes);
+app.use("/api/budget", require("./routes/budget"));
+app.use("/beauty-center", beautyCenter);
+app.use("/home-store", homeStore);
+app.use("/location", location);
+app.use("/photographer", upload.array("files"), photographer);
+app.use("/home-store-category", homeStoreCategory);
+app.use("/car-rent", upload.array("files"), carRent);
+app.use("/packege", packageRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler);

@@ -15,30 +15,17 @@ const photographerSchema = new mongoose.Schema(
       minlength: [10, "Description must be at least 10 characters long"],
       maxlength: [500, "Description cannot exceed 500 characters"],
     },
-    avalabileFrom: {
-      type: Date,
-      required: [true, "Available from date is required"],
-      validate: {
-        validator: function (v) {
-          return v instanceof Date && v <= new Date();
-        },
-        message: "Available from date must be valid and not in the future",
-      },
-    },
-    price: {
-      type: Number,
-      required: [true, "Price is required"],
-      min: [0, "Price cannot be negative"],
-    },
-    avalabileTo: {
-      type: Date,
-      required: [true, "Available to date is required"],
-      validate: {
-        validator: function (v) {
-          return v instanceof Date && v >= this.avalabileFrom;
-        },
-        message: "Available to date must be valid and after the available from date",
-      },
+    avalabileDate: {
+      type: [Date],
+      default: [],
+      // required: [true, "Available from date is required"],
+      // validate: {
+
+      //   validator: function (v) {
+      //     return v instanceof Date && v >= new Date();
+      //   },
+      //   message: "Available from date must be valid and not in the past",
+      // },
     },
     feature: {
       type: [String],
@@ -70,13 +57,13 @@ const photographerSchema = new mongoose.Schema(
     },
     contacts: {
       phoneNumber: {
-        type: [Number],
+        type: [String],
         default: [],
         validate: {
           validator: function (v) {
-            return v.every(num => String(num).length === 10);
+            return v.every((num) => num.length === 11);
           },
-          message: "Phone number must be exactly 10 digits",
+          message: "Phone number must be exactly 11 digits",
         },
       },
       facebookLink: {
@@ -85,7 +72,10 @@ const photographerSchema = new mongoose.Schema(
         default: "",
         validate: {
           validator: function (v) {
-            return !v || /^https?:\/\/(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/.test(v);
+            return (
+              !v ||
+              /^https?:\/\/(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/.test(v)
+            );
           },
           message: "Invalid Facebook link",
         },
@@ -96,7 +86,10 @@ const photographerSchema = new mongoose.Schema(
         default: "",
         validate: {
           validator: function (v) {
-            return !v || /^https?:\/\/(www\.)?twitter.com\/[a-zA-Z0-9(\.\?)?]/.test(v);
+            return (
+              !v ||
+              /^https?:\/\/(www\.)?twitter.com\/[a-zA-Z0-9(\.\?)?]/.test(v)
+            );
           },
           message: "Invalid Twitter link",
         },
@@ -107,33 +100,30 @@ const photographerSchema = new mongoose.Schema(
         default: "",
         validate: {
           validator: function (v) {
-            return !v || /^https?:\/\/(www\.)?instagram.com\/[a-zA-Z0-9(\.\?)?]/.test(v);
+            return (
+              !v ||
+              /^https?:\/\/(www\.)?instagram.com\/[a-zA-Z0-9(\.\?)?]/.test(v)
+            );
           },
           message: "Invalid Instagram link",
         },
       },
     },
-    media: {
-      images: {
-        type: [String],
-        default: [],
-        validate: {
-          validator: function (v) {
-            return v.every(file => /\.(jpg|jpeg|png|gif)$/.test(file));
-          },
-          message: "Each image must be a valid file type (jpg, jpeg, png, gif)",
-        },
-      },
-      video: {
+    images: [
+      {
         type: String,
         default: "",
         validate: {
           validator: function (v) {
-            return !v || /\.(mp4|mov|avi|mkv)$/.test(v);
+            return !v || /\.(jpg|jpeg|png|gif)$/.test(v);
           },
-          message: "Video must be a valid file type (mp4, mov, avi, mkv)",
+          message: "Image must be a valid file type (jpg, jpeg, png, gif)",
         },
       },
+    ],
+    userId: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Users",
     },
   },
   { timestamps: true }
