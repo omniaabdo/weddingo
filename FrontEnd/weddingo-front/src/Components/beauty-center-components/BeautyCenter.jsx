@@ -4,6 +4,7 @@ import AvailabilityForm from "../photographer-components/AvailabilityForm";
 import FeatureForm from "../photographer-components/FeatureForm";
 import MinBreadcrumb from "../MinBreadcrumb";
 
+
 export default function BeautyCenter() {
   const [formData, setFormData] = useState({
     name: "",
