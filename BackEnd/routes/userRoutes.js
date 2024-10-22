@@ -1,33 +1,39 @@
 const express = require('express');
-const userController = require('../controllers/userController'); // Assuming the code you shared is in userController.js
-const authController = require('../controllers/authController'); // For protecting routes if you implement role-based access control
+const {
+    register,
+    login,
+    facebookLogin,
+    googleLogin,
+    forgotPassword,
+    resetPassword,
+    getUser,
+    getAllUsers,
+    adminAddUser,
+    adminUpdateUser,
+    adminDeleteUser,
+} = require('../controllers/userController');
+const authController = require('../middleware/auth');
+
 const router = express.Router();
 
 // Public routes
-router.post('/register', userController.register);
-router.post('/login', userController.login);
-router.post('/forgotPassword', userController.forgotPassword);
-router.patch('/resetPassword/:token', userController.resetPassword);
+router.post('/register', register);
+router.post('/login', login);
+router.post('/facebookLogin', facebookLogin);
+router.post('/googleLogin', googleLogin);
+router.post('/forgotPassword', forgotPassword);
+router.patch('/resetPassword/:token', resetPassword);
 
-// Protect all routes after this middleware
-router.use(authController.protect);  // Middleware to protect routes (e.g., checks JWT)
+// Protected routes
+router.use(authController.protect);
+router.get('/me', getUser); // Get current user
 
-// User routes (for logged-in users)
-router.route('/me')
-  .get(userController.getUser) // Get logged-in user's details
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
-
-// Admin routes (for admins only)
-router.use(authController.restrictTo('admin'));  // Middleware to restrict routes to 'admin' role
-
-router.route('/')
-  .post(userController.adminAddUser) // Admin adding new users
-  .get(userController.getAllUsers); // Admins fetching all users (added a placeholder for this method)
-
-router.route('/:id')
-  .get(userController.getUser) // Fetch user by ID (both user/admin)
-  .patch(userController.adminUpdateUser) // Admin updating user details
-  .delete(userController.adminDeleteUser); // Admin deleting a user
+// Admin routes
+router.get('/', authController.restrictTo('admin'), getAllUsers);
+router.post('/admin/users', authController.restrictTo('admin'), adminAddUser);
+router
+    .route('/admin/users/:id')
+    .patch(authController.restrictTo('admin'), adminUpdateUser)
+    .delete(authController.restrictTo('admin'), adminDeleteUser);
 
 module.exports = router;

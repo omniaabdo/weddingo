@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios"; // Import Axios
 import "../assets/css/edit-profile.css";
-import profile_img from '../assets/img/single-services/photographers/1.jpg'
 
 export default function EditProfileSection() {
-  const [profileImage, setProfileImage] = useState("profile-picture.jpg");
+  const [profile_img, setProfileImage] = useState("profile-picture.jpg");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("example@domain.com"); // Read-only
@@ -13,6 +12,29 @@ export default function EditProfileSection() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // For error messages
   const [successMessage, setSuccessMessage] = useState(""); // For success messages
+
+  // Fetch the user's current data on component mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('/api/v1/users/me', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you store the token in local storage
+          },
+        });
+
+        const { name, email } = response.data.data.user;
+        const [first, last] = name.split(" ");
+        setFirstName(first);
+        setLastName(last);
+        setEmail(email);
+      } catch (error) {
+        setErrorMessage("Error fetching user data.");
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -24,12 +46,18 @@ export default function EditProfileSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate passwords match
+    if (newPassword && newPassword !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+
     // Prepare data for submission
     const updatedUserData = {
       name: `${firstName} ${lastName}`,
       email,
       currentPassword,
-      password: newPassword,
+      password: newPassword || undefined, // Only send new password if provided
     };
 
     try {
@@ -38,7 +66,7 @@ export default function EditProfileSection() {
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you store the token in local storage
         },
       });
-      
+
       setSuccessMessage("تم تعديل البروفايل بنجاح");
       setErrorMessage(""); // Clear any previous error messages
     } catch (error) {
@@ -71,6 +99,7 @@ export default function EditProfileSection() {
                     type="file"
                     id="profile-pic-input"
                     onChange={handleImageChange}
+                    style={{ display: 'none' }} // Hide the file input
                   />
                 </div>
 
@@ -124,6 +153,7 @@ export default function EditProfileSection() {
                       placeholder="أدخل كلمة المرور الحالية"
                       value={currentPassword}
                       onChange={(e) => setCurrentPassword(e.target.value)}
+                      required
                     />
                   </div>
 
