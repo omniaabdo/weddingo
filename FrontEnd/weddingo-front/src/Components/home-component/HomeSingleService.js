@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CSwiper from "../CSwiper";
 
 export default function HomeSingleService({
@@ -30,7 +31,7 @@ export default function HomeSingleService({
                 <b>{title ? title : "title"}</b>
               </h3>
               <p>{des ? des : "description"}</p>
-              <button className="btn"> أستكشف المزيد</button>
+              <Link className="btn btn-primary" to={go_to}> أستكشف المزيد</Link>
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 single-service_content-swipper-content">
               <CSwiper dir={dir} data={data} />

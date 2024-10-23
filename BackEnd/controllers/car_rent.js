@@ -46,7 +46,6 @@ const getOne = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    // const create = new Photographer({ ...req.body, userId: req.userId });
 
     const create = new Car({ ...req.body, userId: req.userId });
     await create.save();

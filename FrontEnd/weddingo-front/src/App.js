@@ -93,56 +93,114 @@ function App() {
         <Route path="/services/home-store" element={<SingleServices />} />
         <Route path="/services/venue" element={<SingleServices />} />
 
-
-        <Route path="/services/beauty-center/service-detail/:id" element={<SingleServicesDetails />} />
-        <Route path="/services/location/service-detail/:id" element={<SingleServicesDetails />} />
-        <Route path="/services/photographer/service-detail/:id" element={<SingleServicesDetails />} />
-        <Route path="/services/car-rent/service-detail/:id" element={<SingleServicesDetails />} />
-        <Route path="/services/home-store/service-detail/:id" element={<SingleServicesDetails />} />
-        <Route path="/services/venue/service-detail/:id" element={<SingleServicesDetails />} />
+        <Route
+          path="/services/beauty-center/service-detail/:id"
+          element={<SingleServicesDetails />}
+        />
+        <Route
+          path="/services/location/service-detail/:id"
+          element={<SingleServicesDetails />}
+        />
+        <Route
+          path="/services/photographer/service-detail/:id"
+          element={<SingleServicesDetails />}
+        />
+        <Route
+          path="/services/car-rent/service-detail/:id"
+          element={<SingleServicesDetails />}
+        />
+        <Route
+          path="/services/home-store/service-detail/:id"
+          element={<SingleServicesDetails />}
+        />
+        <Route
+          path="/services/venue/service-detail/:id"
+          element={<SingleServicesDetails />}
+        />
         <Route
           path="/services/service-detail/:id"
           element={<SingleServicesDetails />}
         />
 
-
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
 
         <Route path="/profile">
-          <Route index element={<Profile />} />
-          <Route path="vendor-manager" element={<VendorManager />} />
+          <Route index element={userData ? <Profile /> : <Navigate to="/" />} />
+          <Route
+            path="vendor-manager"
+            element={userData ? <VendorManager /> : <Navigate to="/" />}
+          />
 
           <Route path={"my-services"}>
-            <Route index element={<AddVendor />} />
-            <Route path="photographer" element={<PhotographerVendor />} />
+            <Route
+              index
+              element={userData ? <AddVendor /> : <Navigate to="/" />}
+            />
+            <Route
+              path="photographer"
+              element={userData ? <PhotographerVendor /> : <Navigate to="/" />}
+            />
             <Route
               path="photographer/details/:id"
-              element={<PhotographerServiceDetails />}
+              element={
+                userData ? <PhotographerServiceDetails /> : <Navigate to="/" />
+              }
             />
 
-            <Route path="car" element={<CarRentVendor />} />
-            <Route path="car/details/:id" element={<CarRentServiceDetails />} />
-            
-            <Route path="Venues" element={<VenueVendor />} />
-            <Route path="Venues/details/:id" element={<VenueServiceDetails />} />
+            <Route
+              path="car"
+              element={userData ? <CarRentVendor /> : <Navigate to="/" />}
+            />
+            <Route
+              path="car/details/:id"
+              element={
+                userData ? <CarRentServiceDetails /> : <Navigate to="/" />
+              }
+            />
 
-            <Route path="Location" element={<VendorLocation />} />
-            <Route path="Location/details/:id" element={<LocationServiceDetails />} />
+            <Route
+              path="Venues"
+              element={userData ? <VenueVendor /> : <Navigate to="/" />}
+            />
+            <Route
+              path="Venues/details/:id"
+              element={userData ? <VenueServiceDetails /> : <Navigate to="/" />}
+            />
 
-            <Route path="beauty-center" element={<BeautyCenter />} />
+            <Route
+              path="Location"
+              element={userData ? <VendorLocation /> : <Navigate to="/" />}
+            />
+            <Route
+              path="Location/details/:id"
+              element={
+                userData ? <LocationServiceDetails /> : <Navigate to="/" />
+              }
+            />
+
+            <Route
+              path="beauty-center"
+              element={userData ? <BeautyCenter /> : <Navigate to="/" />}
+            />
             <Route
               path="beauty-center/details"
-              element={<BeautyCenterDetails />}
+              element={userData ? <BeautyCenterDetails /> : <Navigate to="/" />}
             />
             <Route path="store" element={<Store />} />
             <Route path="store/details" element={<StoreDetails />} />
             <Route path="category" element={<Category />} />
           </Route>
 
-          <Route path="budget" element={<Budget />} />
+          <Route
+            path="budget"
+            element={userData ? <Budget /> : <Navigate to="/" />}
+          />
 
-          <Route path="edit-profile" element={<EditProfile />} />
+          <Route
+            path="edit-profile"
+            element={userData ? <EditProfile /> : <Navigate to="/" />}
+          />
           {/* <Route path="admin" element={<AdminDashboard />} /> */}
         </Route>
 

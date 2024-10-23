@@ -19,10 +19,10 @@ export default function CarRentVendor() {
       "تويوتا كورولا هي سيارة عائلية اقتصادية تتميز بالراحة والاعتمادية. تعتبر من أفضل السيارات في فئتها من حيث استهلاك الوقود والتجهيزات الداخلية. مجهزة بأحدث أنظمة السلامة والأمان مثل نظام الفرامل المانع للانغلاق (ABS) ونظام التحكم في الثبات. تتيح هذه السيارة تجربة قيادة سلسة على الطرق السريعة والطرق الداخلية بفضل المحرك الاقتصادي ونظام التعليق المريح. إنها خيار مثالي للرحلات العائلية والتنقل اليومي في المدينة.",
     brand: "تويوتا",
     type: "سيدان",
-    year: "2022",
+    year: '2022',
     color: "أبيض",
-    seatCapacity: "5",
-    priceParDay: "300",
+    seatCapacity: '5',
+    priceParDay: '300',
     avalabileDate: [
       "2024-10-20",
       "2024-10-21",
@@ -141,10 +141,10 @@ export default function CarRentVendor() {
             description: "",
             brand: "",
             type: "",
-            year: "",
+            year: '',
             color: "",
-            seatCapacity: "",
-            priceParDay: "",
+            seatCapacity: '',
+            priceParDay: '',
             avalabileDate: [""],
             feature: [""],
             isAvailable: true,
@@ -303,7 +303,7 @@ export default function CarRentVendor() {
                     <Form.Group>
                       <Form.Label>سعة المقاعد</Form.Label>
                       <Form.Control
-                        type="text"
+                        type="number"
                         name="seatCapacity"
                         value={formData.seatCapacity}
                         onChange={handleChange}

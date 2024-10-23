@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 // import single_service_1 from "../assets/images/single-services/1.jpg";
-
+import { BASE_URL } from "../utils/config";
 export default function CSwiper({ dir, data }) {
   return (
     <>
@@ -39,7 +39,10 @@ export default function CSwiper({ dir, data }) {
           <>
             <SwiperSlide>
               <div className="card swiper-card">
-                <img src={item.img} alt="" />
+                <img
+                  src={item.images[0] && `${BASE_URL}/image/${item.images[0]}`}
+                  alt=""
+                />
                 <h6>{item.name}</h6>
               </div>
             </SwiperSlide>

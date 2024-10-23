@@ -16,6 +16,8 @@ import { CarRentService } from "../services/car-rent.tsx";
 import { StoreService } from "../services/store-service.tsx";
 import { VenueService } from "../services/venue-service.tsx";
 import { useParams } from "react-router-dom";
+import DisplayDateGrid from "./photographer-components/DisplayDateGrid.js";
+import { BASE_URL } from "../utils/config.js";
 
 export default function ServiceDetail() {
   const [loading, setLoading] = useState(true);
@@ -34,25 +36,25 @@ export default function ServiceDetail() {
   }, []);
 
   const getData = async () => {
-    if(window.location.href.includes('beauty-center')) {
+    if (window.location.href.includes("beauty-center")) {
       getBeautyCenterById();
     }
-    if(window.location.href.includes('location')) {
+    if (window.location.href.includes("location")) {
       getLocationById();
     }
-    if(window.location.href.includes('photographer')) {
+    if (window.location.href.includes("photographer")) {
       getPhotographerById();
     }
-    if(window.location.href.includes('car-rent')) {
+    if (window.location.href.includes("car-rent")) {
       getCarRentById();
     }
-    if(window.location.href.includes('home-store')) {
+    if (window.location.href.includes("home-store")) {
       getStoreById();
     }
-    if(window.location.href.includes('venue')) {
-      getVenueById(); 
+    if (window.location.href.includes("venue")) {
+      getVenueById();
     }
-  }
+  };
 
   const getBeautyCenterById = async () => {
     try {
@@ -63,7 +65,7 @@ export default function ServiceDetail() {
         setServiceDetailData(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -76,7 +78,7 @@ export default function ServiceDetail() {
         setServiceDetailData(response.data.Location);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -89,7 +91,7 @@ export default function ServiceDetail() {
         setServiceDetailData(response.data.photographer);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -102,7 +104,7 @@ export default function ServiceDetail() {
         setServiceDetailData(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -115,7 +117,7 @@ export default function ServiceDetail() {
         setServiceDetailData(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -128,7 +130,7 @@ export default function ServiceDetail() {
         setServiceDetailData(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -156,6 +158,7 @@ export default function ServiceDetail() {
                         <FaChevronRight className="custom-carousel-arrow-right" />
                       }
                     >
+
                       {/* <Carousel.Item>
                         <img
                           style={{ objectFit: "cover" }}
@@ -180,16 +183,18 @@ export default function ServiceDetail() {
                           alt="First slide"
                         />
                       </Carousel.Item> */}
-                      { serviceDetailData.media ? (serviceDetailData.media.images.map((image, index) => (
-                        <Carousel.Item key={index}>
-                          <img
-                            className="d-block w-100"
-                            src={image}
-                            alt={`Slide ${index}`}
-                            style={{ objectFit: "cover" }}
-                          />
-                        </Carousel.Item>
-                      ))) : ''}
+                      {serviceDetailData
+                        ? serviceDetailData?.images.map((image, index) => (
+                            <Carousel.Item key={index}>
+                              <img
+                                className="d-block w-100"
+                                src={`${BASE_URL}/image/${image}`}
+                                alt={`Slide ${index}`}
+                                style={{ objectFit: "cover" }}
+                              />
+                            </Carousel.Item>
+                          ))
+                        : ""}
                     </Carousel>
                   </div>
                   <div className="col-12 mt-5 content-type pricing">
@@ -205,18 +210,55 @@ export default function ServiceDetail() {
                   </div>
                   <div className="col-12 mt-5 content-type about">
                     <h4 className="content-type_title">عن المكان </h4>
-                    <p>
-                      {serviceDetailData.description}
-                    </p>
+                    <p>{serviceDetailData.description}</p>
                   </div>
                   <div className="col-12 mt-5 content-type content-div FQ">
                     <h4 className="content-type_title">المميزات والخدمات</h4>
                     <ul>
-                    {serviceDetailData.feature ? (serviceDetailData.feature.map((feature, index) => (
-                        <li key={index}>✔ {feature}</li>
-                      ))) : ''}
+                      {serviceDetailData.feature
+                        ? serviceDetailData.feature.map((feature, index) => (
+                            <li key={index}>✔ {feature}</li>
+                          ))
+                        : ""}
                     </ul>
                   </div>
+                  {/* <div className="content-div">
+                        <h6>
+                          <b>العروض والباقات</b>
+                        </h6>
+                        <Row xs={1} md={2} lg={3} className="g-4">
+                          {venueData?.packages &&
+                          venueData?.packages.length > 0 ? (
+                            venueData?.packages.map((pkg, index) => (
+                              <Col key={index}>
+                                <Card className="h-100 shadow-sm d-flex ">
+                                  <Card.Body className="d-flex flex-column">
+                                    <Card.Text>{pkg.title}</Card.Text>
+                                    <Card.Text className="mt-auto">
+                                      <strong>السعر:</strong> {pkg.price} جنيه
+                                    </Card.Text>
+                                  </Card.Body>
+                                </Card>
+                              </Col>
+                            ))
+                          ) : (
+                            <p className="text-center">
+                              لا توجد باقات متاحة حالياً.
+                            </p>
+                          )}
+                        </Row>
+                      </div> */}
+
+                  {serviceDetailData?.avalabileDate ? (
+                    <div className="col-12 mt-5 content-type content-div FQ">
+                      <h4 className="content-type_title">الايام المتاحة</h4>
+                      <DisplayDateGrid
+                        selectedDates={serviceDetailData?.avalabileDate}
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </>
               )}
             </div>
@@ -246,35 +288,42 @@ export default function ServiceDetail() {
 
                     <h3 class="card-title mt-2">{serviceDetailData.name}</h3>
 
-                    <div class="rating">
+                    {/* <div class="rating">
                       <span class="text-warning">⭐⭐⭐⭐</span>
                       <span> 3.8 · 25 مراجعة</span>
-                    </div>
+                    </div> */}
 
                     <p className="more">معلومات التواصل</p>
                     <ul className="card-list">
                       <li>
                         <img src={location} />
                         {serviceDetailData.location ? (
-                          <span>{serviceDetailData.location.city} - {serviceDetailData.location.state} </span>
-                        ) : ''}
+                          <span>
+                            {serviceDetailData.location.city} -{" "}
+                            {serviceDetailData.location.state}{" "}
+                          </span>
+                        ) : (
+                          ""
+                        )}
                       </li>
                       <li>
                         <img src={phone} />
                         {serviceDetailData.contacts ? (
                           <span>{serviceDetailData.contacts.phoneNumber}</span>
-                        ) : ''}
+                        ) : (
+                          ""
+                        )}
                       </li>
                     </ul>
 
                     <div class="price-range mt-3">
                       <i class="fa fa-money-bill-wave"></i>
-                       الاسعار : {serviceDetailData.price}
+                      الاسعار : {serviceDetailData.price}
                     </div>
 
-                     <button class="btn btn-primary btn-block mt-3">
+                    {/* <button class="btn btn-primary btn-block mt-3">
                       اضافة للميزانية
-                    </button> 
+                    </button> */}
                   </div>
                 </div>
               </>

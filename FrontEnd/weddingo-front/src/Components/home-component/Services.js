@@ -1,11 +1,24 @@
 import venus from "../../assets/img/services/venue.jpg";
-import photography from "../../assets/img/services/photography.jpg";
-import catering from "../../assets/img/services/catering.jpg";
+import photography from "../../assets/img/services/photographer.jpg";
+
+import carsRent from "../../assets/img/services/cars.jpg";
+import dressImg from "../../assets/img/services/dress.jpg";
+import storeImg from "../../assets/img/services/store.jpg";
+import makeupImg from "../../assets/img/services/makeup.jpg";
+
+
+
 
 import banquet_hall from "../../assets/img/smail-logos/banquet_hall.svg";
 import camera from "../../assets/img/smail-logos/camera_2.svg";
 import dress from "../../assets/img/smail-logos/dress.svg";
-import apple from "../../assets/img/smail-logos/apple.svg";
+import car from "../../assets/img/smail-logos/car.svg";
+import makeup from "../../assets/img/smail-logos/makeup.svg";
+import store from "../../assets/img/smail-logos/store.svg";
+
+
+
+
 
 const servicesData = [
   {
@@ -15,35 +28,39 @@ const servicesData = [
     des: "استعرض أفضل قاعات الاحتفالات وقم بحجز مكان مميز للاحتفال بحبك.",
   },
   {
-    img: venus,
+    img: photography,
     icon: camera,
     title: "مصورين الزفاف",
-    des: "تصفح أعمال المصورين المحليين وابحث عن المصور الذي سيُخلّد لحظات يومك المميز.", },
+    des: "تصفح أعمال المصورين المحليين وابحث عن المصور الذي سيُخلّد لحظات يومك المميز.",
+  },
   {
-    img: venus,
-    icon: apple,
+    img: carsRent,
+    icon: car,
     title: "تأجير سيارات الزفاف",
     des: "استأجر سيارات فاخرة ومميزة لترافقك في يومك الخاص وتضيف لمسة من الفخامة.",
- },
+  },
   {
-    img: venus,
+    img: dressImg,
     icon: dress,
     title: "فساتين الزفاف",
     des: "تسوق لأجمل إطلالة زفاف من خلال استكشاف المتاجر والبوتيكات القريبة منك.",
-},
+  },
   {
-    img: venus,
-    icon: dress,
+    img: makeupImg,
+    icon: makeup,
     title: "بيوتي سنتر",
     des: "احصلي على أروع إطلالة في يوم زفافك من خلال أفضل مراكز التجميل المتخصصة.",
-},
+  },
   {
-    img: venus,
-    icon: dress,
+    img: storeImg,
+    icon: store,
     title: "سوق الأجهزة",
     des: "تسوق لأفضل العروض على الأجهزة المنزلية والإلكترونية لاستكمال تجهيزات منزلك.",
-},
+  },
 ];
+
+
+
 
 const ServiceCard = ({ main_img, icon, title, des }) => {
   return (
@@ -64,6 +81,8 @@ const ServiceCard = ({ main_img, icon, title, des }) => {
   );
 };
 export default function Services() {
+  
+  
   return (
     <>
       <section className="home_services min-section">
@@ -81,7 +100,6 @@ export default function Services() {
                 des={item.des}
               />
             ))}
-           
           </div>
         </div>
       </section>
