@@ -112,11 +112,11 @@ export default function Login() {
                 <p>
                   ليس لديك حساب الان ? <Link to={"/register"}>انضم الينا</Link>
                 </p>
-                <div className="login-functions">
+                {/* <div className="login-functions">
                   {loginFunctionBTN(facebook, "الفبسبوك", handleFacebookLogin)}
                   {loginFunctionBTN(google, " جوجل", handleGoogleLogin)}
                 </div>
-                <p className="tc-devided"> او سجل الان بالبريد الالكتروني</p>
+                <p className="tc-devided"> او سجل الان بالبريد الالكتروني</p> */}
 
                 <form onSubmit={handleLogin}>
                   <div className="mb-2 form-control-sm">

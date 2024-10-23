@@ -15,26 +15,26 @@ const venueSchema = new mongoose.Schema(
       trim: true,
       minlength: [10, "Description must be at least 10 characters long"],
     },
-    availableFrom: {
-      type: Date,
-      required: [true, "Venue must have an available from date"],
-    },
-    availableTo: {
-      type: Date,
-      required: [true, "Venue must have an available to date"],
+    capacity: {
+      type: Number,
+      require: true,
       validate: {
-        validator: function (val) {
-          return val > this.availableFrom;
+        validator: (val) => {
+          return val > 0;
         },
-        message: "Available to date must be after available from date",
+        message: "Capacity must be valid number",
       },
+    },
+    avalabileDate: {
+      type: [Date],
+      default: [],
     },
     feature: {
       type: [String],
       default: [],
       validate: {
         validator: function (val) {
-          return val.length > 0;
+          return val.length >= 0;
         },
         message: "A venue must have at least one feature",
       },
@@ -73,7 +73,9 @@ const venueSchema = new mongoose.Schema(
         default: "",
         validate: {
           validator: function (val) {
-            return /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(val);
+            return /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(
+              val
+            );
           },
           message: "Please enter a valid Facebook URL",
         },
@@ -83,7 +85,9 @@ const venueSchema = new mongoose.Schema(
         default: "",
         validate: {
           validator: function (val) {
-            return /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(val);
+            return /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(
+              val
+            );
           },
           message: "Please enter a valid Twitter URL",
         },
@@ -93,7 +97,9 @@ const venueSchema = new mongoose.Schema(
         default: "",
         validate: {
           validator: function (val) {
-            return /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(val);
+            return /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(
+              val
+            );
           },
           message: "Please enter a valid Instagram URL",
         },
@@ -104,29 +110,34 @@ const venueSchema = new mongoose.Schema(
       required: [true, "Price is required"],
       min: [0, "Price cannot be negative"],
     },
-    media: {
-      images: {
-        type: [String],
-        default: [],
-        validate: {
-          validator: function (val) {
-            return val.every((url) =>
-              /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(url)
-            );
-          },
-          message: "Each image URL must be valid",
+    images: {
+      type: [String],
+      default: [],
+      // validate: {
+      //   validator: function (val) {
+      //     return val.every((url) =>
+      //       /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(url)
+      //     );
+      //   },
+      //   message: "Each image URL must be valid",
+      // },
+    },
+    video: {
+      type: String,
+      default: "",
+      validate: {
+        validator: function (val) {
+          return (
+            !val ||
+            /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(val)
+          );
         },
+        message: "Please enter a valid video URL",
       },
-      video: {
-        type: String,
-        default: "",
-        validate: {
-          validator: function (val) {
-            return !val || /^(http|https):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}\/?.*$/.test(val);
-          },
-          message: "Please enter a valid video URL",
-        },
-      },
+    },
+    userId: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Users",
     },
   },
   { timestamps: true }

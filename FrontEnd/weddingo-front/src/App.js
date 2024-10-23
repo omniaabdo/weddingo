@@ -25,8 +25,7 @@ import PhotographerVendor from "./Components/photographer-components/Photographe
 import PhotographerServiceDetails from "./Components/photographer-components/PhotographerServiceDetails";
 import CarRentVendor from "./Components/car-rent-components/CarRentVendor";
 import CarRentServiceDetails from "./Components/car-rent-components/CarRentServiceDetails";
-import VenueForm from "./Components/Venue-components/VenueService";
-import LocationForm from "./Components/Location-component/Addlocation";
+import VenueVendor from "./Components/Venue-components/VenueVendor";
 import BeautyCenter from "./Components/beauty-center-components/BeautyCenter";
 import BeautyCenterDetails from "./Components/beauty-center-components/BeautyCenterDetails";
 import Store from "./Components/store-components/Store";
@@ -37,6 +36,9 @@ import ResetPassword from "./pages/ResetPassword";
 import ErrorPage from "./pages/ErrorPage";
 import EditProfile from "./Components/EditProfile";
 import AdminDashboard from "./Components/AdminDashboard";
+import VenueServiceDetails from "./Components/Venue-components/VenueServiceDetails";
+import VendorLocation from "./Components/Location-component/VendorLocation";
+import LocationServiceDetails from "./Components/Location-component/LocationServiceDetails";
 
 function App() {
   const { pathname } = useLocation();
@@ -121,8 +123,13 @@ function App() {
 
             <Route path="car" element={<CarRentVendor />} />
             <Route path="car/details/:id" element={<CarRentServiceDetails />} />
-            <Route path="Venues" element={<VenueForm />} />
-            <Route path="Location" element={<LocationForm />} />
+            
+            <Route path="Venues" element={<VenueVendor />} />
+            <Route path="Venues/details/:id" element={<VenueServiceDetails />} />
+
+            <Route path="Location" element={<VendorLocation />} />
+            <Route path="Location/details/:id" element={<LocationServiceDetails />} />
+
             <Route path="beauty-center" element={<BeautyCenter />} />
             <Route
               path="beauty-center/details"
@@ -136,7 +143,7 @@ function App() {
           <Route path="budget" element={<Budget />} />
 
           <Route path="edit-profile" element={<EditProfile />} />
-          <Route path="admin" element={<AdminDashboard />} />
+          {/* <Route path="admin" element={<AdminDashboard />} /> */}
         </Route>
 
         <Route path="*" element={<ErrorPage />} />

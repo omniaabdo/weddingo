@@ -5,14 +5,13 @@ import {
   FaDollarSign,
   FaHeart,
   FaUsers,
-  
 } from "react-icons/fa";
 import { BiSolidDashboard } from "react-icons/bi";
 
 import "../assets/css/WeddingNavBar.css";
 import { Navbar, Nav } from "react-bootstrap";
 
-const NavBar = () => {
+const NavBar = ({ role }) => {
   const { pathname } = useLocation();
   console.log(pathname);
 
@@ -49,33 +48,42 @@ const NavBar = () => {
                     عربتي الخاصة
                   </Link>
                 </li>
-                <li className="nav-item-custom">
-                  <Link
-                    className={`nav-link ${
-                      pathname === "/profile/my-services" && "active"
-                    }`}
-                    to="/profile/my-services"
-                  >
-                    <center>
-                      <FaClipboardList />{" "}
-                    </center>
-                    خدماتي
-                  </Link>
-                </li>
-                <li className="nav-item-custom">
-                  <NavLink
-                    className={`nav-link ${
-                      pathname === "/profile/budget" && "active"
-                    }`}
-                    to="/profile/budget"
-                  >
-                    <center>
-                      <FaDollarSign />
-                    </center>
-                    الميزانية
-                  </NavLink>
-                </li>
-                <li className="nav-item-custom">
+
+                {role === "user" ? (
+                  <>
+                    <li className="nav-item-custom">
+                      <NavLink
+                        className={`nav-link ${
+                          pathname === "/profile/budget" && "active"
+                        }`}
+                        to="/profile/budget"
+                      >
+                        <center>
+                          <FaDollarSign />
+                        </center>
+                        الميزانية
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item-custom">
+                      <Link
+                        className={`nav-link ${
+                          pathname === "/profile/my-services" && "active"
+                        }`}
+                        to="/profile/my-services"
+                      >
+                        <center>
+                          <FaClipboardList />{" "}
+                        </center>
+                        خدماتي
+                      </Link>
+                    </li>
+                  </>
+                )}
+
+                {/* <li className="nav-item-custom">
                   <NavLink
                     className={`nav-link ${
                       pathname === "/profile/admin" && "active"
@@ -87,7 +95,7 @@ const NavBar = () => {
                     </center>
                     الادمن{" "}
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

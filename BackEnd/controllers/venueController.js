@@ -1,13 +1,22 @@
 "use strict";
-const Venue = require('../models/Venue');
+const Venue = require("../models/Venue");
+const Package = require("../models/packege");
+const ERRORHANDELLER = require("../utils/errorHandler");
+const { rmoveFile, changeName } = require("../utils/imageServices");
 
 // Add a new venue
 const addVenue = async (req, res) => {
   try {
-    const { name, location, capacity, price } = req.body;
-    const venue = new Venue({ name, location, capacity, price });
+    console.log(req.body);
+
+    const venue = new Venue({ ...req.body, userId: req.userId });
     await venue.save();
-    res.status(201).json({ message: 'Venue added successfully', venue });
+
+    res.status(201).json({
+      status: "success",
+      message: "Data Created Successfully",
+      data: venue,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -38,11 +47,15 @@ const getVenues = async (req, res) => {
 const getOneVenues = async (req, res, next) => {
   try {
     const getOne = await Venue.findById(req.params.id);
+    const getPackeges = await Package.findOne({ serviceId: getOne._id });
 
     res.status(200).json({
-      state: true,
+      status: "success",
       message: "Data Fetched Successfully",
-      data: getOne
+      data: {
+        ...getOne._doc,
+        packages: getPackeges?.packages,
+      },
     });
   } catch (error) {
     console.log(error);
@@ -57,9 +70,9 @@ const updateVenue = async (req, res) => {
     const updatedData = req.body;
     const venue = await Venue.findByIdAndUpdate(id, updatedData, { new: true });
     if (!venue) {
-      return res.status(404).json({ message: 'Venue not found' });
+      return res.status(404).json({ message: "Venue not found" });
     }
-    res.json({ message: 'Venue updated successfully', venue });
+    res.json({ message: "Venue updated successfully", venue });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -71,13 +84,55 @@ const deleteVenue = async (req, res) => {
     const { id } = req.params;
     const venue = await Venue.findByIdAndDelete(id);
     if (!venue) {
-      return res.status(404).json({ message: 'Venue not found' });
+      ERRORHANDELLER(404, "data not found");
     }
-    res.json({ message: 'Venue deleted successfully' });
+    res.json({
+      status: "success",
+      message: "Data Deleted Successfully",
+      data: {
+        venue,
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+const uploadeImages = async (req, res, next) => {
+  try {
+    const venueId = req.params.id;
+    const userId = req.userId;
+    const images = req.files;
+
+    const newPaths = [...images.map((item) => changeName(item.path))];
+
+    const updateService = await Venue.findOne({
+      _id: venueId,
+      userId: userId,
+    });
+
+    if (!updateService) {
+      ERRORHANDELLER(404, "data not found");
+    }
+
+    updateService.images.map((item) => rmoveFile(item));
+    updateService.$set({ images: newPaths });
+    await updateService.save();
+
+    // const deleteOne = await Photographer.findByIdAndDelete(req.params.id);
+    // const album = await Album.deleteMany({ uersId: req.params.id });
+    console.log(updateService);
+
+    res.status(200).json({
+      status: "success",
+      message: "Data Updated Successfully",
+      data: updateService,
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 
 module.exports = {
   addVenue,
@@ -85,4 +140,5 @@ module.exports = {
   getOneVenues,
   updateVenue,
   deleteVenue,
+  uploadeImages
 };

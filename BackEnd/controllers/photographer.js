@@ -4,6 +4,8 @@ const Album = require("../models/album");
 const Packege = require("../models/packege");
 const { changeName, rmoveFile } = require("../utils/imageServices");
 const { throwError } = require("../middleware/errorHandler");
+const ERRORHANDELLER = require("../utils/errorHandler");
+
 // Get all photographers with pagination
 const getAll = async (req, res, next) => {
   try {
@@ -101,7 +103,7 @@ const deleteOne = async (req, res, next) => {
     const findPhotographer = await Photographer.findById(req.params.id);
 
     if (!findPhotographer) {
-      throwError(404, "data not found");
+      ERRORHANDELLER(404, "data not found");
     }
 
     findPhotographer.images.map((item) => rmoveFile(item));
@@ -138,7 +140,7 @@ const uploadeImages = async (req, res, next) => {
     });
 
     if (!updateService) {
-      throwError(404, "data not found");
+      ERRORHANDELLER(404, "data not found");
     }
 
     updateService.images.map((item) => rmoveFile(item));

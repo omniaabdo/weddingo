@@ -4,7 +4,29 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/WelcomeSection.css"; // Import the CSS file for custom styling
 import { Link } from "react-router-dom";
 
-function WelcomeSection() {
+const DataProfileCard = ({ hlink, title, value, active }) => {
+  return (
+    <>
+      <Col xs={6} md={3} className="mb-3">
+        <Link to={hlink}>
+          <Card className="h-100 status-card">
+            <Card.Body className="text-center d-flex align-items-center justify-content-between flex-wrap">
+              <div className="text-left">
+                <Card.Title className="h6">{title}</Card.Title>
+                <Card.Text>{value}</Card.Text>
+              </div>
+              <div className="circle-status">
+                <div className={`circle ${active && "active"}`}></div>
+              </div>
+            </Card.Body>
+          </Card>
+        </Link>
+      </Col>
+    </>
+  );
+};
+
+function WelcomeSection({ name, fav, services }) {
   return (
     <div className="welcome-profile min-div">
       <div className="container">
@@ -40,7 +62,9 @@ function WelcomeSection() {
 
                 {/* Center Section: Welcome Message and Edit */}
                 <Col xs={12} md={9} className="welcome-profile_welcome-col-2">
-                  <h4 className="mb-1 fw-bold">اهلا بك , حسن علي</h4>
+                  <h4 className="mb-1 fw-bold">
+                    اهلا بك ,{name ? name : "مستخدم 1"}
+                  </h4>
                   <p className="mb-4">
                     October 5, 2024{" "}
                     <Link to={"/profile/edit-profile"} className="text-primary">
@@ -50,20 +74,20 @@ function WelcomeSection() {
 
                   {/* Status Cards Section */}
                   <Row className="gx-3">
-                    {[
+                    {/* {[
                       {
                         title: "المفضلة",
-                        value: "0 مكان",
+                        value: `${fav && fav} مكان`,
                         hlink: "/profile/vendor-manager",
                         active: false,
                       },
+
                       {
                         title: "الخدمات",
-                        value: "1 خدمة مضافة",
+                        value: `${services && services} خدمات مضافة`,
                         hlink: "/profile/checklist",
                         active: true,
                       },
-                     
                     ].map((item, index) => (
                       <Col xs={6} md={3} key={index} className="mb-3">
                         <Link to={item.hlink}>
@@ -86,7 +110,21 @@ function WelcomeSection() {
                           </Card>
                         </Link>
                       </Col>
-                    ))}
+                    ))} */}
+
+                    <DataProfileCard
+                      title={"المفضلة"}
+                      value={`${fav ? fav : 0} مكان`}
+                      hlink={"/profile/vendor-manager"}
+                      active={false}
+                    />
+
+                    <DataProfileCard
+                      title={"الخدمات"}
+                      value={`${services ? services : 0} خدمات مضافه`}
+                      hlink={"/profile/checklist"}
+                      active={false}
+                    />
                   </Row>
                 </Col>
               </Row>

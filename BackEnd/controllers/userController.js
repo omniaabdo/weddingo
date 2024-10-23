@@ -1,7 +1,11 @@
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('../models/user');
+const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const User = require("../models/user");
+const photographer = require("../models/photographer");
+const Car = require("../models/car_rent");
+const Venue = require("../models/Venue");
+const Location = require("../models/location");
 
 // Utility to generate JWT token
 const signToken = (id) => {
@@ -15,7 +19,7 @@ const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
   res.status(statusCode).json({
-    status: 'success',
+    status: "success",
     token,
     data: {
       user,
@@ -38,7 +42,7 @@ exports.register = async (req, res) => {
     createSendToken(newUser, 201, res);
   } catch (err) {
     res.status(400).json({
-      status: 'fail',
+      status: "fail",
       message: err.message,
     });
   }
@@ -52,23 +56,23 @@ exports.login = async (req, res) => {
   try {
     if (!email || !password) {
       return res.status(400).json({
-        status: 'fail',
-        message: 'Please provide email and password!',
+        status: "fail",
+        message: "Please provide email and password!",
       });
     }
 
     const user = await User.findOne({ email }).select('+password');
-    if (!user || !(await user.correctPassword(password, user.password))) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({
-        status: 'fail',
-        message: 'Incorrect email or password',
+        status: "fail",
+        message: "Incorrect email or password",
       });
     }
 
     createSendToken(user, 200, res);
   } catch (err) {
     res.status(500).json({
-      status: 'error',
+      status: "error",
       message: err.message,
     });
   }
@@ -81,8 +85,8 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({
-        status: 'fail',
-        message: 'There is no user with that email address.',
+        status: "fail",
+        message: "There is no user with that email address.",
       });
     }
 
@@ -92,12 +96,12 @@ exports.forgotPassword = async (req, res) => {
     // TODO: Send email with resetToken (use an email service)
 
     res.status(200).json({
-      status: 'success',
-      message: 'Token sent to email!',
+      status: "success",
+      message: "Token sent to email!",
     });
   } catch (err) {
     res.status(500).json({
-      status: 'error',
+      status: "error",
       message: err.message,
     });
   }
@@ -105,7 +109,10 @@ exports.forgotPassword = async (req, res) => {
 
 // Reset Password
 exports.resetPassword = async (req, res) => {
-  const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
 
   try {
     const user = await User.findOne({
@@ -115,8 +122,8 @@ exports.resetPassword = async (req, res) => {
 
     if (!user) {
       return res.status(400).json({
-        status: 'fail',
-        message: 'Token is invalid or has expired',
+        status: "fail",
+        message: "Token is invalid or has expired",
       });
     }
 
@@ -129,7 +136,7 @@ exports.resetPassword = async (req, res) => {
     createSendToken(user, 200, res);
   } catch (err) {
     res.status(500).json({
-      status: 'error',
+      status: "error",
       message: err.message,
     });
   }
@@ -138,17 +145,17 @@ exports.resetPassword = async (req, res) => {
 // Get current user
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.userId);
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: {
-        user,
+        user
       },
     });
   } catch (err) {
     res.status(500).json({
-      status: 'error',
+      status: "error",
       message: err.message,
     });
   }
@@ -160,14 +167,54 @@ exports.getAllUsers = async (req, res) => {
     const users = await User.find();
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: {
         users,
       },
     });
   } catch (err) {
     res.status(500).json({
-      status: 'error',
+      status: "error",
+      message: err.message,
+    });
+  }
+};
+
+// User - Get User Services
+exports.getServices = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const userData = await User.findById(userId);
+    // if (!userData) {
+    //   throwError(404, "user not found");
+    // }
+    const getAllPhotgraphersServices = await photographer.find({
+      userId: userData.id,
+    });
+    const getAllCarRentServices = await Car.find({
+      userId: userData.id,
+    });
+
+    const getAllVenueServices = await Venue.find({
+      userId: userData.id,
+    });
+    const getAllLocationServices = await Location.find({
+      userId: userData.id,
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "data feached successfuly",
+      data: {
+        photographers: getAllPhotgraphersServices,
+        cars: getAllCarRentServices,
+        venue: getAllVenueServices,
+        locations: getAllLocationServices,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
       message: err.message,
     });
   }
