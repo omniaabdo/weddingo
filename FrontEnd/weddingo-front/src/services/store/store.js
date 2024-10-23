@@ -19,6 +19,7 @@ import singleVenueReducer from "./venue/venueSingleService";
 // Venue Rent
 import locationReducer from "./location/vendorLocation";
 import singleLocationReducer from "./location/locationSingleService";
+import singleHomeStoreCategoryDataReducer from "./store-category/storeCategoryService";
 const store = configureStore({
   reducer: {
     regesterReducer,
@@ -39,6 +40,9 @@ const store = configureStore({
     //Location
     locationReducer,
     singleLocationReducer,
+
+    //category
+    singleHomeStoreCategoryDataReducer
   },
 });
 
