@@ -143,7 +143,7 @@ function App() {
           <Route path="budget" element={<Budget />} />
 
           <Route path="edit-profile" element={<EditProfile />} />
-          <Route path="admin" element={<AdminDashboard />} />
+          {/* <Route path="admin" element={<AdminDashboard />} /> */}
         </Route>
 
         <Route path="*" element={<ErrorPage />} />

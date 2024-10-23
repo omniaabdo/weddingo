@@ -5,6 +5,7 @@ import { regesterUserApi } from "../services/store/auth/rejester";
 import apple from "../assets/img/smail-logos/apple.svg";
 import facebook from "../assets/img/smail-logos/facebook.svg";
 import google from "../assets/img/smail-logos/google.svg";
+import { registerUser } from "../services/authService";
 
 const loginFunctionBTN = (img, text) => {
   return (
@@ -65,8 +66,9 @@ export default function Register() {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setApiError("");
 
     // Validate form fields before submitting
     const formErrors = validateForm();
@@ -74,37 +76,56 @@ export default function Register() {
       setErrors(formErrors); // If errors exist, set them in state
       return;
     }
-
     // Form data is valid, proceed with submission
     const formData = {
-      fullName,
-      email,
-      password,
-      userType,
+      name: fullName,
+      email: email,
+      password: password,
+      role: userType,
     };
 
-    dispatch(regesterUserApi(formData)).then((result) => {
-      if (result.payload && result.payload.status === "success") {
+    // dispatch(regesterUserApi(formData)).then((result) => {
+    //   if (result.payload && result.payload.status === "success") {
+    //     localStorage.setItem(
+    //       "userDate",
+    //       JSON.stringify({
+    //         token: result.payload.token,
+    //         data: {
+    //           name: result.payload.data.user.name,
+    //           email: result.payload.data.user.email,
+    //         },
+    //       })
+    //     );
+    //     window.location.reload();
+    //   } else {
+    //     if (/E11000 duplicate key error/.test(result.payload?.message)) {
+    //       setApiError("البريد موجود بالفعل");
+    //     } else {
+    //       setApiError(
+    //         result.payload?.message || "خطأ غير متوقع، حاول مرة أخرى"
+    //       );
+    //     }
+    //   }
+    // });
+
+    try {
+      const result = await registerUser(formData);
+      if (result.status === "success") {
         localStorage.setItem(
-          "userDate",
+          "userData",
           JSON.stringify({
-            token: result.payload.token,
+            token: result.token,
             data: {
-              name: result.payload.data.user.name,
-              email: result.payload.data.user.email,
+              name: result.data.user.name,
+              email: result.data.user.email,
             },
           })
         );
-        // Navigate to the home page
-        navigate("/");
-      } else {
-        if (/E11000 duplicate key error/.test(result.payload?.message)) {
-          setApiError("البريد موجود بالفعل");
-        } else {
-          setApiError(result.payload?.message || "خطأ غير متوقع، حاول مرة أخرى");
-        }
+        window.location.reload();
       }
-    });
+    } catch (error) {
+      setApiError(error.message);
+    }
 
     setErrors({});
   };
@@ -122,11 +143,11 @@ export default function Register() {
               <div className="register-form__form card">
                 <div className="img-content"></div>
                 <div className="text-content">
-                  <div className="login-functions">
+                  {/* <div className="login-functions">
                     {loginFunctionBTN(facebook, "فيسبوك")}
                     {loginFunctionBTN(google, "جوجل")}
                   </div>
-                  <h6 className="mt-3 py-1"> او سجل بالبريد الالكتروني </h6>
+                  <h6 className="mt-3 py-1"> او سجل بالبريد الالكتروني </h6> */}
 
                   <form onSubmit={handleSubmit}>
                     <div className="mb-2 form-control-sm">

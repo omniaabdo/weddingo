@@ -64,3 +64,102 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [22/Oct/2024:22:53:24 +0000] \"POST /api/users/login HTTP/1.1\" 200 386 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0\""}
 {"level":"info","message":"::ffff:127.0.0.1 - - [22/Oct/2024:22:55:52 +0000] \"POST /api/users/login HTTP/1.1\" 200 386 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0\""}
 {"level":"info","message":"::ffff:127.0.0.1 - - [22/Oct/2024:22:59:07 +0000] \"POST /api/users/login HTTP/1.1\" 200 386 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [22/Oct/2024:23:56:02 +0000] \"POST /api/users/register HTTP/1.1\" 400 138 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [22/Oct/2024:23:56:16 +0000] \"POST /api/users/register HTTP/1.1\" 400 138 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [22/Oct/2024:23:56:25 +0000] \"POST /api/users/register HTTP/1.1\" 201 413 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [22/Oct/2024:23:58:28 +0000] \"POST /api/users/register HTTP/1.1\" 201 397 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:05:37 +0000] \"POST /api/users/register HTTP/1.1\" 201 393 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:36:40 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:36:47 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:36:47 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:38:44 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:38:44 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:37 +0000] \"GET /api/venues HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:37 +0000] \"GET /api/venues HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:40 +0000] \"GET /photographer HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:42 +0000] \"GET /beauty-center HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:43 +0000] \"GET /location HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:45 +0000] \"GET /car-rent HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:47 +0000] \"GET /home-store HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:53 +0000] \"GET /photographer HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:39:53 +0000] \"GET /photographer HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:40:04 +0000] \"GET /location HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:40:08 +0000] \"GET /car-rent HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:40:09 +0000] \"GET /home-store HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:40:10 +0000] \"GET /api/venues HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:40:30 +0000] \"POST /api/users/login HTTP/1.1\" 200 479 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:40:35 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:40:35 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:41:44 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:41:44 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:42:55 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:42:56 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:44:26 +0000] \"POST /api/users/login HTTP/1.1\" 200 479 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:44:31 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:44:31 +0000] \"GET /api/users/me HTTP/1.1\" 400 64 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:46:38 +0000] \"GET /api/users/me HTTP/1.1\" 200 223 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:46:38 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:49:17 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:49:17 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:51:39 +0000] \"GET /api/users/me HTTP/1.1\" 200 250 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:51:39 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:52:43 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:52:50 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:52:50 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:53:36 +0000] \"GET /api/users/me HTTP/1.1\" 200 241 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:53:36 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:53:42 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:53:46 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:53:59 +0000] \"GET /api/users/me HTTP/1.1\" 200 250 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:55:50 +0000] \"GET /api/users/me HTTP/1.1\" 200 162 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:55:50 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:55:59 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:55:59 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"Server running on port 5002"}
+{"level":"info","message":"MongoDB connected"}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:56:20 +0000] \"GET /api/users/me HTTP/1.1\" 200 250 \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:56:20 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:56:43 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:00:56:59 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:02:41 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:02:41 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:03:29 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:03:36 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:03:53 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:04:09 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:04:31 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:04:38 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:04:52 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:04:58 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:05:13 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:05:13 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:05:27 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:05:27 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:05:32 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:05:32 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:07:06 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:07:47 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
+{"level":"info","message":"::1 - - [23/Oct/2024:01:07:48 +0000] \"GET /api/users/me HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36\""}
