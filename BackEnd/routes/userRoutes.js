@@ -11,9 +11,14 @@ router.post('/verifyCode', userController.verifyCode);
 router.post("/resetPassword", userController.resetPassword);
 router.get("/services", checkToken, userController.getServices);
 
+// Route for searching service providers like vendors, photographers, beauty centers, etc.
+router.get('/searchServices', userController.searchServices);
+
+
 router.get("/me", checkToken, userController.getUser);
-router.post("/edit", checkToken, userController.editUserData);
-router.use(authController.protect);
+
+// userRoutes.js
+router.get('/searchServices', userController.searchServices);
 
 // Protect all routes after this middleware
 
