@@ -41,6 +41,8 @@ import VendorLocation from "./Components/Location-component/VendorLocation";
 import LocationServiceDetails from "./Components/Location-component/LocationServiceDetails";
 import UserPhotographerServiceDetails from "./Components/services-datails/UserPhotographerServiceDetails";
 import UserLocationServiceDetails from "./Components/services-datails/UserLocationServiceDetails";
+import UserVenueServiceDetails from "./Components/services-datails/UserVenueServiceDetails";
+import UserCarRentServiceDetails from "./Components/services-datails/UserCarRentServiceDetails";
 
 function App() {
   const { pathname } = useLocation();
@@ -96,10 +98,6 @@ function App() {
         <Route path="/services/venue" element={<SingleServices />} />
 
         <Route
-          path="/services/beauty-center/service-detail/:id"
-          element={<SingleServicesDetails />}
-        />
-        <Route
           path="/services/location/service-detail/:id"
           element={<UserLocationServiceDetails />}
         />
@@ -109,21 +107,24 @@ function App() {
         />
         <Route
           path="/services/car-rent/service-detail/:id"
+          element={<UserCarRentServiceDetails />}
+        />
+        <Route
+          path="/services/venue/service-detail/:id"
+          element={<UserVenueServiceDetails />}
+        />
+        {/* <Route
+          path="/services/service-detail/:id"
+          element={<SingleServicesDetails />}
+        /> */}
+        <Route
+          path="/services/beauty-center/service-detail/:id"
           element={<SingleServicesDetails />}
         />
         <Route
           path="/services/home-store/service-detail/:id"
           element={<SingleServicesDetails />}
         />
-        <Route
-          path="/services/venue/service-detail/:id"
-          element={<SingleServicesDetails />}
-        />
-        <Route
-          path="/services/service-detail/:id"
-          element={<SingleServicesDetails />}
-        />
-
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
 
