@@ -56,6 +56,7 @@ function Profile() {
               <NavBar role={userData.role} />
               <WelcomeSection
                 name={userData.name}
+                image={userData.image}
                 fav={userData.favoret.length}
                 services={userData.services.length}
               />

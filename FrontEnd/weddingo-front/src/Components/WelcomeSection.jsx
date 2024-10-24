@@ -3,7 +3,7 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/WelcomeSection.css"; // Import the CSS file for custom styling
 import { Link } from "react-router-dom";
-
+import { BASE_URL } from "../utils/config";
 const DataProfileCard = ({ hlink, title, value, active }) => {
   return (
     <>
@@ -26,7 +26,7 @@ const DataProfileCard = ({ hlink, title, value, active }) => {
   );
 };
 
-function WelcomeSection({ name, fav, services }) {
+function WelcomeSection({ name, fav, services, image }) {
   return (
     <div className="welcome-profile min-div">
       <div className="container">
@@ -41,11 +41,23 @@ function WelcomeSection({ name, fav, services }) {
                   className="welcome-profile_welcome-col-1 text-center mb-3 mb-md-0"
                 >
                   <div className="position-relative d-inline-block main-image-container">
-                    <img
-                      src="https://via.placeholder.com/150"
-                      alt="Wedding"
-                      className="rounded main-image "
-                    />
+                    {image && image !== "" ? (
+                      <>
+                        <img
+                          src={`${BASE_URL}/image/${image}`}
+                          alt="Wedding"
+                          className="rounded main-image "
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <img
+                          src="https://via.placeholder.com/150"
+                          alt="Wedding"
+                          className="rounded main-image "
+                        />
+                      </>
+                    )}
                     {/* <div className="position-absolute top-0 start-0 m-2">
                       <Button variant="light" size="sm" className="ms-1">
                         ✏️

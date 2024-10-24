@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-
+import { BASE_URL } from "../utils/config";
 
 export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
@@ -21,7 +21,7 @@ export default function ResetPassword() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5002/api/users/resetPassword", {
+      const response = await axios.post(`${BASE_URL}/api/users/resetPassword`, {
         email,
         verificationCode, // Use the verificationCode received from the previous component
         newPassword,
@@ -31,10 +31,11 @@ export default function ResetPassword() {
       navigate("/login");
     } catch (error) {
       console.error(error);
-      setMessage(error.response?.data?.message || "حدث خطأ ما. من فضلك حاول مرة أخرى");
+      setMessage(
+        error.response?.data?.message || "حدث خطأ ما. من فضلك حاول مرة أخرى"
+      );
     }
   };
-
 
   return (
     <>
@@ -69,7 +70,9 @@ export default function ResetPassword() {
                       />
                     </div>
                     <div className="form-button">
-                      <button type="submit" className="btn btn-primary">اعادة تعيين كلمة المرور</button>
+                      <button type="submit" className="btn btn-primary">
+                        اعادة تعيين كلمة المرور
+                      </button>
                     </div>
                   </form>
                 </div>

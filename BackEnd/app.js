@@ -78,7 +78,7 @@ app.use(
 
 // Routes
 app.use("/api/home", homeRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api/users",upload.single("file"), userRoutes);
 app.use("/api/venues", upload.array("files"), venueRoutes);
 app.use("/api/budget", require("./routes/budget"));
 app.use("/beauty-center", beautyCenter);
