@@ -21,7 +21,9 @@ import { VenueService } from "../services/venue-service.tsx";
 export default function Services() {
   const [loading, setLoading] = useState(true);
   const [venues, setVenues] = useState([]);
+  const [allvenues, setAllVenues] = useState([]);
   const [content, setContent] = useState({});
+  const [pageName, setPageName] = useState('');
 
    const contentDescription = [
     {
@@ -57,28 +59,62 @@ export default function Services() {
   const getData = async () => {
     if(window.location.href.includes('beauty-center')) {
       getBeautyCenter();
+      setPageName('beauty-center')
       setContent({title: contentDescription[2].title, content: contentDescription[2].content})
     }
     if(window.location.href.includes('location')) {
       getLocation();
+      setPageName('location')
       setContent({title: contentDescription[3].title, content: contentDescription[3].content})
     }
     if(window.location.href.includes('photographer')) {
       getPhotographer();
+      setPageName('photographer')
       setContent({title: contentDescription[1].title, content: contentDescription[1].content})
     }
     if(window.location.href.includes('car-rent')) {
       getCarRent();
+      setPageName('car-rent')
       setContent({title: contentDescription[4].title, content: contentDescription[4].content})
     }
     if(window.location.href.includes('home-store')) {
       getStore();
+      setPageName('home-store')
       setContent({title: contentDescription[5].title, content: contentDescription[5].content})
     }
     if(window.location.href.includes('venue')) {
       getVenue(); 
+      setPageName('venue')
       setContent({title: contentDescription[0].title, content: contentDescription[0].content})
     }
+  }
+
+  const filterDataByCapacity = (selected) => {
+    let min = selected.split('-')[0];
+    let max = selected.split('-')[1];
+    setVenues(allvenues.filter(c => c.capacity >= min && c.capacity <= max));
+  }
+
+  const filterDataByPrice = (selected) => {
+    let min = selected.split('-')[0];
+    let max = selected.split('-')[1];
+    setVenues(allvenues.filter(c => {
+      if(min && max) return c.price >= min && c.price <= max;
+      else if(min) return c.price <= min;
+      else if(max) return c.price >= max;
+    }));
+  }
+
+  const filterDataByCar = (type) => {
+    setVenues(allvenues.filter(c => c.carType == type));
+  }
+
+  const filterDataByStatus = (status) => {
+    setVenues(allvenues.filter(c => c.status == status));
+  }
+
+  const resetFilter = () => {
+    setVenues(allvenues);
   }
 
   const getBeautyCenter = async () => {
@@ -88,6 +124,7 @@ export default function Services() {
       if (response && response.data) {
         setLoading(false);
         setVenues(response.data);
+        setAllVenues(response.data);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -101,6 +138,7 @@ export default function Services() {
       if (response && response.data) {
         setLoading(false);
         setVenues(response.data);
+        setAllVenues(response.data);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -114,6 +152,7 @@ export default function Services() {
       if (response && response.data) {
         setLoading(false);
         setVenues(response.data);
+        setAllVenues(response.data);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -127,6 +166,7 @@ export default function Services() {
       if (response && response.data) {
         setLoading(false);
         setVenues(response.data);
+        setAllVenues(response.data);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -140,6 +180,7 @@ export default function Services() {
       if (response && response.venues) {
         setLoading(false);
         setVenues(response.venues);
+        setAllVenues(response.venues);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -153,6 +194,7 @@ export default function Services() {
       if (response && response.data) {
         setLoading(false);
         setVenues(response.data);
+        setAllVenues(response.data);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -192,10 +234,18 @@ export default function Services() {
                 ) : (
                   <>
                     <p>الفلاتر</p>
-                    <FilterType />
-                    <FilterCapacity />
-                    <FilterPrice start={1000} />
-                    <FilterCarType />
+                    { pageName === 'beauty-center' ? (
+                      <FilterType onStatusFilterChange={(selected) => filterDataByStatus(selected)}/>
+                    ) : ''}
+                    { pageName === 'venue' ? (
+                    <FilterCapacity onFilterChange={(selected) => filterDataByCapacity(selected)}/>
+                    ) : ''}
+                    { pageName === 'venue' || pageName === 'beauty-center' || pageName === 'location' || pageName === 'home-store' ? (
+                    <FilterPrice start={1000} onPriceFilterChange={(selected) => filterDataByPrice(selected)}/>
+                  ) : ''}
+                  { pageName === 'car-rent' ? (
+                    <FilterCarType onCarTypeFilterChange={(selected) => filterDataByCar(selected)}/>
+                    ) : ''}
                   </>
                 )}
               </div>
@@ -212,11 +262,14 @@ export default function Services() {
                     </>
                   ) : (
                     <>
-                      <h6>
-                        وجدنا
-                        <b> {" "+venues.length+" "} </b>
-                        نتيجة مطابقة لك
-                      </h6>
+                      <div style={{display: 'flex'}}>
+                        <h6>
+                          وجدنا
+                          <b> {" "+venues.length+" "} </b>
+                          نتيجة مطابقة لك
+                        </h6>
+                        <p style={{color: '#1f88d9', marginRight: '5px', cursor: 'pointer', fontSize: 'medium'}} onClick={(e) => resetFilter()}>إلغاء الفلتر</p>
+                      </div>
                       {venues.length > 0 ? (venues.map((venue, index) => (
                         <ServiceCard key={index} {...venue} />
                       ))): ''}
