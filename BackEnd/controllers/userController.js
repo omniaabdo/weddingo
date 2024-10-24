@@ -1,12 +1,12 @@
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const User = require("../models/user");
+const User = require("../models/User");
 const photographer = require("../models/photographer");
 const Car = require("../models/car_rent");
 const Venue = require("../models/Venue");
 const Location = require("../models/location");
-
+const nodemailer = require('nodemailer');
 // Utility to generate JWT token
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({
         status: "fail",
-        message: "Please provide email and password!",
+        message: "من فضلك ادخل كلمة المرور و الايميل الخاص بك!",
       });
     }
 
@@ -65,7 +65,7 @@ exports.login = async (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({
         status: "fail",
-        message: "Incorrect email or password",
+        message: "خطا فى الايميل او كلمة المرور",
       });
     }
 
@@ -78,67 +78,116 @@ exports.login = async (req, res) => {
   }
 };
 // Forgot Password
+// Email sending utility
+
+// Initialize the transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'ahmedabdo102024@gmail.com', // Replace with your Gmail address
+    pass: 'ejhbafrvpmjygooa', // Replace with your generated App Password
+  },
+});
+
+// Function to generate a random verification code
+const generateVerificationCode = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString(); // Generates a 6-digit code
+};
+
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
 
   try {
+    // Find the user by email
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({
-        status: "fail",
-        message: "There is no user with that email address.",
-      });
+      return res.status(404).json({ message: 'المستخدم غير موجود' });
     }
 
-    const resetToken = user.createPasswordResetToken();
+    // Generate a verification code
+    const verificationCode = generateVerificationCode();
+
+    // Optionally, you could save the verification code to the user record
+    user.passwordResetToken = verificationCode; // Store the code
+    user.passwordResetExpires = Date.now() + 15 * 60 * 1000; // Set expiry time (15 minutes)
     await user.save({ validateBeforeSave: false });
 
-    // TODO: Send email with resetToken (use an email service)
+    // Send the email with the verification code
+    const mailOptions = {
+      from: 'ahmedabdo102024@gmail.com', // Replace with your Gmail address
+      to: user.email,
+      subject: 'Password Reset Verification Code',
+      text: `Your verification code is: ${verificationCode}. It will expire in 15 minutes.`,
+    };
+
+    await transporter.sendMail(mailOptions);
 
     res.status(200).json({
-      status: "success",
-      message: "Token sent to email!",
+      message: 'تم ارسال كود التحقق الى بريدك الالكترونى',
     });
-  } catch (err) {
-    res.status(500).json({
-      status: "error",
-      message: err.message,
-    });
+  } catch (error) {
+    console.error('Error during forgotPassword:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
-// Reset Password
-exports.resetPassword = async (req, res) => {
-  const hashedToken = crypto
-    .createHash("sha256")
-    .update(req.params.token)
-    .digest("hex");
+
+
+// Function to verify the verification code
+exports.verifyCode = async (req, res) => {
+  const { email, verificationCode } = req.body;
 
   try {
-    const user = await User.findOne({
-      passwordResetToken: hashedToken,
-      passwordResetExpires: { $gt: Date.now() },
-    });
-
+    // Find the user by email
+    const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
-        status: "fail",
-        message: "Token is invalid or has expired",
-      });
+      return res.status(404).json({ message: 'المستخدم غير موجود' });
     }
 
-    user.password = await bcrypt.hash(req.body.password, 12);
-    user.passwordConfirm = req.body.passwordConfirm;
-    user.passwordResetToken = undefined;
-    user.passwordResetExpires = undefined;
+    // Check if the verification code matches and is not expired
+    if (user.passwordResetToken !== verificationCode || Date.now() > user.passwordResetExpires) {
+      return res.status(400).json({ message: 'كود التحقق منتهى الصلاحية' });
+    }
+
+    // If the code is valid, respond with a success message
+    res.status(200).json({ message: 'كود التحقق صحيح . يمكنك الان اعادة تعين كلمة المرور' });
+  } catch (error) {
+    console.error('خطأ اثناء التحقق', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+// Reset Password
+// Function to reset the password
+exports.resetPassword = async (req, res) => {
+  const { email, verificationCode, newPassword } = req.body;
+
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if the verification code matches and is not expired
+    if (user.passwordResetToken !== verificationCode || Date.now() > user.passwordResetExpires) {
+      return res.status(400).json({ message: 'Invalid or expired verification code' });
+    }
+
+    // Update the user's password (make sure to hash it before saving)
+    user.password = newPassword; // Ensure you hash this before saving
+    user.passwordResetToken = undefined; // Clear the reset token
+    user.passwordResetExpires = undefined; // Clear the expiry
     await user.save();
 
-    createSendToken(user, 200, res);
-  } catch (err) {
-    res.status(500).json({
-      status: "error",
-      message: err.message,
+    res.status(200).json({
+      message: 'Password has been reset successfully!',
     });
+  } catch (error) {
+    console.error('Error during resetPassword:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
@@ -7,26 +7,44 @@ export default function ForgetPassword() {
   const [email, setEmail] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // Use useNavigate for programmatic navigation
 
   const handleSendEmail = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post("http://localhost:5002/api/users/forgotPassword", { email });
-      setMessage("Verification code sent to your email!");
-      setSend(true);
+      setMessage("تم ارسال رمز التحقق الى بريدك الالكترونى");
+      setSend(true); // Move to the next step
     } catch (error) {
       console.error(error);
-      setMessage(error.message);
+      setMessage(error.response?.data?.message || "An error occurred. Please try again.");
     }
   };
 
-  const handleVerifyCode = (e) => {
+  const handleVerifyCode = async (e) => {
     e.preventDefault();
-    // Logic for verifying the code would go here
-    // For now, let's redirect to the reset password page
-    // Ideally, you should check if the verification code is valid before redirecting
-    Link("/resetPassword");
+
+    try {
+      const response = await axios.post("http://localhost:5002/api/users/verifyCode", {
+        email,
+        verificationCode,
+      });
+      
+      localStorage.setItem("resetEmail", email);
+      setMessage(response.data.message); // Set success message from response
+      // Navigate to the reset password page upon successful verification
+      navigate("/reset-password", {
+        state: {
+          email,
+          verificationCode
+          // Pass the email
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      setMessage(error.response?.data?.message || "Verification failed. Please try again.");
+    }
   };
 
   return (
@@ -39,7 +57,7 @@ export default function ForgetPassword() {
                 <div className="img-content"></div>
                 <div className="text-content">
                   <h4> نسيت كلمة السر </h4>
-                  <p>سوف يتم ارسال رقم تحقق علي البريد الالكتروني</p>
+                  <p>سوف يتم ارسال رمز تحقق علي البريد الالكتروني</p>
                   <form onSubmit={send ? handleVerifyCode : handleSendEmail}>
                     {send ? (
                       <>
@@ -74,7 +92,7 @@ export default function ForgetPassword() {
                         </div>
                       </>
                     )}
-                    {message && <p>{message}</p>} {/* Display messages */}
+                    {message && <p>{message}</p>} {/* Display feedback messages */}
                   </form>
                 </div>
               </div>

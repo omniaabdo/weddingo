@@ -64,7 +64,20 @@ userSchema.methods.correctPassword = async function (
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
 
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  // Token expires in 10 minutes
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  // Return the raw (unhashed) reset token so it can be sent to the user via email
+  return resetToken;
+};
 // Export the model if it's already compiled, or create a new one
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
