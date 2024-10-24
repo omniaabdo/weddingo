@@ -6,6 +6,7 @@
     transition: all .5s ease;
     margin: 1rem 0;
 }
+
 .checklist_single-card:hover {
     transform: scale(1.01)
 }
@@ -35,10 +36,21 @@
     line-height: 1.8;
     z-index: 2;
 }
-.checklist_single-card .de-btn {
+
+.checklist_single-card .fun-btns {
     position: absolute;
     top: 0;
     right: 0;
     z-index: 100;
     margin: .5rem;
+    display: flex;
+    gap: 2rem;
 }
+
+/* .checklist_single-card .edit-btn {
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    z-index: 100;
+    margin: .5rem;
+} */

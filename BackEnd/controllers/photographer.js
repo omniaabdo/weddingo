@@ -80,7 +80,7 @@ const update = async (req, res, next) => {
     const update = await Photographer.findById(req.params.id);
     if (!update) {
       res.status(404).json({
-        status: "success",
+        status: "fail",
         message: "Data Not Found",
       });
       return;

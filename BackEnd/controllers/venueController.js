@@ -66,13 +66,21 @@ const getOneVenues = async (req, res, next) => {
 // Update a venue
 const updateVenue = async (req, res) => {
   try {
-    const { id } = req.params;
-    const updatedData = req.body;
-    const venue = await Venue.findByIdAndUpdate(id, updatedData, { new: true });
+    const venue = await Venue.findById(req.params.id);
     if (!venue) {
-      return res.status(404).json({ message: "Venue not found" });
+      res.status(404).json({
+        status: "fail",
+        message: "Data Not Found",
+      });
+      return;
     }
-    res.json({ message: "Venue updated successfully", venue });
+    venue.$set({ ...req.body });
+    await venue.save();
+    res.status(200).json({
+      status: "success",
+      message: "Data Updated Successfully",
+      data: venue,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -133,12 +141,11 @@ const uploadeImages = async (req, res, next) => {
   }
 };
 
-
 module.exports = {
   addVenue,
   getVenues,
   getOneVenues,
   updateVenue,
   deleteVenue,
-  uploadeImages
+  uploadeImages,
 };

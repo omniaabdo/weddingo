@@ -208,8 +208,9 @@ function AddVendor() {
                           goTo={`/profile/my-services/photographer/details/${item._id}`}
                           ICON={FaCamera}
                           id={item._id}
-                          deleteService={handleShowConfromModule}
                           url={"photographer"}
+                          deleteService={handleShowConfromModule}
+                          editUrl={"/profile/my-services/photographer/edit"}
                         />
                       ))
                     ) : (
@@ -229,6 +230,7 @@ function AddVendor() {
                           id={item._id}
                           deleteService={handleShowConfromModule}
                           url={"car-rent"}
+                          editUrl={"/profile/my-services/car/edit"}
                         />
                       ))
                     ) : (
@@ -247,6 +249,7 @@ function AddVendor() {
                           id={item._id}
                           deleteService={handleShowConfromModule}
                           url={"api/venues"}
+                          editUrl={"/profile/my-services/Venues/edit"}
                         />
                       ))
                     ) : (
@@ -265,6 +268,7 @@ function AddVendor() {
                           id={item._id}
                           deleteService={handleShowConfromModule}
                           url={"location"}
+                          editUrl={"/profile/my-services/Location/edit"}
                         />
                       ))
                     ) : (

@@ -43,6 +43,10 @@ import UserPhotographerServiceDetails from "./Components/services-datails/UserPh
 import UserLocationServiceDetails from "./Components/services-datails/UserLocationServiceDetails";
 import UserVenueServiceDetails from "./Components/services-datails/UserVenueServiceDetails";
 import UserCarRentServiceDetails from "./Components/services-datails/UserCarRentServiceDetails";
+import EditPhotographer from "./Components/photographer-components/EditPhotographer";
+import EditLocationService from "./Components/Location-component/EditLocationService";
+import EditVenueVendor from "./Components/Venue-components/EditVenueVendor";
+import EditCarRentVendor from "./Components/car-rent-components/EditCarRentVendor";
 
 function App() {
   const { pathname } = useLocation();
@@ -130,6 +134,7 @@ function App() {
 
         <Route path="/profile">
           <Route index element={userData ? <Profile /> : <Navigate to="/" />} />
+
           <Route
             path="vendor-manager"
             element={userData ? <VendorManager /> : <Navigate to="/" />}
@@ -150,6 +155,10 @@ function App() {
                 userData ? <PhotographerServiceDetails /> : <Navigate to="/" />
               }
             />
+            <Route
+              path="photographer/edit/:id"
+              element={userData ? <EditPhotographer /> : <Navigate to="/" />}
+            />
 
             <Route
               path="car"
@@ -161,6 +170,10 @@ function App() {
                 userData ? <CarRentServiceDetails /> : <Navigate to="/" />
               }
             />
+            <Route
+              path="car/edit/:id"
+              element={userData ? <EditCarRentVendor /> : <Navigate to="/" />}
+            />
 
             <Route
               path="Venues"
@@ -169,6 +182,10 @@ function App() {
             <Route
               path="Venues/details/:id"
               element={userData ? <VenueServiceDetails /> : <Navigate to="/" />}
+            />
+            <Route
+              path="Venues/edit/:id"
+              element={userData ? <EditVenueVendor /> : <Navigate to="/" />}
             />
 
             <Route
@@ -180,6 +197,10 @@ function App() {
               element={
                 userData ? <LocationServiceDetails /> : <Navigate to="/" />
               }
+            />
+            <Route
+              path="Location/edit/:id"
+              element={userData ? <EditLocationService /> : <Navigate to="/" />}
             />
 
             <Route

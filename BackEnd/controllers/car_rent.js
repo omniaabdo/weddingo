@@ -66,16 +66,16 @@ const update = async (req, res, next) => {
     const update = await Car.findById(req.params.id);
     if (!update) {
       res.status(404).json({
-        state: true,
-        messege: "Data Not Found",
+        status: "fail",
+        message: "Data Not Found",
       });
       return;
     }
     update.$set({ ...req.body });
     await update.save();
     res.status(200).json({
-      state: true,
-      messege: "Data Updated Successfuly",
+      status: "success",
+      message: "Data Updated Successfully",
       data: update,
     });
   } catch (error) {

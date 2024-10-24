@@ -294,7 +294,7 @@ exports.getServices = async (req, res) => {
     // if (!userData) {
     //   throwError(404, "user not found");
     // }
-    const getAllPhotgraphersServices = await photographer.find({
+    const getAllPhotgraphersServices = await Photographer.find({
       userId: userData.id,
     });
     const getAllCarRentServices = await Car.find({

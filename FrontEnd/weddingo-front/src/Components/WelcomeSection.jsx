@@ -124,17 +124,17 @@ function WelcomeSection({ name, fav, services, image }) {
                       </Col>
                     ))} */}
 
-                    <DataProfileCard
+                    {/* <DataProfileCard
                       title={"المفضلة"}
                       value={`${fav ? fav : 0} مكان`}
                       hlink={"/profile/vendor-manager"}
                       active={false}
-                    />
+                    /> */}
 
                     <DataProfileCard
                       title={"الخدمات"}
                       value={`${services ? services : 0} خدمات مضافه`}
-                      hlink={"/profile/checklist"}
+                      hlink={"/profile/my-services"}
                       active={false}
                     />
                   </Row>
