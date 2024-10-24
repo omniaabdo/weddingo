@@ -332,7 +332,6 @@ exports.getServices = async (req, res) => {
 
 
 
-const User = require('../models/userModel'); // Import the User model
 
 exports.searchServices = async (req, res) => {
   try {
@@ -371,7 +370,6 @@ exports.searchServices = async (req, res) => {
   }
 };
 
-const User = require('../models/userModel'); // Import the User model
 
 exports.searchServices = async (req, res) => {
   try {

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import CustomModulesForAll from "./CustomModulesForAll";
 
 export default function EditProfileSection() {
-<<<<<<< Updated upstream
   const navegate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null); // حالة لتخزين الصورة الجديدة المختارة
   const [isImageSelected, setIsImageSelected] = useState(false); // حالة للتحكم في إظهار زر "رفع الآن"
@@ -18,13 +17,6 @@ export default function EditProfileSection() {
   const [fullName, setFulltName] = useState("");
   const [userImage, setUserImage] = useState("");
   const [email, setEmail] = useState(""); // Read-only
-=======
-  const [profile_img, setProfileImage] = useState("profile-picture.jpg");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState(""); // Read-only
-  const [currentPassword, setCurrentPassword] = useState("");
->>>>>>> Stashed changes
   const [newPassword, setNewPassword] = useState("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
