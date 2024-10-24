@@ -39,6 +39,8 @@ import AdminDashboard from "./Components/AdminDashboard";
 import VenueServiceDetails from "./Components/Venue-components/VenueServiceDetails";
 import VendorLocation from "./Components/Location-component/VendorLocation";
 import LocationServiceDetails from "./Components/Location-component/LocationServiceDetails";
+import UserPhotographerServiceDetails from "./Components/services-datails/UserPhotographerServiceDetails";
+import UserLocationServiceDetails from "./Components/services-datails/UserLocationServiceDetails";
 
 function App() {
   const { pathname } = useLocation();
@@ -99,11 +101,11 @@ function App() {
         />
         <Route
           path="/services/location/service-detail/:id"
-          element={<SingleServicesDetails />}
+          element={<UserLocationServiceDetails />}
         />
         <Route
           path="/services/photographer/service-detail/:id"
-          element={<SingleServicesDetails />}
+          element={<UserPhotographerServiceDetails />}
         />
         <Route
           path="/services/car-rent/service-detail/:id"

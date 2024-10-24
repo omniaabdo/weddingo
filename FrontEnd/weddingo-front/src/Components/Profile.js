@@ -9,6 +9,7 @@ import ProfileLoading from "./loading-components/ProfileLoading";
 function Profile() {
   const [loding, setLoading] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [services, setServices] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +34,7 @@ function Profile() {
 
         // تحديث الحالة بالبيانات المستلمة
         setUserData(data.data.user);
+        setServices(data.data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -60,11 +62,11 @@ function Profile() {
                 fav={userData.favoret.length}
                 services={userData.services.length}
               />
+              <VendorSection services={services.services} />
             </>
           )}
         </>
       )}
-      <VendorSection />
     </>
   );
 }

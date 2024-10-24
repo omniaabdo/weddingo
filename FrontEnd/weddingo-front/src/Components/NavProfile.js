@@ -8,11 +8,14 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
+
+import { BASE_URL } from "../utils/config";
+
 export default function NavProfile({ userData }) {
   const [userInfromation, setUserInfromation] = useState(null);
   const userInfo = () => {
     const name = userData.name.split(" ")[0];
-    const img = userData.img || "";
+    const img = userData.image || "";
     setUserInfromation({
       name,
       img,
@@ -29,12 +32,27 @@ export default function NavProfile({ userData }) {
   return (
     <>
       <div className="pro-div">
-        <img src={persone} alt="" />
+        {userInfromation?.img && userInfromation?.img !== "" ? (
+          <>
+            <img
+              src={`${BASE_URL}/image/${userInfromation.img}`}
+              alt="user Image"
+            />
+          </>
+        ) : (
+          <>
+            <img src={persone} alt="Avatar Image" />
+          </>
+        )}
+
         <div className="pro-div_option-list">
           <div className="option-list_persoal-info d-flex align-items-start">
-            {userInfromation?.img ? (
+            {userInfromation?.img && userInfromation?.img !== "" ? (
               <>
-                <img src={userInfromation.img} alt="user Image" />
+                <img
+                  src={`${BASE_URL}/image/${userInfromation.img}`}
+                  alt="user Image"
+                />
               </>
             ) : (
               <>
@@ -48,23 +66,22 @@ export default function NavProfile({ userData }) {
               </h4>
             </div>
           </div>
-          <div className="option-list_profile-btn">
+          {/* <div className="option-list_profile-btn">
             <Link to={"/profile"}>صفحتي الشخصية</Link>
-          </div>
+          </div> */}
           <div className="option-list_tools-div">
-            <button className="btn">
+            <Link className="btn" to={"/profile"}>
               <FaUsers />
-              البائعون
-            </button>
-            <button className="btn">
+              صفحتي
+            </Link>
+            <Link className="btn" to={"/profile/my-services"}>
               <FaClipboardList />
               الخدمات
-            </button>
-            <button className="btn">
+            </Link>
+            {/* <button className="btn">
               <FaDollarSign />
               الميزانية
-            </button>
-            <button className="btn"></button>
+            </button> */}
           </div>
           <div className="option-list_setting">
             <Link onClick={logOut}>تسجيل الخروج</Link>

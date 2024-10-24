@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
-const photographer = require("../models/photographer");
+const Photographer = require("../models/photographer");
 const Car = require("../models/car_rent");
 const Venue = require("../models/Venue");
 const Location = require("../models/location");
@@ -228,10 +228,35 @@ exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
 
+    const photographer = await Photographer.find({ userId: user._id }).select(
+      "_id"
+    );
+    const cars = await Car.find({ userId: user._id }).select("_id");
+    const vanue = await Venue.find({ userId: user._id }).select("_id");
+    const locations = await Location.find({ userId: user._id }).select("_id");
+
+    const getPhotographer = await Photographer.aggregate([
+      { $sample: { size: 4 } }, // اختيار 4 خدمات عشوائية
+    ]);
+    const getVenue = await Venue.aggregate([
+      { $sample: { size: 4 } }, // اختيار 4 خدمات عشوائية
+    ]);
+
+    user.services = [
+      ...user.services, // إبقاء أي بيانات موجودة في المصفوفة
+      ...photographer.map((item) => item._id),
+      ...cars.map((item) => item._id),
+      ...vanue.map((item) => item._id),
+      ...locations.map((item) => item._id),
+    ];
     res.status(200).json({
       status: "success",
       data: {
         user,
+        services: {
+          photographers: getPhotographer,
+          venue: getVenue,
+        },
       },
     });
   } catch (err) {

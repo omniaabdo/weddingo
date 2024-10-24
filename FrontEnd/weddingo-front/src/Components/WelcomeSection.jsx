@@ -78,7 +78,7 @@ function WelcomeSection({ name, fav, services, image }) {
                     اهلا بك ,{name ? name : "مستخدم 1"}
                   </h4>
                   <p className="mb-4">
-                    October 5, 2024{" "}
+                  ✏️
                     <Link to={"/profile/edit-profile"} className="text-primary">
                       تعديل
                     </Link>

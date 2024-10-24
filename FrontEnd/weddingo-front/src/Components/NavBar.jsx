@@ -35,7 +35,7 @@ const NavBar = ({ role }) => {
                     الرئيسية
                   </Link>
                 </li>
-                <li className="nav-item-custom">
+                {/* <li className="nav-item-custom">
                   <Link
                     className={`nav-link ${
                       pathname === "/profile/vendor-manager" && "active"
@@ -47,7 +47,7 @@ const NavBar = ({ role }) => {
                     </center>
                     عربتي الخاصة
                   </Link>
-                </li>
+                </li> */}
 
                 {role === "user" ? (
                   <>

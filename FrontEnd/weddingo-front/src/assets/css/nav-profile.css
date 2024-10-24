@@ -38,10 +38,12 @@
 .pro-div .pro-div_option-list .option-list_persoal-info div h4 {
     font-size: 1.4rem;
 }
-.pro-div .pro-div_option-list .option-list_profile-btn{
+
+.pro-div .pro-div_option-list .option-list_profile-btn {
     padding: 0 1rem 1rem;
 }
-.pro-div .pro-div_option-list .option-list_profile-btn a{
+
+.pro-div .pro-div_option-list .option-list_profile-btn a {
     display: block;
     border: 1px solid #777;
     padding: .5rem;
@@ -51,7 +53,8 @@
     border-radius: 10px;
     text-transform: uppercase;
 }
-.pro-div .pro-div_option-list .option-list_profile-btn a:hover{
+
+.pro-div .pro-div_option-list .option-list_profile-btn a:hover {
     border-color: #111;
 
 }
@@ -83,14 +86,46 @@
 }
 
 
-.pro-div .pro-div_option-list .option-list_tools-div button:hover{
+.pro-div .pro-div_option-list .option-list_tools-div button:hover {
     color: #0dcaf0;
+    background-color: transparent !important;
 }
-.pro-div .pro-div_option-list .option-list_tools-div button:hover svg{
+
+.pro-div .pro-div_option-list .option-list_tools-div button:hover svg {
     color: #555;
 }
 
 .pro-div .pro-div_option-list .option-list_tools-div button svg {
+    font-size: 2rem;
+
+}
+
+
+.pro-div .pro-div_option-list .option-list_tools-div a {
+    flex-basis: 50%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin: 1rem auto;
+    color: #555;
+    transition: all .5s ease;
+
+}
+
+
+.pro-div .pro-div_option-list .option-list_tools-div a:hover {
+    color: #0dcaf0;
+    background-color: transparent !important;
+}
+
+.pro-div .pro-div_option-list .option-list_tools-div a:hover svg {
+    color: #555;
+}
+
+.pro-div .pro-div_option-list .option-list_tools-div a svg {
     font-size: 2rem;
 
 }
@@ -118,6 +153,6 @@
 .pro-div .pro-div_option-list .option-list_setting a:hover {
     background-color: #fff;
     color: #0dcaf0;
-    border:1px solid #0dcaf0 ;
+    border: 1px solid #0dcaf0;
 
 }
