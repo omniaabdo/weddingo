@@ -157,7 +157,7 @@ function AddVendor() {
                       اضافة موقع تصوير
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     {" "}
                     <Link
                       className={"dropdown-item"}
@@ -174,7 +174,7 @@ function AddVendor() {
                     >
                       اضافة مركز تجميل
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </Col>

@@ -43,11 +43,11 @@ export default function HomeHeader({ userData }) {
                       المصورون
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to={"/services/beauty-center"}>
                       مراكز التجميل
                     </Link>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                     <Link className="nav-link" to={"/services/location"}>
                       مواقع التصوير
@@ -58,11 +58,11 @@ export default function HomeHeader({ userData }) {
                       سيارات
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to={"/services/home-store"}>
                       المتجر
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
                 {userData ? (
                   <>

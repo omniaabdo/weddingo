@@ -4,6 +4,7 @@ import ServiceCard from "./ServiceCard";
 import FilterType, {
   FilterCapacity,
   FilterCarType,
+  FilterCity,
   FilterPrice,
 } from "./FilterType";
 import ServiceCardLoading from "./loading-components/ServiceCardLoading";
@@ -23,33 +24,40 @@ export default function Services() {
   const [venues, setVenues] = useState([]);
   const [allvenues, setAllVenues] = useState([]);
   const [content, setContent] = useState({});
-  const [pageName, setPageName] = useState('');
+  const [pageName, setPageName] = useState("");
 
-   const contentDescription = [
+  const contentDescription = [
     {
-      title: "أماكن إقامة حفلات الزفاف", 
-      content: "سواء كنت تبحث عن قاعة فخمة في فندق خمس نجوم أو منتجع يطل على البحر أو مكان ريفي مريح بين أحضان الطبيعة، لدينا مجموعة واسعة من أماكن الزفاف لتناسب كل الأذواق، يمكنك العثور على قاعات تناسب الحفلات الصغيرة الحميمية أو حفلات الزفاف الكبيرة، مع خيارات تتضمن قاعات حديثة، أماكن مفتوحة، وحدائق رومانسية، استعرض قاعات الأفراح في مواقع متميزة من المدينة أو في أماكن هادئة منعزلة، أسعار الأماكن تتفاوت من الميزانيات المتوسطة إلى الفاخرة، مع وجود خدمات إضافية مثل الطعام والديكور والإضاءة لتجعل يومك مميزًا بكل التفاصيل.",
+      title: "أماكن إقامة حفلات الزفاف",
+      content:
+        "سواء كنت تبحث عن قاعة فخمة في فندق خمس نجوم أو منتجع يطل على البحر أو مكان ريفي مريح بين أحضان الطبيعة، لدينا مجموعة واسعة من أماكن الزفاف لتناسب كل الأذواق، يمكنك العثور على قاعات تناسب الحفلات الصغيرة الحميمية أو حفلات الزفاف الكبيرة، مع خيارات تتضمن قاعات حديثة، أماكن مفتوحة، وحدائق رومانسية، استعرض قاعات الأفراح في مواقع متميزة من المدينة أو في أماكن هادئة منعزلة، أسعار الأماكن تتفاوت من الميزانيات المتوسطة إلى الفاخرة، مع وجود خدمات إضافية مثل الطعام والديكور والإضاءة لتجعل يومك مميزًا بكل التفاصيل.",
     },
     {
       title: "المصورون لاتقاط اللحظات وتحويلها إلى ذكريات خالدة",
-      content: "سواء كنت تبحث عن مصور لحفلات الزفاف(لاتقاط اللحظات وتحويلها إلى ذكريات خالدة)،، نقدم لك مجموعة متنوعة من المصورين المحترفين الذين يتميزون بالإبداع والاحترافية. يمكنك استعراض ملفاتهم الشخصية، ومعرفة أسلوبهم في التصوير، بالإضافة إلى الاطلاع على باقات وأسعار تناسب مختلف الميزانيات. سواء كنت تفضل التصوير الفوتوغرافي الكلاسيكي أو الأساليب الحديثة المبتكرة، ستجد هنا المصور المثالي لتوثيق لحظاتك الخاصة بجودة عالية وسعر مناسب."
+      content:
+        "سواء كنت تبحث عن مصور لحفلات الزفاف(لاتقاط اللحظات وتحويلها إلى ذكريات خالدة)،، نقدم لك مجموعة متنوعة من المصورين المحترفين الذين يتميزون بالإبداع والاحترافية. يمكنك استعراض ملفاتهم الشخصية، ومعرفة أسلوبهم في التصوير، بالإضافة إلى الاطلاع على باقات وأسعار تناسب مختلف الميزانيات. سواء كنت تفضل التصوير الفوتوغرافي الكلاسيكي أو الأساليب الحديثة المبتكرة، ستجد هنا المصور المثالي لتوثيق لحظاتك الخاصة بجودة عالية وسعر مناسب.",
     },
     {
       title: "مراكز التجميل للحصول على أفضل العناية الشخصية ",
-      content: "مراكز التجميل هي وجهتك المثالية للحصول على أفضل العناية الشخصية والخدمات التجميلية التي تجعلك تشعرين بالتألق والثقة. سواء كنت تبحثين عن خدمات العناية بالبشرة، تصفيف الشعر، المكياج الاحترافي، أو العناية بالأظافر، نقدم لك مجموعة من أفضل مراكز التجميل التي تتميز بالجودة والاحترافية. يمكنك استعراض مختلف المراكز، الاطلاع على خدماتهم المتنوعة، والمقارنة بين أسعار الباقات التي تناسب جميع الميزانيات. سواء كنت ترغبين في جلسة استرخاء أو تحضيرات لمناسبة خاصة، ستجدين هنا المركز المثالي لتلبية احتياجاتك والحصول على تجربة جمال فريدة."
+      content:
+        "مراكز التجميل هي وجهتك المثالية للحصول على أفضل العناية الشخصية والخدمات التجميلية التي تجعلك تشعرين بالتألق والثقة. سواء كنت تبحثين عن خدمات العناية بالبشرة، تصفيف الشعر، المكياج الاحترافي، أو العناية بالأظافر، نقدم لك مجموعة من أفضل مراكز التجميل التي تتميز بالجودة والاحترافية. يمكنك استعراض مختلف المراكز، الاطلاع على خدماتهم المتنوعة، والمقارنة بين أسعار الباقات التي تناسب جميع الميزانيات. سواء كنت ترغبين في جلسة استرخاء أو تحضيرات لمناسبة خاصة، ستجدين هنا المركز المثالي لتلبية احتياجاتك والحصول على تجربة جمال فريدة.",
     },
     {
       title: "مواقع التصوير توفر لك البيئة المثالية لالتقاط أجمل اللحظات",
-      content: "مواقع التصوير توفر لك البيئة المثالية لالتقاط أجمل اللحظات وصنع ذكريات خالدة. سواء كنت تبحث عن مكان لتصوير جلسة زفاف، جلسة عائلية، أو مشروع فني، نقدم لك مجموعة متنوعة من مواقع التصوير التي تتميز بالطبيعة الخلابة، المناظر الفريدة، والتصاميم المعمارية الرائعة. يمكنك استعراض المواقع المختلفة، من الحدائق المفتوحة والشواطئ الساحرة إلى القاعات الداخلية الفاخرة والأماكن الريفية الهادئة. مع خيارات تتناسب مع جميع الأذواق والميزانيات، ستجد الموقع المثالي لجلسة التصوير الخاصة بك، مع إمكانية الاطلاع على الأسعار والخدمات الإضافية المتاحة لكل موقع."
+      content:
+        "مواقع التصوير توفر لك البيئة المثالية لالتقاط أجمل اللحظات وصنع ذكريات خالدة. سواء كنت تبحث عن مكان لتصوير جلسة زفاف، جلسة عائلية، أو مشروع فني، نقدم لك مجموعة متنوعة من مواقع التصوير التي تتميز بالطبيعة الخلابة، المناظر الفريدة، والتصاميم المعمارية الرائعة. يمكنك استعراض المواقع المختلفة، من الحدائق المفتوحة والشواطئ الساحرة إلى القاعات الداخلية الفاخرة والأماكن الريفية الهادئة. مع خيارات تتناسب مع جميع الأذواق والميزانيات، ستجد الموقع المثالي لجلسة التصوير الخاصة بك، مع إمكانية الاطلاع على الأسعار والخدمات الإضافية المتاحة لكل موقع.",
     },
     {
-      title: "سيارات الأفراح الفاخرة تضيف لمسة من الأناقة والفخامة إلى يوم زفافك",
-      content: "سيارات الأفراح الفاخرة تضيف لمسة من الأناقة والفخامة إلى يوم زفافك، حيث تلعب دورًا أساسيًا في جعل دخولك إلى الحفل لحظة مميزة لا تُنسى. سواء كنت تبحث عن سيارة كلاسيكية، ليموزين فاخرة، أو سيارة رياضية حديثة، نقدم لك مجموعة متنوعة من السيارات المخصصة للإيجار لتلبية جميع الأذواق والاحتياجات. يمكنك استعراض السيارات المتاحة، الاطلاع على تفاصيلها، واختيار الأنسب لمناسبتك الخاصة، مع إمكانية مقارنة الأسعار والباقات المختلفة لتجد السيارة المثالية التي تضيف إلى يومك لمسة من التميز والفخامة بأسعار تناسب جميع الميزانيات."
+      title:
+        "سيارات الأفراح الفاخرة تضيف لمسة من الأناقة والفخامة إلى يوم زفافك",
+      content:
+        "سيارات الأفراح الفاخرة تضيف لمسة من الأناقة والفخامة إلى يوم زفافك، حيث تلعب دورًا أساسيًا في جعل دخولك إلى الحفل لحظة مميزة لا تُنسى. سواء كنت تبحث عن سيارة كلاسيكية، ليموزين فاخرة، أو سيارة رياضية حديثة، نقدم لك مجموعة متنوعة من السيارات المخصصة للإيجار لتلبية جميع الأذواق والاحتياجات. يمكنك استعراض السيارات المتاحة، الاطلاع على تفاصيلها، واختيار الأنسب لمناسبتك الخاصة، مع إمكانية مقارنة الأسعار والباقات المختلفة لتجد السيارة المثالية التي تضيف إلى يومك لمسة من التميز والفخامة بأسعار تناسب جميع الميزانيات.",
     },
     {
       title: "الأجهزة الكهربائية",
-      content: "سواء كنتِ تبحثين عن أدوات المطبخ مثل الثلاجات والأفران أو أجهزة الغسيل مثل الغسالات والمجففات، نقدم لكِ تشكيلة واسعة من الأجهزة الكهربائية التي تناسب احتياجات العرائس. يمكنك استعراض أحدث الموديلات، التعرف على الميزات التقنية المتطورة، ومقارنة الأسعار لتجدي ما يتناسب مع ميزانيتك وذوقك. مع خيارات متعددة تتراوح بين الأجهزة الأساسية والفاخرة، نساعدك في تجهيز منزلك بأفضل الأجهزة التي تجمع بين الجودة والأداء العالي بأسعار مناسبة."
-    }
+      content:
+        "سواء كنتِ تبحثين عن أدوات المطبخ مثل الثلاجات والأفران أو أجهزة الغسيل مثل الغسالات والمجففات، نقدم لكِ تشكيلة واسعة من الأجهزة الكهربائية التي تناسب احتياجات العرائس. يمكنك استعراض أحدث الموديلات، التعرف على الميزات التقنية المتطورة، ومقارنة الأسعار لتجدي ما يتناسب مع ميزانيتك وذوقك. مع خيارات متعددة تتراوح بين الأجهزة الأساسية والفاخرة، نساعدك في تجهيز منزلك بأفضل الأجهزة التي تجمع بين الجودة والأداء العالي بأسعار مناسبة.",
+    },
   ];
 
   useEffect(() => {
@@ -57,65 +65,99 @@ export default function Services() {
   }, [location.pathname]);
 
   const getData = async () => {
-    if(window.location.href.includes('beauty-center')) {
+    if (window.location.href.includes("beauty-center")) {
       getBeautyCenter();
-      setPageName('beauty-center')
-      setContent({title: contentDescription[2].title, content: contentDescription[2].content})
+      setPageName("beauty-center");
+      setContent({
+        title: contentDescription[2].title,
+        content: contentDescription[2].content,
+      });
     }
-    if(window.location.href.includes('location')) {
+    if (window.location.href.includes("location")) {
       getLocation();
-      setPageName('location')
-      setContent({title: contentDescription[3].title, content: contentDescription[3].content})
+      setPageName("location");
+      setContent({
+        title: contentDescription[3].title,
+        content: contentDescription[3].content,
+      });
     }
-    if(window.location.href.includes('photographer')) {
+    if (window.location.href.includes("photographer")) {
       getPhotographer();
-      setPageName('photographer')
-      setContent({title: contentDescription[1].title, content: contentDescription[1].content})
+      setPageName("photographer");
+      setContent({
+        title: contentDescription[1].title,
+        content: contentDescription[1].content,
+      });
     }
-    if(window.location.href.includes('car-rent')) {
+    if (window.location.href.includes("car-rent")) {
       getCarRent();
-      setPageName('car-rent')
-      setContent({title: contentDescription[4].title, content: contentDescription[4].content})
+      setPageName("car-rent");
+      setContent({
+        title: contentDescription[4].title,
+        content: contentDescription[4].content,
+      });
     }
-    if(window.location.href.includes('home-store')) {
+    if (window.location.href.includes("home-store")) {
       getStore();
-      setPageName('home-store')
-      setContent({title: contentDescription[5].title, content: contentDescription[5].content})
+      setPageName("home-store");
+      setContent({
+        title: contentDescription[5].title,
+        content: contentDescription[5].content,
+      });
     }
-    if(window.location.href.includes('venue')) {
-      getVenue(); 
-      setPageName('venue')
-      setContent({title: contentDescription[0].title, content: contentDescription[0].content})
+    if (window.location.href.includes("venue")) {
+      getVenue();
+      setPageName("venue");
+      setContent({
+        title: contentDescription[0].title,
+        content: contentDescription[0].content,
+      });
     }
-  }
+  };
 
   const filterDataByCapacity = (selected) => {
-    let min = selected.split('-')[0];
-    let max = selected.split('-')[1];
-    setVenues(allvenues.filter(c => c.capacity >= min && c.capacity <= max));
-  }
+    let min = selected.split("-")[0];
+    let max = selected.split("-")[1];
+    setVenues(allvenues.filter((c) => c.capacity >= min && c.capacity <= max));
+  };
 
   const filterDataByPrice = (selected) => {
-    let min = selected.split('-')[0];
-    let max = selected.split('-')[1];
-    setVenues(allvenues.filter(c => {
-      if(min && max) return c.price >= min && c.price <= max;
-      else if(min) return c.price <= min;
-      else if(max) return c.price >= max;
-    }));
-  }
+    let min = selected.split("-")[0];
+    let max = selected.split("-")[1];
+    setVenues(
+      allvenues.filter((c) => {
+        if (min && max) return c.price >= min && c.price <= max;
+        else if (min) return c.price <= min;
+        else if (max) return c.price >= max;
+      })
+    );
+  };
 
   const filterDataByCar = (type) => {
-    setVenues(allvenues.filter(c => c.carType == type));
-  }
+    setVenues(allvenues.filter((c) => c.carType == type));
+  };
 
   const filterDataByStatus = (status) => {
-    setVenues(allvenues.filter(c => c.status == status));
-  }
+    setVenues(allvenues.filter((c) => c.status == status));
+  };
+  const filterDataByCity = (state) => {
+    setVenues(allvenues.filter((c) => c.location.city == state));
+  };
+
+  const [selectedStatus, setSelectedStatus] = useState(""); // لإدارة الفلتر الخاص بالحالة
+  const [selectedCapacity, setSelectedCapacity] = useState(""); // لإدارة الفلتر الخاص بالسعة
+  const [selectedPrice, setSelectedPrice] = useState(""); // لإدارة الفلتر الخاص بالسعر
+  const [selectedCarType, setSelectedCarType] = useState(""); // لإدارة الفلتر الخاص بنوع السيارة
+  const [selectedCity, setSelectedCity] = useState(""); // حالة خاصة بالمحافظة
 
   const resetFilter = () => {
+    setSelectedStatus("");
+    setSelectedCapacity("");
+    setSelectedPrice("");
+    setSelectedCarType("");
+    setSelectedCity("");
     setVenues(allvenues);
-  }
+  };
 
   const getBeautyCenter = async () => {
     try {
@@ -127,7 +169,7 @@ export default function Services() {
         setAllVenues(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -141,7 +183,7 @@ export default function Services() {
         setAllVenues(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -155,7 +197,7 @@ export default function Services() {
         setAllVenues(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -169,7 +211,7 @@ export default function Services() {
         setAllVenues(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -183,7 +225,7 @@ export default function Services() {
         setAllVenues(response.venues);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -197,7 +239,7 @@ export default function Services() {
         setAllVenues(response.data);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -216,9 +258,7 @@ export default function Services() {
         ) : (
           <>
             <h2 className="text-center">{content.title}</h2>
-            <p className="subtitle">
-             {content.content}
-            </p>
+            <p className="subtitle">{content.content}</p>
           </>
         )}
 
@@ -233,19 +273,86 @@ export default function Services() {
                   </>
                 ) : (
                   <>
-                    <p>الفلاتر</p>
-                    { pageName === 'beauty-center' ? (
-                      <FilterType onStatusFilterChange={(selected) => filterDataByStatus(selected)}/>
-                    ) : ''}
-                    { pageName === 'venue' ? (
-                    <FilterCapacity onFilterChange={(selected) => filterDataByCapacity(selected)}/>
-                    ) : ''}
-                    { pageName === 'venue' || pageName === 'beauty-center' || pageName === 'location' || pageName === 'home-store' ? (
-                    <FilterPrice start={1000} onPriceFilterChange={(selected) => filterDataByPrice(selected)}/>
-                  ) : ''}
-                  { pageName === 'car-rent' ? (
-                    <FilterCarType onCarTypeFilterChange={(selected) => filterDataByCar(selected)}/>
-                    ) : ''}
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p>الفلاتر</p>
+                      <p
+                        style={{
+                          color: "#1f88d9",
+                          cursor: "pointer",
+                          fontSize: "medium",
+                        }}
+                        onClick={(e) => resetFilter()}
+                      >
+                        إلغاء الفلتر
+                      </p>
+                    </div>
+
+                    {pageName === "beauty-center" ? (
+                      <FilterType
+                        selected={selectedStatus} // تمرير الحالة الحالية
+                        onStatusFilterChange={(selected) => {
+                          setSelectedStatus(selected); // تحديث الحالة عند تغيير الفلتر
+                          filterDataByStatus(selected);
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {pageName === "venue" ? (
+                      <FilterCapacity
+                        selected={selectedCapacity} // تمرير الحالة الحالية
+                        onFilterChange={(selected) => {
+                          setSelectedCapacity(selected); // تحديث الحالة عند تغيير الفلتر
+                          filterDataByCapacity(selected);
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {(pageName === "venue" ||
+                      pageName === "beauty-center" ||
+                      pageName === "location" ||
+                      pageName === "home-store") && (
+                      <>
+                        <FilterPrice
+                          start={1000}
+                          selected={selectedPrice} // تمرير الحالة الحالية
+                          onPriceFilterChange={(selected) => {
+                            setSelectedPrice(selected); // تحديث الحالة عند تغيير الفلتر
+                            filterDataByPrice(selected);
+                          }}
+                        />
+                        <FilterCity
+                          selected={selectedCity}
+                          onCityFilterChange={(selected) => {
+                            setSelectedCity(selected);
+                            filterDataByCity(selected);
+                          }}
+                        />
+                      </>
+                    )}
+                    {pageName === "car-rent" ? (
+                      <FilterCarType
+                        selected={selectedCarType} // تمرير الحالة الحالية
+                        onCarTypeFilterChange={(selected) => {
+                          setSelectedCarType(selected); // تحديث الحالة عند تغيير الفلتر
+                          filterDataByCar(selected);
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {pageName === "photographer" ? (
+                      <FilterCity
+                        selected={selectedCity}
+                        onCityFilterChange={(selected) => {
+                          setSelectedCity(selected); // تحديث الحالة عند تغيير الفلتر
+                          filterDataByCity(selected);
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
                   </>
                 )}
               </div>
@@ -262,17 +369,18 @@ export default function Services() {
                     </>
                   ) : (
                     <>
-                      <div style={{display: 'flex'}}>
+                      <div style={{ display: "flex" }}>
                         <h6>
                           وجدنا
-                          <b> {" "+venues.length+" "} </b>
+                          <b> {" " + venues.length + " "} </b>
                           نتيجة مطابقة لك
                         </h6>
-                        <p style={{color: '#1f88d9', marginRight: '5px', cursor: 'pointer', fontSize: 'medium'}} onClick={(e) => resetFilter()}>إلغاء الفلتر</p>
                       </div>
-                      {venues.length > 0 ? (venues.map((venue, index) => (
-                        <ServiceCard key={index} {...venue} />
-                      ))): ''}
+                      {venues.length > 0
+                        ? venues.map((venue, index) => (
+                            <ServiceCard key={index} {...venue} />
+                          ))
+                        : ""}
                     </>
                   )}
                 </div>
