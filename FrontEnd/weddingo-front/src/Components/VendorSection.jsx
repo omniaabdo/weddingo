@@ -3,16 +3,21 @@ import { Carousel, Card, Button, Form } from "react-bootstrap";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // For custom arrow icons
 import "../assets/css/Vendor.css"; // Import custom CSS
 import img from "../assets/img/services/venue.jpg";
+
+import { BASE_URL } from "../utils/config";
+
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const VendorSection = () => {
+const VendorSection = ({ services }) => {
+  console.log(services);
+
   const venues = [
     {
       title: "قصر أشفورد",
@@ -107,34 +112,40 @@ const VendorSection = () => {
                   },
                 }}
               >
-                {venues.map((item, index) => (
-                  <>
-                    <SwiperSlide key={index}>
-                      <Card>
-                        <div className="card-img-div">
-                          <a href="." className="text-decoration-none">
-                            <Card.Img variant="top" src={item.image} />
-                          </a>
-                        </div>
-                        <div className="card-text-div">
-                          <Card.Body>
-                            <Card.Title>{item.title}</Card.Title>
-                            <div className="card-text-subtitle text-muted mb-2">
-                              <b>
-                                ⭐ {item.rating} ({item.reviews})
-                              </b>
-                              <Card.Text>{item.location}</Card.Text>
-                            </div>
-                          </Card.Body>
-                        </div>
-                      </Card>
-                    </SwiperSlide>
-                  </>
-                ))}
+                {services?.venue &&
+                  services?.venue.map((item, index) => (
+                    <>
+                      <SwiperSlide key={index}>
+                        <Card>
+                          <div className="card-img-div">
+                            <a href="." className="text-decoration-none">
+                              <Card.Img
+                                variant="top"
+                                src={`${BASE_URL}/image/${item.images[0]}`}
+                              />
+                            </a>
+                          </div>
+                          <div className="card-text-div">
+                            <Card.Body>
+                              <Card.Title>{item.name}</Card.Title>
+                              <div className="card-text-subtitle text-muted mb-2">
+                                {/* <b>
+                                  ⭐ {item.rating} ({item.reviews})
+                                </b> */}
+                                <Card.Text>
+                                  {item.location.state} - {item.location.city}
+                                </Card.Text>
+                              </div>
+                            </Card.Body>
+                          </div>
+                        </Card>
+                      </SwiperSlide>
+                    </>
+                  ))}
               </Swiper>
-              <Button variant="info" className="mt-3">
+              <Link to={"/services/venue"} className="btn btn-info mt-3">
                 استكشف المزيد
-              </Button>
+              </Link>
             </div>
           </div>
 
@@ -143,13 +154,13 @@ const VendorSection = () => {
             <div className="rounded-container shadow-sm p-4">
               <h5>افضل اماكن التصوير</h5>
               <div className="div-card-subtitle  d-flex justify-content-between align-items-center my-3">
-                <p>خلد الذكريات الان في افضل الاماكن</p>
-                <Form.Select className="w-auto">
+                <p>خلد الذكريات الان في افضل المصورين</p>
+                {/* <Form.Select className="w-auto">
                   <option>فلتر الان</option>
                   <option>مصور</option>
                   <option>موسيقي</option>
                   <option>طعام</option>
-                </Form.Select>
+                </Form.Select> */}
               </div>
               <Swiper
                 modules={[Navigation, Pagination, A11y]}
@@ -170,34 +181,40 @@ const VendorSection = () => {
                   },
                 }}
               >
-                {vendors.map((item, index) => (
-                  <>
-                    <SwiperSlide key={index}>
-                      <Card>
-                        <div className="card-img-div">
-                          <a href="." className="text-decoration-none">
-                            <Card.Img variant="top" src={item.image} />
-                          </a>
-                        </div>
-                        <div className="card-text-div">
-                          <Card.Body>
-                            <Card.Title>{item.title}</Card.Title>
-                            <div className="card-text-subtitle text-muted mb-2">
-                              <b>
-                                ⭐ {item.rating} ({item.reviews})
-                              </b>
-                              <Card.Text>{item.location}</Card.Text>
-                            </div>
-                          </Card.Body>
-                        </div>
-                      </Card>
-                    </SwiperSlide>
-                  </>
-                ))}
+                {services?.photographers &&
+                  services?.photographers.map((item, index) => (
+                    <>
+                      <SwiperSlide key={index}>
+                        <Card>
+                          <div className="card-img-div">
+                            <a href="." className="text-decoration-none">
+                              <Card.Img
+                                variant="top"
+                                src={`${BASE_URL}/image/${item.images[0]}`}
+                              />
+                            </a>
+                          </div>
+                          <div className="card-text-div">
+                            <Card.Body>
+                              <Card.Title>{item.name}</Card.Title>
+                              <div className="card-text-subtitle text-muted mb-2">
+                                {/* <b>
+                                  ⭐ {item.rating} ({item.reviews})
+                                </b> */}
+                                <Card.Text>
+                                  {item.location.state} - {item.location.city}
+                                </Card.Text>
+                              </div>
+                            </Card.Body>
+                          </div>
+                        </Card>
+                      </SwiperSlide>
+                    </>
+                  ))}
               </Swiper>
-              <Button variant="info" className="mt-3">
+              <Link to={"/services/photographer"} className="btn btn-info mt-3">
                 استكشف المزيد
-              </Button>
+              </Link>
             </div>
           </div>
         </div>

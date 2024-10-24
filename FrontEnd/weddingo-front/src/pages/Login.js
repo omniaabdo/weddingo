@@ -37,6 +37,7 @@ export default function Login() {
             data: {
               name: result.data.user.name,
               email: result.data.user.email,
+              image: result.data.user.image,
             },
           })
         );
@@ -50,8 +51,8 @@ export default function Login() {
   const handleFacebookLogin = async () => {
     // Implement Facebook login logic here
     // Use Facebook's SDK to get the access token and user ID
-    const accessToken = 'your_access_token'; // Replace with the access token from Facebook SDK
-    const userID = 'your_user_id'; // Replace with the user ID from Facebook SDK
+    const accessToken = "your_access_token"; // Replace with the access token from Facebook SDK
+    const userID = "your_user_id"; // Replace with the user ID from Facebook SDK
     try {
       const result = await facebookLogin(accessToken, userID);
       if (result.status === "success") {
@@ -62,6 +63,8 @@ export default function Login() {
             data: {
               name: result.data.user.name,
               email: result.data.user.email,
+              image: result.data.user.image,
+
             },
           })
         );
@@ -75,7 +78,7 @@ export default function Login() {
   const handleGoogleLogin = async () => {
     // Implement Google login logic here
     // Use Google API to get the token ID
-    const tokenId = 'your_token_id'; // Replace with the token ID from Google API
+    const tokenId = "your_token_id"; // Replace with the token ID from Google API
     try {
       const result = await googleLogin(tokenId);
       if (result.status === "success") {
@@ -86,6 +89,8 @@ export default function Login() {
             data: {
               name: result.data.user.name,
               email: result.data.user.email,
+              image: result.data.user.image,
+
             },
           })
         );

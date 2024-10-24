@@ -77,7 +77,9 @@ exports.checkToken = async (req, res, next) => {
       error.stateusCode = 401;
       throw error;
     }
+    
     const token = authHeader.split(" ")[1];
+    console.log(token);
     const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
 
     if (!decodedToken) {

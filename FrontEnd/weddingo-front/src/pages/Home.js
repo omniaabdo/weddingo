@@ -27,7 +27,6 @@ export default function Home() {
   const { loading, homeData } = useSelector((state) => state.homeReducer);
   const dispatch = useDispatch();
   const [dataHome, setDataHome] = useState(null); // تغيير اسم المتغير ليكون متناسقًا مع القواعد العامة لتسمية المتغيرات
-  const singleServiceData = [];
   useEffect(() => {
     // استدعاء البيانات عند تحميل الصفحة مرة واحدة
     dispatch(getHomeData());

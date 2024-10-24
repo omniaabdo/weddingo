@@ -118,6 +118,7 @@ export default function Register() {
             data: {
               name: result.data.user.name,
               email: result.data.user.email,
+              image: result.data.user.image,
             },
           })
         );
