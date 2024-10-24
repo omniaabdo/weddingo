@@ -5,6 +5,7 @@ import loginReducer from "./auth/login";
 
 //Home Data
 import homeReducer from "./home/getHomeData";
+import getAllReducer from "./home/getAllData";
 
 //photographer
 import photographerReducer from "./photographer/vendorPhotographer";
@@ -28,6 +29,7 @@ import singleLocationReducer from "./location/locationSingleService";
 const store = configureStore({
   reducer: {
     homeReducer,
+    getAllReducer,
     regesterReducer,
     loginReducer,
     userDataReducer,

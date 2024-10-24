@@ -39,6 +39,10 @@ import AdminDashboard from "./Components/AdminDashboard";
 import VenueServiceDetails from "./Components/Venue-components/VenueServiceDetails";
 import VendorLocation from "./Components/Location-component/VendorLocation";
 import LocationServiceDetails from "./Components/Location-component/LocationServiceDetails";
+import UserLocationServiceDetails from "./Components/services-datails/UserLocationServiceDetails";
+import UserPhotographerServiceDetails from "./Components/services-datails/UserPhotographerServiceDetails";
+import UserVenueServiceDetails from "./Components/services-datails/UserVenueServiceDetails";
+import UserCarRentServiceDetails from "./Components/services-datails/UserCarRentServiceDetails";
 
 function App() {
   const { pathname } = useLocation();

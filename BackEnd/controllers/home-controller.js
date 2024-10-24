@@ -26,6 +26,28 @@ exports.getServices = async (req, res, next) => {
     next(error);
   }
 };
+exports.getAll = async (req, res, next) => {
+  try {
+    const venues = await Venue.find().select("name");
+    const cars = await Cars.find().select("name ");
+    const photographers = await Photographer.find().select("name");
+    const locations = await Locations.find().select("name ");
+
+    res.status(200).json({
+      status: "success",
+      message: "Data Fetched Successfully",
+      data: {
+        venues,
+        cars,
+        photographers,
+        locations,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 
 exports.addSubscription = async (req, res, next) => {
   try {
@@ -35,7 +57,7 @@ exports.addSubscription = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       message: "Data Fetched Successfully",
-      data:sub
+      data: sub,
     });
   } catch (error) {
     console.log(error);

@@ -371,40 +371,40 @@ exports.searchServices = async (req, res) => {
 };
 
 
-exports.searchServices = async (req, res) => {
-  try {
-    const userId = req.userId;
-    const { name, password } = req.body;
-    const image = req.file;
+// exports.searchServices = async (req, res) => {
+//   try {
+//     const userId = req.userId;
+//     const { name, password } = req.body;
+//     const image = req.file;
 
-    const userData = await User.findById(userId);
-    if (!userData) {
-      ERRORHANDELLER(404, "data not found");
-    }
+//     const userData = await User.findById(userId);
+//     if (!userData) {
+//       ERRORHANDELLER(404, "data not found");
+//     }
 
-    if (image) {
-      const newPaths = changeName(image.path);
+//     if (image) {
+//       const newPaths = changeName(image.path);
 
-      rmoveFile(userData.image);
-      userData.$set({ image: newPaths });
-    } else {
-      if (name) {
-        userData.$set({ name: name });
-      }
-      if (password) {
-        userData.$set({ password });
-      }
-    }
-    await userData.save();
+//       rmoveFile(userData.image);
+//       userData.$set({ image: newPaths });
+//     } else {
+//       if (name) {
+//         userData.$set({ name: name });
+//       }
+//       if (password) {
+//         userData.$set({ password });
+//       }
+//     }
+//     await userData.save();
 
-    res.status(200).json({
-      status: "success",
-      message: "data feached successfuly",
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
-};
+//     res.status(200).json({
+//       status: "success",
+//       message: "data feached successfuly",
+//     });
+//   } catch (err) {
+//     res.status(400).json({
+//       status: "fail",
+//       message: err.message,
+//     });
+//   }
+// };
