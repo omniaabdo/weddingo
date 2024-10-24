@@ -744,6 +744,7 @@
 {"level":"info","message":"::1 - - [24/Oct/2024:10:47:27 +0000] \"GET /home-store-category HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\""}
 {"level":"info","message":"::1 - - [24/Oct/2024:10:49:57 +0000] \"GET /beauty-center HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\""}
 {"level":"info","message":"::1 - - [24/Oct/2024:10:49:57 +0000] \"GET /beauty-center HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\""}
+<<<<<<< Updated upstream
 {"level":"info","message":"Server running on port 5002"}
 {"level":"info","message":"MongoDB connected"}
 {"level":"info","message":"::1 - - [24/Oct/2024:11:00:22 +0000] \"GET /location HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\""}
@@ -1025,3 +1026,5 @@
 {"level":"info","message":"::1 - - [24/Oct/2024:14:04:33 +0000] \"GET /api/users/services HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\""}
 {"level":"info","message":"::1 - - [24/Oct/2024:14:04:37 +0000] \"GET /car-rent/671553252c7c74c8cc087d17 HTTP/1.1\" 200 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\""}
 {"level":"info","message":"::1 - - [24/Oct/2024:14:04:38 +0000] \"GET /car-rent/671553252c7c74c8cc087d17 HTTP/1.1\" 304 - \"http://localhost:3000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\""}
+=======
+>>>>>>> Stashed changes

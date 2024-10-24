@@ -325,8 +325,9 @@ exports.getServices = async (req, res) => {
     });
   }
 };
+const User = require('../models/userModel'); // Import the User model
 
-exports.editUserData = async (req, res) => {
+exports.searchServices = async (req, res) => {
   try {
     const userId = req.userId;
     const { name, password } = req.body;

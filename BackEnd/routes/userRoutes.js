@@ -12,8 +12,9 @@ router.post("/resetPassword", userController.resetPassword);
 router.get("/services", checkToken, userController.getServices);
 
 router.get("/me", checkToken, userController.getUser);
-router.post("/edit", checkToken, userController.editUserData);
-router.use(authController.protect);
+
+// userRoutes.js
+router.get('/searchServices', userController.searchServices);
 
 // Protect all routes after this middleware
 

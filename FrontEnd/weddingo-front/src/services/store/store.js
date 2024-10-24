@@ -25,9 +25,6 @@ import editVenueReducer from "./venue/editVenueServices";
 // Location
 import locationReducer from "./location/vendorLocation";
 import singleLocationReducer from "./location/locationSingleService";
-import editLocationServiceReducer from "./location/editLocationServices";
-// store
-import singleHomeStoreCategoryDataReducer from "./store-category/storeCategoryService";
 const store = configureStore({
   reducer: {
     homeReducer,
@@ -52,10 +49,6 @@ const store = configureStore({
     //Location
     locationReducer,
     singleLocationReducer,
-    editLocationServiceReducer,
-
-    //category
-    singleHomeStoreCategoryDataReducer,
   },
 });
 

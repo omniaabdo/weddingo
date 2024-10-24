@@ -39,14 +39,6 @@ import AdminDashboard from "./Components/AdminDashboard";
 import VenueServiceDetails from "./Components/Venue-components/VenueServiceDetails";
 import VendorLocation from "./Components/Location-component/VendorLocation";
 import LocationServiceDetails from "./Components/Location-component/LocationServiceDetails";
-import UserPhotographerServiceDetails from "./Components/services-datails/UserPhotographerServiceDetails";
-import UserLocationServiceDetails from "./Components/services-datails/UserLocationServiceDetails";
-import UserVenueServiceDetails from "./Components/services-datails/UserVenueServiceDetails";
-import UserCarRentServiceDetails from "./Components/services-datails/UserCarRentServiceDetails";
-import EditPhotographer from "./Components/photographer-components/EditPhotographer";
-import EditLocationService from "./Components/Location-component/EditLocationService";
-import EditVenueVendor from "./Components/Venue-components/EditVenueVendor";
-import EditCarRentVendor from "./Components/car-rent-components/EditCarRentVendor";
 
 function App() {
   const { pathname } = useLocation();
@@ -133,12 +125,8 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
 
         <Route path="/profile">
-          <Route index element={userData ? <Profile /> : <Navigate to="/" />} />
-
-          <Route
-            path="vendor-manager"
-            element={userData ? <VendorManager /> : <Navigate to="/" />}
-          />
+          <Route index element={<Profile />} />
+          <Route path="vendor-manager" element={<VendorManager />} />
 
           <Route path={"my-services"}>
             <Route
@@ -151,62 +139,19 @@ function App() {
             />
             <Route
               path="photographer/details/:id"
-              element={
-                userData ? <PhotographerServiceDetails /> : <Navigate to="/" />
-              }
-            />
-            <Route
-              path="photographer/edit/:id"
-              element={userData ? <EditPhotographer /> : <Navigate to="/" />}
+              element={<PhotographerServiceDetails />}
             />
 
-            <Route
-              path="car"
-              element={userData ? <CarRentVendor /> : <Navigate to="/" />}
-            />
-            <Route
-              path="car/details/:id"
-              element={
-                userData ? <CarRentServiceDetails /> : <Navigate to="/" />
-              }
-            />
-            <Route
-              path="car/edit/:id"
-              element={userData ? <EditCarRentVendor /> : <Navigate to="/" />}
-            />
+            <Route path="car" element={<CarRentVendor />} />
+            <Route path="car/details/:id" element={<CarRentServiceDetails />} />
+            
+            <Route path="Venues" element={<VenueVendor />} />
+            <Route path="Venues/details/:id" element={<VenueServiceDetails />} />
 
-            <Route
-              path="Venues"
-              element={userData ? <VenueVendor /> : <Navigate to="/" />}
-            />
-            <Route
-              path="Venues/details/:id"
-              element={userData ? <VenueServiceDetails /> : <Navigate to="/" />}
-            />
-            <Route
-              path="Venues/edit/:id"
-              element={userData ? <EditVenueVendor /> : <Navigate to="/" />}
-            />
+            <Route path="Location" element={<VendorLocation />} />
+            <Route path="Location/details/:id" element={<LocationServiceDetails />} />
 
-            <Route
-              path="Location"
-              element={userData ? <VendorLocation /> : <Navigate to="/" />}
-            />
-            <Route
-              path="Location/details/:id"
-              element={
-                userData ? <LocationServiceDetails /> : <Navigate to="/" />
-              }
-            />
-            <Route
-              path="Location/edit/:id"
-              element={userData ? <EditLocationService /> : <Navigate to="/" />}
-            />
-
-            <Route
-              path="beauty-center"
-              element={userData ? <BeautyCenter /> : <Navigate to="/" />}
-            />
+            <Route path="beauty-center" element={<BeautyCenter />} />
             <Route
               path="beauty-center/details"
               element={userData ? <BeautyCenterDetails /> : <Navigate to="/" />}
