@@ -89,6 +89,10 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+
+
+
 // Forgot Password
 // Email sending utility
 
@@ -325,6 +329,48 @@ exports.getServices = async (req, res) => {
     });
   }
 };
+
+
+
+const User = require('../models/userModel'); // Import the User model
+
+exports.searchServices = async (req, res) => {
+  try {
+    const query = req.query.query;
+
+    if (!query) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Search query is missing',
+      });
+    }
+
+    // Create a regular expression to match both Arabic and English words (case-insensitive)
+    const searchRegex = new RegExp(query, 'i'); // Case-insensitive search
+
+    // Search vendors and services by name or description in both languages
+    const results = await User.find({
+      role: { $in: ['vendor', 'photographer', 'beauty center', 'service'] },
+      $or: [
+        { name: searchRegex },        // Search by name
+        { email: searchRegex },       // Search by email (if applicable)
+        { description: searchRegex }, // Search by description (if you have one)
+      ],
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: results,
+    });
+  } catch (err) {
+    console.error('Error during search:', err);
+    res.status(500).json({
+      status: 'error',
+      message: 'Something went wrong while searching',
+    });
+  }
+};
+
 const User = require('../models/userModel'); // Import the User model
 
 exports.searchServices = async (req, res) => {

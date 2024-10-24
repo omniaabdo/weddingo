@@ -11,6 +11,10 @@ router.post('/verifyCode', userController.verifyCode);
 router.post("/resetPassword", userController.resetPassword);
 router.get("/services", checkToken, userController.getServices);
 
+// Route for searching service providers like vendors, photographers, beauty centers, etc.
+router.get('/searchServices', userController.searchServices);
+
+
 router.get("/me", checkToken, userController.getUser);
 
 // userRoutes.js
