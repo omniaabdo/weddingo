@@ -16,6 +16,7 @@ const carRent = require("./routes/car_rent.js");
 const homeStore = require("./routes/home-store.js");
 const homeStoreCategory = require("./routes/home-store-category.js");
 const packageRoutes = require("./routes/packege.js");
+const homeRoutes = require('./routes/home-route.js')
 const app = express();
 
 const path = require("path");
@@ -76,6 +77,7 @@ app.use(
 );
 
 // Routes
+app.use("/api/home", homeRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/venues", upload.array("files"), venueRoutes);
 app.use("/api/budget", require("./routes/budget"));

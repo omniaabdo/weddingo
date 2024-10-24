@@ -3,6 +3,9 @@ import userDataReducer from "./users/getUserServices";
 import regesterReducer from "./auth/rejester";
 import loginReducer from "./auth/login";
 
+//Home Data
+import homeReducer from "./home/getHomeData";
+
 //photographer
 import photographerReducer from "./photographer/vendorPhotographer";
 import singlePhotographerReducer from "./photographer/photgrapherSingleService";
@@ -19,8 +22,10 @@ import singleVenueReducer from "./venue/venueSingleService";
 // Venue Rent
 import locationReducer from "./location/vendorLocation";
 import singleLocationReducer from "./location/locationSingleService";
+import singleHomeStoreCategoryDataReducer from "./store-category/storeCategoryService";
 const store = configureStore({
   reducer: {
+    homeReducer,
     regesterReducer,
     loginReducer,
     userDataReducer,
@@ -39,6 +44,9 @@ const store = configureStore({
     //Location
     locationReducer,
     singleLocationReducer,
+
+    //category
+    singleHomeStoreCategoryDataReducer
   },
 });
 

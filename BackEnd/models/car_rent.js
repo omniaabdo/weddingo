@@ -153,11 +153,7 @@ const carRentSchema = new mongoose.Schema(
         message: "Invalid video URL",
       },
     },
-    price: {
-      type: Number,
-      required: [true, "Price is required"],
-      min: [0, "Price cannot be negative"],
-    },
+    
     userId: {
       type: mongoose.Schema.ObjectId,
       ref: "Users",
